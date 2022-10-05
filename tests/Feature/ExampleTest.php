@@ -1,8 +1,8 @@
 <?php
 
-namespace Webfucktory\PackageName\Tests\Feature;
+namespace Condividendo\FatturaPA\Tests\Feature;
 
-use Webfucktory\PackageName\Tests\TestCase;
+use Condividendo\FatturaPA\Tests\TestCase;
 
 class ExampleTest extends TestCase
 {

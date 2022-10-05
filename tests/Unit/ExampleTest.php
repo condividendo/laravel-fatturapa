@@ -1,6 +1,6 @@
 <?php
 
-namespace Webfucktory\PackageName\Tests\Unit;
+namespace Condividendo\FatturaPA\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
 

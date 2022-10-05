@@ -1,6 +1,6 @@
 <?php
 
-namespace Webfucktory\PackageName;
+namespace Condividendo\FatturaPA;
 
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 

@@ -1,5 +1,5 @@
 {
-    "name": "webfucktory/package-name",
+    "name": "condividendo/laravel-fatturapa",
     "require": {
         "php": "^8.0",
         "illuminate/support": "^9.0"
@@ -9,12 +9,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Webfucktory\\PackageName\\": "src"
+            "Condividendo\\FatturaPA\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Webfucktory\\PackageName\\Tests\\": "tests"
+            "Condividendo\\FatturaPA\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -23,7 +23,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Webfucktory\\PackageName\\ServiceProvider"
+                "Condividendo\\FatturaPA\\ServiceProvider"
             ]
         }
     },
