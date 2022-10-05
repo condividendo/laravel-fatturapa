@@ -3,9 +3,7 @@
 [![Latest Version](http://img.shields.io/packagist/v/condividendo/laravel-fatturapa.svg?label=Release&style=for-the-badge)](https://packagist.org/packages/condividendo/laravel-fatturapa)
 [![MIT License](https://img.shields.io/github/license/condividendo/laravel-fatturapa.svg?label=License&color=blue&style=for-the-badge)](https://github.com/condividendo/laravel-fatturapa/blob/master/LICENSE.md)
 
-This package allows you to generate and/or send Italian eInvoice (aka [FatturaPA](https://www.fatturapa.gov.it/)) using 
-various providers like [Aruba](https://www.pec.it/acquista-fatturazione-elettronica.aspx) or 
-[Fatture in Cloud](https://www.fattureincloud.it/).
+This package allows you to generate the XML of Italian eInvoice (aka [FatturaPA](https://www.fatturapa.gov.it/)).
 
 Useful links:
 - [FatturaPA documentation](https://www.fatturapa.gov.it/it/norme-e-regole/documentazione-fattura-elettronica/formato-fatturapa/)
@@ -14,14 +12,6 @@ Useful links:
 
 ```shell
 composer require condividendo/laravel-fatturapa
-```
-
-## Configuration
-
-Publish and edit `config/fatturapa.php` file:
-
-```shell
-php artisan vendor:publish --tag=fatturapa-config
 ```
 
 ## Usage
@@ -66,16 +56,15 @@ $invoice = \Condividendo\FatturaPA\FatturaPA::build()
         \Condividendo\FatturaPA\Item::make()
             ->setNumber(1)
             ->setDescription('Product description')
-            ->setQuantity(10)
             ->setPrice(10.0)
-            ->setTotalAmount(100.0)
+            ->setTotalAmount(10.0)
             ->setTaxRate(0.22)
     ])
     ->setSummary([
         \Condividendo\FatturaPA\SummaryItem::make()
-            ->setTaxableAmount(100.0)
+            ->setTaxableAmount(10.0)
             ->setTaxRate(0.22)
-            ->setTaxAmount(22.0)
+            ->setTaxAmount(2.2)
     ]);
 ```
 
@@ -86,12 +75,6 @@ $invoice = \Condividendo\FatturaPA\FatturaPA::build()
 $xml = $invoice->toXML();
 
 // do whatever you want with $xml variable...
-```
-
-### Send
-
-```php
-$invoice->send();
 ```
 
 ## Changelog

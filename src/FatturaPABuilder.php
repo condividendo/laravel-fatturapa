@@ -17,10 +17,6 @@ class FatturaPABuilder
         return $this;
     }
 
-    public function send(?string $provider = null): void
-    {
-    }
-
     public function toXML(): SimpleXMLElement
     {
         return new SimpleXMLElement('<a></a>');
