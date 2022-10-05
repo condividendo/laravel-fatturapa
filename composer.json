@@ -2,6 +2,7 @@
     "name": "condividendo/laravel-fatturapa",
     "require": {
         "php": "^7.1",
+        "ext-simplexml": "*",
         "illuminate/support": "5.8.*"
     },
     "require-dev": {
