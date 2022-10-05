@@ -1,0 +1,33 @@
+{
+    "name": "webfucktory/package-name",
+    "require": {
+        "php": "^8.0",
+        "illuminate/support": "^9.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Webfucktory\\PackageName\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Webfucktory\\PackageName\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Webfucktory\\PackageName\\ServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
