@@ -1,4 +1,5 @@
 /.idea
 /vendor
+/docs
 .phpunit.result.cache
 composer.lock

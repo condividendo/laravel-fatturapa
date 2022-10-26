@@ -1,12 +1,12 @@
 {
     "name": "condividendo/laravel-fatturapa",
     "require": {
-        "php": "^7.1",
+        "php": ">=8.0",
         "ext-simplexml": "*",
-        "illuminate/support": "5.8.*"
+        "illuminate/support": "9.37.*"
     },
     "require-dev": {
-        "orchestra/testbench": "^3.8"
+        "orchestra/testbench": "^7.11"
     },
     "autoload": {
         "psr-4": {
