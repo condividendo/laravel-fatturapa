@@ -20,11 +20,10 @@ composer require condividendo/laravel-fatturapa
 
 ```php
 $invoice = \Condividendo\FatturaPA\FatturaPA::build()
-    ->setRecipientCode('ABCXCR1')
-    ->setType(\Condividendo\FatturaPA\Enums\Type::TD01())
-    ->setCurrency('EUR')
-    ->setDate('2022-01-23')
+    ->setSenderId('IT', '01879020517')
     ->setNumber('1')
+    ->setTrasmissionFormat(\Condividendo\FatturaPA\Enums\TrasmissionFormat::FPR12())
+    ->setRecipientCode('ABCXCR1')
     ->setSupplier(
         \Condividendo\FatturaPA\Supplier::make()
             ->setName('Condividendo italia srl')
@@ -52,19 +51,26 @@ $invoice = \Condividendo\FatturaPA\FatturaPA::build()
                     ->setCountry('IT')
             )
     )
-    ->setItems([
-        \Condividendo\FatturaPA\Item::make()
-            ->setNumber(1)
-            ->setDescription('Product description')
-            ->setPrice(10.0)
-            ->setTotalAmount(10.0)
-            ->setTaxRate(0.22)
-    ])
-    ->setSummary([
-        \Condividendo\FatturaPA\SummaryItem::make()
-            ->setTaxableAmount(10.0)
-            ->setTaxRate(0.22)
-            ->setTaxAmount(2.2)
+    ->setBodyItems([
+        \Condividendo\FatturaPA\BodyItem::make()
+            ->setType(\Condividendo\FatturaPA\Enums\Type::TD01())
+            ->setCurrency('EUR')
+            ->setDate('2022-01-23')
+            ->setNumber('1')
+            ->setItems([
+                \Condividendo\FatturaPA\Item::make()
+                    ->setNumber(1)
+                    ->setDescription('Product description')
+                    ->setPrice(10.0)
+                    ->setTotalAmount(10.0)
+                    ->setTaxRate(0.22)
+            ])
+            ->setSummaryItems([
+                \Condividendo\FatturaPA\SummaryItem::make()
+                    ->setTaxableAmount(10.0)
+                    ->setTaxRate(0.22)
+                    ->setTaxAmount(2.2)
+            ])
     ]);
 ```
 
