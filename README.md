@@ -16,20 +16,18 @@ composer require condividendo/laravel-fatturapa
 
 ## Usage
 
-### Build
-
 ```php
 $invoice = \Condividendo\FatturaPA\FatturaPA::build()
+    ->setTransmissionFormat(\Condividendo\FatturaPA\Enums\TransmissionFormat::FPR12())
     ->setSenderId('IT', '01879020517')
-    ->setNumber('1')
-    ->setTrasmissionFormat(\Condividendo\FatturaPA\Enums\TrasmissionFormat::FPR12())
+    ->setTransmissionSequence('1')
     ->setRecipientCode('ABCXCR1')
     ->setSupplier(
-        \Condividendo\FatturaPA\Supplier::make()
+        \Condividendo\FatturaPA\Entities\Supplier::make()
             ->setName('Condividendo italia srl')
             ->setVatNumber('IT', '12345640962')
             ->setAddress(
-                \Condividendo\FatturaPA\Address::make()
+                \Condividendo\FatturaPA\Entities\Address::make()
                     ->setAddress('Via Italia, 123')
                     ->setPostalCode('123456')
                     ->setCity('Milano')
@@ -38,12 +36,12 @@ $invoice = \Condividendo\FatturaPA\FatturaPA::build()
             )
     )
     ->setCustomer(
-        \Condividendo\FatturaPA\Customer::make()
+        \Condividendo\FatturaPA\Entities\Customer::make()
             ->setFirstName('Mario')
             ->setLastName('Rossi')
             ->setFiscalCode('RSSMRA73L09Z103F')
             ->setAddress(
-                \Condividendo\FatturaPA\Address::make()
+                \Condividendo\FatturaPA\Entities\Address::make()
                     ->setAddress('Via Italia, 123')
                     ->setPostalCode('123456')
                     ->setCity('Milano')
@@ -51,14 +49,14 @@ $invoice = \Condividendo\FatturaPA\FatturaPA::build()
                     ->setCountry('IT')
             )
     )
-    ->setBodyItems([
-        \Condividendo\FatturaPA\BodyItem::make()
+    ->addBody(
+        \Condividendo\FatturaPA\Entities\Body::make()
             ->setType(\Condividendo\FatturaPA\Enums\Type::TD01())
             ->setCurrency('EUR')
             ->setDate('2022-01-23')
             ->setNumber('1')
             ->setItems([
-                \Condividendo\FatturaPA\Item::make()
+                \Condividendo\FatturaPA\Entities\Item::make()
                     ->setNumber(1)
                     ->setDescription('Product description')
                     ->setPrice(10.0)
@@ -66,17 +64,13 @@ $invoice = \Condividendo\FatturaPA\FatturaPA::build()
                     ->setTaxRate(0.22)
             ])
             ->setSummaryItems([
-                \Condividendo\FatturaPA\SummaryItem::make()
+                \Condividendo\FatturaPA\Entities\SummaryItem::make()
                     ->setTaxableAmount(10.0)
                     ->setTaxRate(0.22)
                     ->setTaxAmount(2.2)
             ])
-    ]);
-```
-
-### Convert to XML
-
-```php
+    );
+    
 /** @var \SimpleXMLElement $xml */
 $xml = $invoice->toXML();
 

@@ -1,69 +1,32 @@
 <?php
+
 namespace Condividendo\FatturaPA\Tags;
 
-class Header
+use DOMDocument;
+use DOMElement;
+
+class Header extends AbstractTag
 {
-		
     /**
-     * FatturaElettronicaHeader/DatiTrasmissione
-     * @var Condividendo\FatturaPA\Tags\TransmissionData
+     * @var TransmissionData
      */
     private $transmissionData;
-    
+
+    public function setTransmissionData(TransmissionData $data): self
+    {
+        $this->transmissionData = $data;
+        return $this;
+    }
+
     /**
-     * FatturaElettronicaHeader/CedentePrestatore
-     * @var Condividendo\FatturaPA\Tags\Supplier
+     * @noinspection PhpUnhandledExceptionInspection
      */
-    private $supplier;
-    
-    /**
-     * FatturaElettronicaHeader/CessionarioCommittente
-     * @var Condividendo\FatturaPA\Tags\Customer
-     */
-    private $customer;
-    
-            
-    function __construct(){
-		$this->transmissionData = TransmissionData::make();
-		$this->supplier = Supplier::make();
-		$this->customer = Customer::make();
-	}
-    
-    public static function make() : self { return new self(); }		
-	
-
-    public function setTransmissionData(TransmissionData $transmissionData): self
+    public function toDOMElement(DOMDocument $dom): DOMElement
     {
-        $this->transmissionData = $transmissionData;
-        return $this;
-    }
+        $e = $dom->createElement('FatturaElettronicaHeader');
 
-    public function setSupplier(Supplier $supplier): self
-    {
-        $this->supplier = $supplier;
-        return $this;
-    }
+        $e->appendChild($this->transmissionData->toDOMElement($dom));
 
-    public function setCustomer(Customer $customer): self
-    {
-        $this->customer = $customer;
-        return $this;
+        return $e;
     }
-    
-    public function getTags(string $tabs){
-		return  "$tabs\t<FatturaElettronicaHeader>\r\n" .
-					$this->transmissionData->getTags("$tabs\t") . "\r\n" .
-					$this->supplier->getTags("$tabs\t") . "\r\n" .
-					$this->customer->getTags("$tabs\t") . "\r\n" .
-				"$tabs\t</FatturaElettronicaHeader>";
-	}
-
-	/*
-    public function setRecipientCode(string $code): self
-    {
-        $this->transmissionData->setRecipientCode($code);
-        return $this;
-    }
-    */
-
 }

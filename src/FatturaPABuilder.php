@@ -2,69 +2,163 @@
 
 namespace Condividendo\FatturaPA;
 
-use SimpleXMLElement;
+use Condividendo\FatturaPA\Entities\Body;
+use Condividendo\FatturaPA\Entities\Customer;
+use Condividendo\FatturaPA\Entities\Supplier;
+use Condividendo\FatturaPA\Enums\TransmissionFormat;
+use Condividendo\FatturaPA\Tags\Body as BodyTag;
+use Condividendo\FatturaPA\Tags\CodeId;
+use Condividendo\FatturaPA\Tags\CountryId;
 use Condividendo\FatturaPA\Tags\Header;
-use Condividendo\FatturaPA\Tags\Body;
-
-// https://www.fatturapa.gov.it/export/documenti/Specifiche_tecniche_del_formato_FatturaPA_V1.3.1.pdf
+use Condividendo\FatturaPA\Tags\EInvoice;
+use Condividendo\FatturaPA\Tags\TransmissionData;
+use Condividendo\FatturaPA\Tags\TransmissionFormat as TransmissionFormatTag;
+use Condividendo\FatturaPA\Tags\TransmissionSequence;
+use Condividendo\FatturaPA\Tags\TransmitterId;
+use DOMDocument;
+use SimpleXMLElement;
 
 class FatturaPABuilder
 {
-        
     /**
-     * FatturaElettronica/FatturaElettronicaHeader
-     * @var Condividendo\FatturaPA\Tags\Header
+     * @var TransmissionFormat
      */
-    private Header $header;
-        
+    private $transmissionFormat;
+
     /**
-     * FatturaElettronica/FatturaElettronicaBody
-     * @var Condividendo\FatturaPA\Tags\Body
+     * @var string
      */
-    private Body $body;
-        
-        
-    function __construct(){
-		$this->header = Header::make();
-		$this->body = Body::make();
-	}
-    
-    
-    public function setHeader(Header $header): self
+    private $senderIdCountry;
+
+    /**
+     * @var string
+     */
+    private $senderIdCode;
+
+    /**
+     * @var string
+     */
+    private $transmissionSequence;
+
+    /**
+     * @var Body[]
+     */
+    private $bodies = [];
+
+    public function setTransmissionFormat(TransmissionFormat $format): self
     {
-        $this->header = $header;
+        $this->transmissionFormat = $format;
         return $this;
     }
-    
-    
-    public function setBody(Body $body): self
+
+    public function setSenderId(string $country, string $code): self
     {
-        $this->body = $body;
+        $this->senderIdCountry = $country;
+        $this->senderIdCode = $code;
         return $this;
     }
-    
-    
-    public static function formatDate(string $date){		
-		$timestamp = strtotime($date);
-		return date("Y-m-d",$timestamp);
-	}
-    
+
+    public function setTransmissionSequence(string $sequence): self
+    {
+        $this->transmissionSequence = $sequence;
+        return $this;
+    }
+
+    public function setRecipientCode(string $code): self
+    {
+        return $this;
+    }
+
+    public function setSupplier(Supplier $supplier): self
+    {
+        return $this;
+    }
+
+    public function setCustomer(Customer $customer): self
+    {
+        return $this;
+    }
+
+    public function addBody(Body $body): self
+    {
+        $this->bodies[] = $body;
+        return $this;
+    }
 
     public function toXML(): SimpleXMLElement
     {
-		$xml = "<?xml version='1.0' standalone='yes'?>\r\n
-		<q1:FatturaElettronica versione='FPR12' xmlns:q1='http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2'>\r\n" .
-			$this->header->getTags("\t") . "\r\n" .
-			$this->body->getTags("\t") . "\r\n" .
-		"</q1:FatturaElettronica>";
-        return new SimpleXMLElement($xml);
+        $dom = new DOMDocument();
+
+        $dom->appendChild($this->makeEInvoice()->toDOMElement($dom));
+
+        return simplexml_import_dom($dom);
     }
-    
-    /*
-    public function setRecipientCode(string $code): self
+
+    private function makeEInvoice(): EInvoice
     {
-        $this->header->setRecipientCode($code);
-        return $this;
+        $r = EInvoice::make()
+            ->setTransmissionFormat($this->transmissionFormat)
+            ->setHeader($this->makeHeader());
+
+        foreach ($this->makeBodies() as $body) {
+            $r->addBody($body);
+        }
+
+        return $r;
     }
-    */
+
+    private function makeHeader(): Header
+    {
+        return Header::make()->setTransmissionData($this->makeTransmissionData());
+    }
+
+    /**
+     * @return BodyTag[]
+     */
+    private function makeBodies(): array
+    {
+        $b = [];
+
+        foreach ($this->bodies as $body) {
+            $b[] = $body->getTag();
+        }
+
+        return $b;
+    }
+
+    private function makeTransmissionData(): TransmissionData
+    {
+        return TransmissionData::make()
+            ->setTransmitterId($this->makeTransmitterId())
+            ->setTransmissionFormat($this->makeTransmissionFormat())
+            ->setTransmissionSequence($this->makeTransmissionSequence());
+    }
+
+    private function makeTransmitterId(): TransmitterId
+    {
+        return TransmitterId::make()
+            ->setCountryId($this->makeCountryId())
+            ->setCodeId($this->makeCodeId());
+    }
+
+    private function makeTransmissionFormat(): TransmissionFormatTag
+    {
+        return TransmissionFormatTag::make()->setFormat($this->transmissionFormat);
+    }
+
+    private function makeTransmissionSequence(): TransmissionSequence
+    {
+        return TransmissionSequence::make()
+            ->setSequence($this->transmissionSequence);
+    }
+
+    private function makeCountryId(): CountryId
+    {
+        return CountryId::make()->setId($this->senderIdCountry);
+    }
+
+    private function makeCodeId(): CodeId
+    {
+        return CodeId::make()->setId($this->senderIdCode);
+    }
 }

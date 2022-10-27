@@ -1,5 +1,8 @@
+# NOTE: /.tmp is used for your own stuff
+
 /.idea
+/.tmp
 /vendor
-/docs
+
 .phpunit.result.cache
 composer.lock

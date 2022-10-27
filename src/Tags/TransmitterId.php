@@ -1,48 +1,44 @@
 <?php
+
 namespace Condividendo\FatturaPA\Tags;
 
-class TransmitterId
+use DOMDocument;
+use DOMElement;
+
+class TransmitterId extends AbstractTag
 {
-	
-	const DEFAULT_COUNTRY_CODE = "IT";
-	
     /**
-     * FatturaElettronicaHeader/DatiTrasmissione/IdTrasmittente/IdPaese
-     * @var string
+     * @var CountryId
      */
-    private $countryCode;
-    
+    private $countryId;
+
     /**
-     * FatturaElettronicaHeader/DatiTrasmissione/IdTrasmittente/IdCodice
-     * @var string
+     * @var CodeId
      */
-    private $code;
-    
-    function __construct(){
-		$this->countryCode = self::DEFAULT_COUNTRY_CODE;
-	}
-    
-    public static function make() : self { return new self(); }
-    
-    
-    public function setCountryCode(string $code): self
+    private $codeId;
+
+    public function setCountryId(CountryId $id): self
     {
-        $this->countryCode = $code;
-        return $this;
-    }
-    
-    public function setCode(string $code): self
-    {
-        $this->code = $code;
+        $this->countryId = $id;
         return $this;
     }
 
-    
-    public function getTags(string $tabs){
-		return  "$tabs\t<IdTrasmittente>\r\n" .
-					"$tabs\t\t<IdPaese>$this->countryCode</IdPaese>\r\n" .
-					"$tabs\t\t<IdCodice>$this->code</IdCodice>\r\n" .
-				"$tabs\t</IdTrasmittente>";
-	}
-	
+    public function setCodeId(CodeId $id): self
+    {
+        $this->codeId = $id;
+        return $this;
+    }
+
+    /**
+     * @noinspection PhpUnhandledExceptionInspection
+     */
+    public function toDOMElement(DOMDocument $dom): DOMElement
+    {
+        $e = $dom->createElement('IdTrasmittente');
+
+        $e->appendChild($this->countryId->toDOMElement($dom));
+        $e->appendChild($this->codeId->toDOMElement($dom));
+
+        return $e;
+    }
 }

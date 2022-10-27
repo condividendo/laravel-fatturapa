@@ -1,7 +1,15 @@
 <?php
+
 namespace Condividendo\FatturaPA\Enums;
 
-enum TransmissionFormat: string
+use BenSampo\Enum\Enum;
+
+/**
+ * @method static self FPA12() Fattura verso PA
+ * @method static self FPR12() Fattura verso privati
+ */
+final class TransmissionFormat extends Enum
 {
-    case FPR12 = 'FPR12';
+    const FPA12 = 'FPA12';
+    const FPR12 = 'FPR12';
 }
