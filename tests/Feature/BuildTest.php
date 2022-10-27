@@ -16,6 +16,7 @@ class BuildTest extends TestCase
      */
     public function test_build()
     {
+        /** @var string $xml */
         $xml = FatturaPA::build()
             ->setTransmissionFormat(TransmissionFormat::FPR12())
             ->setSenderId('IT', '0123456789')
@@ -23,8 +24,9 @@ class BuildTest extends TestCase
             ->addBody(
                 Body::make()
             )
-            ->toXML();
+            ->toXML()
+            ->asXML();
 
-        $this->assertXmlStringEqualsXmlFile(__DIR__ . '/../fixtures/1.xml', $xml->asXML());
+        $this->assertXmlStringEqualsXmlFile(__DIR__ . '/../fixtures/1.xml', $xml);
     }
 }

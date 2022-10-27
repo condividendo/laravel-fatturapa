@@ -2,11 +2,14 @@
 
 namespace Condividendo\FatturaPA\Tags;
 
+use Condividendo\FatturaPA\Traits\Makeable;
 use DOMDocument;
 use DOMElement;
 
 class Header extends AbstractTag
 {
+    use Makeable;
+
     /**
      * @var TransmissionData
      */

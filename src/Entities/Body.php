@@ -2,12 +2,17 @@
 
 namespace Condividendo\FatturaPA\Entities;
 
-use Condividendo\FatturaPA\Contracts\Tag;
 use Condividendo\FatturaPA\Tags\Body as BodyTag;
+use Condividendo\FatturaPA\Traits\Makeable;
 
 class Body extends AbstractEntity
 {
-    public function getTag(): Tag
+    use Makeable;
+
+    /**
+     * @return BodyTag
+     */
+    public function getTag()
     {
         return BodyTag::make();
     }

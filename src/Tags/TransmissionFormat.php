@@ -2,6 +2,7 @@
 
 namespace Condividendo\FatturaPA\Tags;
 
+use Condividendo\FatturaPA\Traits\Makeable;
 use DOMDocument;
 use DOMElement;
 
@@ -10,6 +11,8 @@ use DOMElement;
  */
 class TransmissionFormat extends AbstractTag
 {
+    use Makeable;
+
     /**
      * @var string
      */

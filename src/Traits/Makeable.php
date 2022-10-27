@@ -5,13 +5,11 @@ namespace Condividendo\FatturaPA\Traits;
 trait Makeable
 {
     /**
-     * @param ...$arguments
      * @return self
      * @noinspection PhpMissingReturnTypeInspection
-     * @noinspection PhpMethodParametersCountMismatchInspection
      */
-    static function make(...$arguments)
+    static function make()
     {
-        return new static(...$arguments);
+        return new static();
     }
 }

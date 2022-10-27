@@ -4,5 +4,8 @@ namespace Condividendo\FatturaPA\Contracts;
 
 interface Entity extends Makeable
 {
-    public function getTag(): Tag;
+    /**
+     * @return Tag
+     */
+    public function getTag();
 }

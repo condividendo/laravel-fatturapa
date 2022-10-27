@@ -19,7 +19,7 @@ class ServiceProvider extends BaseServiceProvider
     /**
      * Bootstrap the application services.
      */
-    public function boot()
+    public function boot(): void
     {
         //
     }

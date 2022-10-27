@@ -2,11 +2,14 @@
 
 namespace Condividendo\FatturaPA\Tags;
 
+use Condividendo\FatturaPA\Traits\Makeable;
 use DOMDocument;
 use DOMElement;
 
 class EInvoice extends AbstractTag
 {
+    use Makeable;
+
     /**
      * @var \Condividendo\FatturaPA\Enums\TransmissionFormat
      */

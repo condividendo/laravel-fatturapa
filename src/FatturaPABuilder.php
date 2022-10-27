@@ -9,8 +9,8 @@ use Condividendo\FatturaPA\Enums\TransmissionFormat;
 use Condividendo\FatturaPA\Tags\Body as BodyTag;
 use Condividendo\FatturaPA\Tags\CodeId;
 use Condividendo\FatturaPA\Tags\CountryId;
-use Condividendo\FatturaPA\Tags\Header;
 use Condividendo\FatturaPA\Tags\EInvoice;
+use Condividendo\FatturaPA\Tags\Header;
 use Condividendo\FatturaPA\Tags\TransmissionData;
 use Condividendo\FatturaPA\Tags\TransmissionFormat as TransmissionFormatTag;
 use Condividendo\FatturaPA\Tags\TransmissionSequence;
@@ -91,7 +91,10 @@ class FatturaPABuilder
 
         $dom->appendChild($this->makeEInvoice()->toDOMElement($dom));
 
-        return simplexml_import_dom($dom);
+        /** @var SimpleXMLElement $xml */
+        $xml = simplexml_import_dom($dom);
+
+        return $xml;
     }
 
     private function makeEInvoice(): EInvoice
