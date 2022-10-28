@@ -15,7 +15,7 @@ use BenSampo\Enum\Enum;
  * @method static self N3_5() non imponibili – a seguito di dichiarazioni d’intento
  * @method static self N3_6() non imponibili – altre operazioni che non concorrono alla formazione del plafond
  * @method static self N4() esenti
- * @method static self N5() egime del margine / IVA non esposta in fattura
+ * @method static self N5() regime del margine / IVA non esposta in fattura
  * @method static self N6.1() inversione contabile – cessione di rottami e altri materiali di recupero
  * @method static self N6.2() inversione contabile – cessione di oro e argento puro
  * @method static self N6.3() inversione contabile – subappalto nel settore edile
