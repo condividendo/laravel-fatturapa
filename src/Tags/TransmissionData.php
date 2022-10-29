@@ -25,6 +25,17 @@ class TransmissionData extends AbstractTag
      */
     private $transmissionFormat;
 
+    /**
+     * @var RecipientCode
+     */
+    private $recipientCode;
+
+    /**
+     * @var RecipientPec
+     */
+    private $recipientPec;
+
+
     public function setTransmitterId(TransmitterId $id): self
     {
         $this->transmitterId = $id;
@@ -43,6 +54,18 @@ class TransmissionData extends AbstractTag
         return $this;
     }
 
+    public function setRecipientCode(RecipientCode $recipientCode): self
+    {
+        $this->recipientCode = $recipientCode;
+        return $this;
+    }
+
+    public function setRecipientPec(RecipientPec $recipientPec): self
+    {
+        $this->recipientPec = $recipientPec;
+        return $this;
+    }
+
     /**
      * @noinspection PhpUnhandledExceptionInspection
      */
@@ -53,7 +76,9 @@ class TransmissionData extends AbstractTag
         $e->appendChild($this->transmitterId->toDOMElement($dom));
         $e->appendChild($this->transmissionFormat->toDOMElement($dom));
         $e->appendChild($this->transmissionSequence->toDOMElement($dom));
-
+        $e->appendChild($this->recipientCode->toDOMElement($dom));
+        if($this->recipientPec) $e->appendChild($this->recipientPec->toDOMElement($dom));
+        
         return $e;
     }
 }

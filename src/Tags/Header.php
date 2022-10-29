@@ -15,9 +15,34 @@ class Header extends AbstractTag
      */
     private $transmissionData;
 
+    /**
+     * @var Supplier
+     */
+    private $supplier;
+
+    /**
+     * @var Customer
+     */
+    private $customer;
+
+
     public function setTransmissionData(TransmissionData $data): self
     {
         $this->transmissionData = $data;
+        return $this;
+    }
+
+
+    public function setSupplier(Supplier $supplier): self
+    {
+        $this->supplier = $supplier;
+        return $this;
+    }
+
+
+    public function setCustomer(Customer $customer): self
+    {
+        $this->customer = $customer;
         return $this;
     }
 
@@ -29,6 +54,8 @@ class Header extends AbstractTag
         $e = $dom->createElement('FatturaElettronicaHeader');
 
         $e->appendChild($this->transmissionData->toDOMElement($dom));
+        $e->appendChild($this->supplier->toDOMElement($dom));
+        $e->appendChild($this->customer->toDOMElement($dom));
 
         return $e;
     }
