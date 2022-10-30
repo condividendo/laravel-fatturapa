@@ -10,7 +10,10 @@ class Phone extends AbstractEntity
 {
     use Makeable;
 
-    public function getTag(): Tag
+    /**
+     * @return PhoneTag
+     */
+    public function getTag()
     {
         return PhoneTag::make();
     }

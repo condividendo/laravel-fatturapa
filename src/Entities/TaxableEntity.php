@@ -10,7 +10,10 @@ class TaxableEntity extends AbstractEntity
 {
     use Makeable;
 
-    public function getTag(): Tag
+    /**
+     * @return TaxableEntityTag
+     */
+    public function getTag()
     {
         return TaxableEntityTag::make();
     }

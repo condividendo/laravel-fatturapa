@@ -10,7 +10,10 @@ class CodeId extends AbstractEntity
 {
     use Makeable;
 
-    public function getTag(): Tag
+    /**
+     * @return CodeIdTag
+     */
+    public function getTag()
     {
         return CodeIdTag::make();
     }

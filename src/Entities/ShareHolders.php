@@ -10,7 +10,10 @@ class ShareHolders extends AbstractEntity
 {
     use Makeable;
 
-    public function getTag(): Tag
+    /**
+     * @return ShareHoldersTag
+     */
+    public function getTag()
     {
         return ShareHoldersTag::make();
     }

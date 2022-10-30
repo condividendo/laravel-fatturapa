@@ -10,7 +10,10 @@ class PaymentExpirationDate extends AbstractEntity
 {
     use Makeable;
 
-    public function getTag(): Tag
+    /**
+     * @return PaymentExpirationDateTag
+     */
+    public function getTag()
     {
         return PaymentExpirationDateTag::make();
     }

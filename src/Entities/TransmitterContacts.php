@@ -10,7 +10,10 @@ class TransmitterContacts extends AbstractEntity
 {
     use Makeable;
 
-    public function getTag(): Tag
+    /**
+     * @return TransmitterContactsTag
+     */
+    public function getTag()
     {
         return TransmitterContactsTag::make();
     }

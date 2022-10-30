@@ -10,7 +10,10 @@ class Date extends AbstractEntity
 {
     use Makeable;
 
-    public function getTag(): Tag
+    /**
+     * @return DateTag
+     */
+    public function getTag()
     {
         return DateTag::make();
     }

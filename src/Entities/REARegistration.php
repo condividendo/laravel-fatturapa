@@ -10,7 +10,10 @@ class REARegistration extends AbstractEntity
 {
     use Makeable;
 
-    public function getTag(): Tag
+    /**
+     * @return REARegistrationTag
+     */
+    public function getTag()
     {
         return REARegistrationTag::make();
     }

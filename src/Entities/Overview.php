@@ -10,7 +10,10 @@ class Overview extends AbstractEntity
 {
     use Makeable;
 
-    public function getTag(): Tag
+    /**
+     * @return OverviewTag
+     */
+    public function getTag()
     {
         return OverviewTag::make();
     }

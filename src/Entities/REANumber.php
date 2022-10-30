@@ -10,7 +10,10 @@ class REANumber extends AbstractEntity
 {
     use Makeable;
 
-    public function getTag(): Tag
+    /**
+     * @return REANumberTag
+     */
+    public function getTag()
     {
         return REANumberTag::make();
     }

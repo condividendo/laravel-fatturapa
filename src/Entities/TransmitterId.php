@@ -10,7 +10,10 @@ class TransmitterId extends AbstractEntity
 {
     use Makeable;
 
-    public function getTag(): Tag
+    /**
+     * @return TransmitterIdTag
+     */
+    public function getTag()
     {
         return TransmitterIdTag::make();
     }

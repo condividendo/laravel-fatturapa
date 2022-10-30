@@ -10,7 +10,10 @@ class CountryId extends AbstractEntity
 {
     use Makeable;
 
-    public function getTag(): Tag
+    /**
+     * @return CountryIdTag
+     */
+    public function getTag()
     {
         return CountryIdTag::make();
     }

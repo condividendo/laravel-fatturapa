@@ -10,7 +10,10 @@ class FiscalCode extends AbstractEntity
 {
     use Makeable;
 
-    public function getTag(): Tag
+    /**
+     * @return FiscalCodeTag
+     */
+    public function getTag()
     {
         return FiscalCodeTag::make();
     }

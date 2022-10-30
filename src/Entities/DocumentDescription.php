@@ -10,7 +10,10 @@ class DocumentDescription extends AbstractEntity
 {
     use Makeable;
 
-    public function getTag(): Tag
+    /**
+     * @return DocumentDescriptionTag
+     */
+    public function getTag()
     {
         return DocumentDescriptionTag::make();
     }

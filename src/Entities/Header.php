@@ -10,7 +10,10 @@ class Header extends AbstractEntity
 {
     use Makeable;
 
-    public function getTag(): Tag
+    /**
+     * @return HeaderTag
+     */
+    public function getTag()
     {
         return HeaderTag::make();
     }

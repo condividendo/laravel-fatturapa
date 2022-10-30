@@ -10,7 +10,10 @@ class Zip extends AbstractEntity
 {
     use Makeable;
 
-    public function getTag(): Tag
+    /**
+     * @return ZipTag
+     */
+    public function getTag()
     {
         return ZipTag::make();
     }

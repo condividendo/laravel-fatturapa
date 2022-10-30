@@ -10,7 +10,10 @@ class GeneralDocumentData extends AbstractEntity
 {
     use Makeable;
 
-    public function getTag(): Tag
+    /**
+     * @return GeneralDocumentDataTag
+     */
+    public function getTag()
     {
         return GeneralDocumentDataTag::make();
     }

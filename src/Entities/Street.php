@@ -10,7 +10,10 @@ class Street extends AbstractEntity
 {
     use Makeable;
 
-    public function getTag(): Tag
+    /**
+     * @return StreetTag
+     */
+    public function getTag()
     {
         return StreetTag::make();
     }

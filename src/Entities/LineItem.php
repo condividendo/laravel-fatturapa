@@ -10,7 +10,10 @@ class LineItem extends AbstractEntity
 {
     use Makeable;
 
-    public function getTag(): Tag
+    /**
+     * @return LineItemTag
+     */
+    public function getTag()
     {
         return LineItemTag::make();
     }

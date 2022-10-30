@@ -10,7 +10,10 @@ class OfficeCode extends AbstractEntity
 {
     use Makeable;
 
-    public function getTag(): Tag
+    /**
+     * @return OfficeCodeTag
+     */
+    public function getTag()
     {
         return OfficeCodeTag::make();
     }

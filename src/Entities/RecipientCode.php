@@ -10,7 +10,10 @@ class RecipientCode extends AbstractEntity
 {
     use Makeable;
 
-    public function getTag(): Tag
+    /**
+     * @return RecipientCodeTag
+     */
+    public function getTag()
     {
         return RecipientCodeTag::make();
     }

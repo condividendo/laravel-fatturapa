@@ -10,7 +10,10 @@ class GoodServicesData extends AbstractEntity
 {
     use Makeable;
 
-    public function getTag(): Tag
+    /**
+     * @return GoodServicesDataTag
+     */
+    public function getTag()
     {
         return GoodServicesDataTag::make();
     }

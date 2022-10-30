@@ -10,7 +10,10 @@ class Email extends AbstractEntity
 {
     use Makeable;
 
-    public function getTag(): Tag
+    /**
+     * @return EmailTag
+     */
+    public function getTag()
     {
         return EmailTag::make();
     }

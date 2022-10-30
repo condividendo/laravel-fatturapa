@@ -10,7 +10,10 @@ class VatNumber extends AbstractEntity
 {
     use Makeable;
 
-    public function getTag(): Tag
+    /**
+     * @return VatNumberTag
+     */
+    public function getTag()
     {
         return VatNumberTag::make();
     }

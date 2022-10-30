@@ -10,7 +10,10 @@ class Customer extends AbstractEntity
 {
     use Makeable;
 
-    public function getTag(): Tag
+    /**
+     * @return CustomerTag
+     */
+    public function getTag()
     {
         return CustomerTag::make();
     }

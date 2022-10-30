@@ -10,7 +10,10 @@ class Supplier extends AbstractEntity
 {
     use Makeable;
 
-    public function getTag(): Tag
+    /**
+     * @return SupplierTag
+     */
+    public function getTag()
     {
         return SupplierTag::make();
     }

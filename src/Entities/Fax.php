@@ -10,7 +10,10 @@ class Fax extends AbstractEntity
 {
     use Makeable;
 
-    public function getTag(): Tag
+    /**
+     * @return FaxTag
+     */
+    public function getTag()
     {
         return FaxTag::make();
     }

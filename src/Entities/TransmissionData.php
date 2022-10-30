@@ -10,7 +10,10 @@ class TransmissionData extends AbstractEntity
 {
     use Makeable;
 
-    public function getTag(): Tag
+    /**
+     * @return TransmissionDataTag
+     */
+    public function getTag()
     {
         return TransmissionDataTag::make();
     }

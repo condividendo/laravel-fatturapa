@@ -10,7 +10,10 @@ class CompanyName extends AbstractEntity
 {
     use Makeable;
 
-    public function getTag(): Tag
+    /**
+     * @return CompanyNameTag
+     */
+    public function getTag()
     {
         return CompanyNameTag::make();
     }

@@ -10,7 +10,10 @@ class Capital extends AbstractEntity
 {
     use Makeable;
 
-    public function getTag(): Tag
+    /**
+     * @return CapitalTag
+     */
+    public function getTag()
     {
         return CapitalTag::make();
     }

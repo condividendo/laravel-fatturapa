@@ -10,7 +10,10 @@ class LiquidationStatus extends AbstractEntity
 {
     use Makeable;
 
-    public function getTag(): Tag
+    /**
+     * @return LiquidationStatusTag
+     */
+    public function getTag()
     {
         return LiquidationStatusTag::make();
     }

@@ -10,7 +10,10 @@ class Address extends AbstractEntity
 {
     use Makeable;
 
-    public function getTag(): Tag
+    /**
+     * @return AddressTag
+     */
+    public function getTag()
     {
         return AddressTag::make();
     }

@@ -2,7 +2,7 @@
 
 namespace Condividendo\FatturaPA\Tags;
 
-class Address
+class Address extends AbstractTag
 {
     use Makeable;
 

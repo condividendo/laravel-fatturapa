@@ -10,7 +10,10 @@ class City extends AbstractEntity
 {
     use Makeable;
 
-    public function getTag(): Tag
+    /**
+     * @return CityTag
+     */
+    public function getTag()
     {
         return CityTag::make();
     }

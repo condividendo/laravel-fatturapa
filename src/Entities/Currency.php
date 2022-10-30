@@ -10,7 +10,10 @@ class Currency extends AbstractEntity
 {
     use Makeable;
 
-    public function getTag(): Tag
+    /**
+     * @return CurrencyTag
+     */
+    public function getTag()
     {
         return CurrencyTag::make();
     }

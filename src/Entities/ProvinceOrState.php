@@ -10,7 +10,10 @@ class ProvinceOrState extends AbstractEntity
 {
     use Makeable;
 
-    public function getTag(): Tag
+    /**
+     * @return ProvinceOrStateTag
+     */
+    public function getTag()
     {
         return ProvinceOrStateTag::make();
     }

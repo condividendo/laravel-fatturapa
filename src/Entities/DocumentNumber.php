@@ -10,7 +10,10 @@ class DocumentNumber extends AbstractEntity
 {
     use Makeable;
 
-    public function getTag(): Tag
+    /**
+     * @return DocumentNumberTag
+     */
+    public function getTag()
     {
         return DocumentNumberTag::make();
     }

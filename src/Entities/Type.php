@@ -10,7 +10,10 @@ class Type extends AbstractEntity
 {
     use Makeable;
 
-    public function getTag(): Tag
+    /**
+     * @return TypeTag
+     */
+    public function getTag()
     {
         return TypeTag::make();
     }

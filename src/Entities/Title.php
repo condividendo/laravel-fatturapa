@@ -10,7 +10,10 @@ class Title extends AbstractEntity
 {
     use Makeable;
 
-    public function getTag(): Tag
+    /**
+     * @return TitleTag
+     */
+    public function getTag()
     {
         return TitleTag::make();
     }

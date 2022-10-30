@@ -10,7 +10,10 @@ class Registry extends AbstractEntity
 {
     use Makeable;
 
-    public function getTag(): Tag
+    /**
+     * @return RegistryTag
+     */
+    public function getTag()
     {
         return RegistryTag::make();
     }

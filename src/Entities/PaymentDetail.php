@@ -10,7 +10,10 @@ class PaymentDetail extends AbstractEntity
 {
     use Makeable;
 
-    public function getTag(): Tag
+    /**
+     * @return PaymentDetailTag
+     */
+    public function getTag()
     {
         return PaymentDetailTag::make();
     }

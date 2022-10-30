@@ -10,7 +10,10 @@ class TransmissionFormat extends AbstractEntity
 {
     use Makeable;
 
-    public function getTag(): Tag
+    /**
+     * @return TransmissionFormatTag
+     */
+    public function getTag()
     {
         return TransmissionFormatTag::make();
     }
