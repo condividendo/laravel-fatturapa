@@ -1,0 +1,21 @@
+name: Test
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  src:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Test
+        uses: php-actions/composer@v6
+        with:
+          php_version: "7.1"
+          interaction: no
+          progress: no
+          command: validate
