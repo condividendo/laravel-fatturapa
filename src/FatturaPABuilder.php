@@ -403,12 +403,6 @@ class FatturaPABuilder
         return $this;
     }       
 
-    public function setSupplierCity(string $supplierProvinceOrState): self
-    {
-        $this->supplierProvinceOrState = $supplierProvinceOrState; 
-        return $this;
-    }    
-
     public function setSupplierZip(string $supplierZip): self
     {
         $this->supplierZip = $supplierZip; 
@@ -810,7 +804,7 @@ class FatturaPABuilder
     {
         return $this->customerCompanyName ? CompanyNameTag::make()
                                             ->setName($this->customerCompanyName)
-                                            : nulll
+                                            : null;
     }
 
     private function makeCustomerFirstName() : ?FirstNameTag
