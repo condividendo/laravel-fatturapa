@@ -26,6 +26,50 @@ class Body extends AbstractTag
     private $paymentData;
 
 
+    function __construct(){
+        $this->generalData = GeneralData::make();
+        $this->goodsServicesData = GoodsServicesData::make();
+        $this->paymentData = PaymentData::make();
+    }
+
+
+    public function setType(string $type): self
+    {
+        $this->generalData->setType($type);
+        return $this;
+    }
+
+    public function setCurrency(string $currency): self
+    {
+        $this->generalData->setCurrency($currency);
+        return $this;
+    }
+
+    public function setDate(string $date): self
+    {
+        $this->generalData->setDate($date);
+        return $this;
+    }
+
+    public function setDocumentAmount(float $amount): self
+    {
+        $this->generalData->setDocumentAmount($amount);
+        return $this;
+    }
+
+    public function setDocumentDescription(string $description): self
+    {
+        $this->generalData->setDocumentDescription($description);
+        return $this;
+    }
+
+    public function setNumber(string $number): self
+    {
+        $this->generalData->setDocumentNumber($number);
+        return $this;
+    }
+
+
     public function setGeneralData(GeneralData $generalData): self
     {
         $this->generalData = $generalData;

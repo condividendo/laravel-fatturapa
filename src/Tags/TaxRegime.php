@@ -6,18 +6,18 @@ use Condividendo\FatturaPA\Traits\Makeable;
 use DOMDocument;
 use DOMElement;
 
-class FiscalCode extends AbstractTag
+class TaxRegime extends AbstractTag
 {
     use Makeable;
 
     /**
      * @var string
      */
-    private $code;
+    private $taxRegime;
 
-    public function setFiscalCode(string $code): self
+    public function setTaxRegime(string $taxRegime): self
     {
-        $this->code = $code;
+        $this->taxRegime = $taxRegime;
         return $this;
     }
 
@@ -26,6 +26,6 @@ class FiscalCode extends AbstractTag
      */
     public function toDOMElement(DOMDocument $dom): DOMElement
     {
-        return $dom->createElement('CodiceFiscale', $this->code);
+        return $dom->createElement('RegimeFiscale', $this->taxRegime);
     }
 }

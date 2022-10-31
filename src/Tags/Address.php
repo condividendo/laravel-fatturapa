@@ -37,44 +37,44 @@ class Address extends AbstractTag
     private $country;
 
 
-    public function setStreet(Street $street): self
+    public function setStreet(string $street): self
     {
-        $this->street = $street;
+        $this->street = Street::make()->setStreet($street);
         return $this;
     }
 
 
-    public function setStreetNumber(Street $streetNumber): self
+    public function setStreetNumber(string $streetNumber): self
     {
-        $this->streetNumber = $streetNumber;
+        $this->streetNumber = StreetNumber::make()->setStreetNumber($streetNumber);
         return $this;
     }
 
 
-    public function setCity(City $city): self
+    public function setCity(string $city): self
     {
-        $this->city = $city;
+        $this->city = City::make()->setCity($city);
         return $this;
     }
 
 
-    public function setZip(Zip $zip): self
+    public function setPostalCode(string $zip): self
     {
-        $this->zip = $zip;
+        $this->zip = Zip::make()->setZip($zip);
+        return $this;
+    }
+    
+
+    public function setProvince(string $province): self
+    {
+        $this->provinceOrState = ProvinceOrState::make()->setProvinceOrState($province);
         return $this;
     }
 
 
-    public function setProvinceOrState(ProvinceOrState $provinceOrState): self
+    public function setCountry(string $country): self
     {
-        $this->provinceOrState = $provinceOrState;
-        return $this;
-    }
-
-
-    public function setCountry(Country $country): self
-    {
-        $this->country = $country;
+        $this->country = Country::make()->setCountry($country);
         return $this;
     }
 

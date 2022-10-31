@@ -17,6 +17,47 @@ class GeneralData extends AbstractTag
     private $generalDocumentData;
 
 
+    function __construct(){
+        $this->generalDocumentData = GeneralDocumentData::make();
+    }
+
+
+    public function setType(string $type): self
+    {
+        $this->generalDocumentData->setType($type);
+        return $this;
+    }
+
+    public function setDate(string $date): self
+    {
+        $this->generalDocumentData->setDate($date);
+        return $this;
+    }
+
+    public function setCurrency(string $currency): self
+    {
+        $this->generalDocumentData->setCurrency($currency);
+        return $this;
+    }
+
+    public function setDocumentAmount(float $amount): self
+    {
+        $this->generalDocumentData->setDocumentAmount($amount);
+        return $this;
+    }
+
+    public function setDocumentDescription(string $description): self
+    {
+        $this->generalDocumentData->setDocumentDescription($description);
+        return $this;
+    }
+
+    public function setDocumentNumber(string $number): self
+    {
+        $this->generalDocumentData->setDocumentNumber($number);
+        return $this;
+    }
+    
     public function setGeneralDocumentData(GeneralDocumentData $generalDocumentData): self
     {
         $this->generalDocumentData = $generalDocumentData;

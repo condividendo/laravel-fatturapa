@@ -32,15 +32,39 @@ class TaxableEntity extends AbstractTag
     private $taxRegime;
 
 
-    public function setVatNumber(VatNumber $vatNumber): self
-    {
-        $this->vatNumber = $vatNumber;
-        return $this;
+    function __construct(){
+        $this->vatNumber = VatNumber::make();
+        $this->registry = Registry::make();
+        $this->taxRegime = TaxRegime::make();
+        $this->taxRegime->setTaxRegime(\Condividendo\FatturaPA\Enums\TaxRegime::RF01());
     }
 
-    public function setFiscalCode(FiscalCode $fiscalCode): self
+
+    public function setFirstName(string $name){
+        $this->registry->setFirstName($name);
+    }
+
+    public function setLastName(string $name){
+        $this->registry->setLastName($name);
+    }
+
+    public function setTitle(string $name){
+        $this->registry->setTitle($name);
+    }
+
+    public function setCompanyName(string $name){
+        $this->registry->setCompanyName($name);
+    }
+
+    public function setVatNumber(string $countryCode,string $vatNumber){
+        $this->vatNumber->setCountryId(CountryId::make()->setId($countryCode));
+        $this->vatNumber->setCodeId(CodeId::make()->setId($vatNumber));
+    }
+
+
+    public function setFiscalCode(string $fiscalCode): self
     {
-        $this->fiscalCode = $fiscalCode;
+        $this->fiscalCode = FiscalCode::make()->setFiscalCode($fiscalCode);
         return $this;
     }
 

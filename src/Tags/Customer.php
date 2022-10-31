@@ -22,6 +22,36 @@ class Customer extends AbstractTag
     private $address;
 
 
+    function __construct(){
+        $this->taxableEntity = TaxableEntity::make();
+    }
+
+
+    public function setCompanyName(string $name){
+        $this->taxableEntity->setCompanyName($name);
+    }
+
+    public function setVatNumber(string $countryCode,string $vatNumber){
+        $this->taxableEntity->setVatNumber($countryCode,$vatNumber);
+    }
+
+    public function setFiscalCode(string $code){
+        $this->taxableEntity->setFiscalCode($code);
+    }
+
+    public function setFirstName(string $name){
+        $this->taxableEntity->setFirstName($name);
+    }
+
+    public function setLastName(string $name){
+        $this->taxableEntity->setLastName($name);
+    }
+
+    public function setTitle(string $title){
+        $this->taxableEntity->setTitle($title);
+    }
+
+
     public function setTaxableEntity(TaxableEntity $taxableEntity): self
     {
         $this->taxableEntity = $taxableEntity;

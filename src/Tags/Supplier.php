@@ -32,6 +32,20 @@ class Supplier extends AbstractTag
     private $contacts;
 
 
+    function __construct(){
+        $this->taxableEntity = TaxableEntity::make();
+    }
+
+
+    public function setName(string $name){
+        $this->taxableEntity->setCompanyName($name);
+    }
+
+    public function setVatNumber(string $countryCode,string $vatNumber){
+        $this->taxableEntity->setVatNumber($countryCode,$vatNumber);
+    }
+
+
     public function setTaxableEntity(TaxableEntity $taxableEntity): self
     {
         $this->taxableEntity = $taxableEntity;

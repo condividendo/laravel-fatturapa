@@ -137,13 +137,13 @@ use Condividendo\FatturaPA\Tags\VatNumber as VatNumberTag;
 use Condividendo\FatturaPA\Tags\VatTax as VatTaxTag;
 use Condividendo\FatturaPA\Tags\Zip as ZipTag;
 
-use DOMDocument;
-use SimpleXMLElement;
+use \DOMDocument;
+use \SimpleXMLElement;
 
 class FatturaPABuilder
 {
     /**
-     * @var TransmissionFormat
+     * @var TransmissionFormatTag
      */
     private $transmissionFormat;
 
@@ -173,156 +173,15 @@ class FatturaPABuilder
     private $recipientPec;
 
     /**
-     * @var string
+     * @var SupplierTag
      */
-    private $supplierVatNumber;
+    private $supplier;
 
     /**
-     * @var string
+     * @var CustomerTag
      */
-    private $supplierFiscalCode;
-
-    /**
-     * @var string
-     */
-    private $supplierCompanyName;
-
-    /**
-     * @var TaxRegime
-     */
-    private $supplierTaxRegime;
-
-    /**
-     * @var string
-     */
-    private $supplierStreet;
-
-    /**
-     * @var string
-     */
-    private $supplierStreetNumber;
-
-    /**
-     * @var string
-     */
-    private $supplierCity;
-
-    /**
-     * @var string
-     */
-    private $supplierProvinceOrState;
-
-    /**
-     * @var string
-     */
-    private $supplierZip;
-
-    /**
-     * @var string
-     */
-    private $supplierCountry;
-
-    /**
-     * @var string
-     */
-    private $supplierREAOffice;
-
-    /**
-     * @var string
-     */
-    private $supplierREANumber;
-
-    /**
-     * @var float
-     */
-    private $supplierREACapital;
-
-    /**
-     * @var ShareHolders
-     */
-    private $supplierREAShareHolders;
-
-    /**
-     * @var LiquidationStatus
-     */
-    private $supplierREALiquidationStatus;
-
-    /**
-     * @var string
-     */
-    private $supplierEmail;
-
-    /**
-     * @var string
-     */
-    private $supplierPhone;
-
-    /**
-     * @var string
-     */
-    private $supplierFax;
-
-
-    /**
-     * @var string
-     */
-    private $customerVatNumber;
-
-    /**
-     * @var string
-     */
-    private $customerFiscalCode;
-
-    /**
-     * @var string
-     */
-    private $customerFirstName;
-
-    /**
-     * @var string
-     */
-    private $customerLastName;
-
-    /**
-     * @var string
-     */
-    private $customerTitle;
-
-    /**
-     * @var string
-     */
-    private $customerCompanyName;
-
-    /**
-     * @var string
-     */
-    private $customerStreet;
-
-    /**
-     * @var string
-     */
-    private $customerStreetNumber;
-
-    /**
-     * @var string
-     */
-    private $customerCity;
-
-    /**
-     * @var string
-     */
-    private $customerProvinceOrState;
-
-    /**
-     * @var string
-     */
-    private $customerZip;
-
-    /**
-     * @var string
-     */
-    private $customerCountry;
-    
+    private $customer;
+        
 
     /**
      * @var Body[]
@@ -330,7 +189,7 @@ class FatturaPABuilder
     private $bodies = [];
 
 
-    public function setTransmissionFormat(TransmissionFormat $format): self
+    public function setTransmissionFormat(TransmissionFormatTag $format): self
     {
         $this->transmissionFormat = $format;
         return $this;
@@ -360,194 +219,20 @@ class FatturaPABuilder
         $this->recipientPec = $pec; 
         return $this;
     }    
-
-    public function setSupplierVatNumber(string $vatNumber): self
-    {
-        $this->supplierVatNumber = $vatNumber; 
-        return $this;
-    }
-
-    public function setSupplierFiscalCode(string $supplierFiscalCode): self
-    {
-        $this->supplierFiscalCode = $supplierFiscalCode; 
-        return $this;
-    }    
-
-    public function setSupplierCompanyName(string $supplierCompanyName): self
-    {
-        $this->supplierCompanyName = $supplierCompanyName; 
-        return $this;
-    }      
-
-    public function setSupplierTaxRegime(TaxRegime $supplierTaxRegime): self
-    {
-        $this->supplierTaxRegime = $supplierTaxRegime; 
-        return $this;
-    }    
-
-    public function setSupplierStreet(string $supplierStreet): self
-    {
-        $this->supplierStreet = $supplierStreet; 
-        return $this;
-    }      
-
-    public function setSupplierStreetNumber(string $supplierStreetNumber): self
-    {
-        $this->supplierStreetNumber = $supplierStreetNumber; 
-        return $this;
-    }      
-
-    public function setSupplierCity(string $supplierCity): self
-    {
-        $this->supplierCity = $supplierCity; 
-        return $this;
-    }       
-
-    public function setSupplierZip(string $supplierZip): self
-    {
-        $this->supplierZip = $supplierZip; 
-        return $this;
-    }    
-
-    public function setSupplierCountry(string $supplierCountry): self
-    {
-        $this->supplierCountry = $supplierCountry; 
-        return $this;
-    }    
-
-    public function setSupplierREAOffice(string $supplierREAOffice): self
-    {
-        $this->supplierREAOffice = $supplierREAOffice; 
-        return $this;
-    }    
-
-    public function setSupplierREANumber(string $supplierREANumber): self
-    {
-        $this->supplierREANumber = $supplierREANumber; 
-        return $this;
-    }    
-
-    public function setSupplierREACapital(float $supplierREACapital): self
-    {
-        $this->supplierREACapital = $supplierREACapital; 
-        return $this;
-    }    
-
-    public function setSupplierREAShareHolders(ShareHolders $supplierREAShareHolders): self
-    {
-        $this->supplierREAShareHolders = $supplierREAShareHolders; 
-        return $this;
-    }    
-
-    public function setSupplierREALiquidationStatus(LiquidationStatus $supplierREALiquidationStatus): self
-    {
-        $this->supplierREALiquidationStatus = $supplierREALiquidationStatus; 
-        return $this;
-    }    
-
-    public function setSupplierEmail(string $supplierEmail): self
-    {
-        $this->supplierEmail = $supplierEmail; 
-        return $this;
-    }    
-
-    public function setSupplierPhone(string $supplierPhone): self
-    {
-        $this->supplierPhone = $supplierPhone; 
-        return $this;
-    }    
-
-    public function setSupplierFax(string $supplierFax): self
-    {
-        $this->supplierFax = $supplierFax; 
-        return $this;
-    }    
-
-    public function setCustomerVatNumber(string $vatNumber): self
-    {
-        $this->customerVatNumber = $vatNumber; 
-        return $this;
-    }    
-
-    public function setCustomerFiscalCode(string $customerFiscalCode): self
-    {
-        $this->customerFiscalCode = $customerFiscalCode; 
-        return $this;
-    }    
-
-    public function setCustomerFirstName(string $customerFirstName): self
-    {
-        $this->customerFirstName = $customerFirstName; 
-        return $this;
-    }    
-
-    public function setCustomerLastName(string $customerLastName): self
-    {
-        $this->customerLastName = $customerLastName; 
-        return $this;
-    }    
-
-    public function setCustomerTitle(string $customerTitle): self
-    {
-        $this->customerTitle = $customerTitle; 
-        return $this;
-    }    
-
-    public function setCustomerCompanyName(string $customerCompanyName): self
-    {
-        $this->customerCompanyName = $customerCompanyName; 
-        return $this;
-    }    
-
-    public function setCustomerStreet(string $customerStreet): self
-    {
-        $this->customerStreet = $customerStreet; 
-        return $this;
-    }    
-
-    public function setCustomerStreetNumber(string $customerStreetNumber): self
-    {
-        $this->customerStreetNumber = $customerStreetNumber; 
-        return $this;
-    }    
-
-    public function setCustomerCity(string $customerCity): self
-    {
-        $this->customerCity = $customerCity; 
-        return $this;
-    }    
-
-    public function setCustomerProvinceOrState(string $customerProvinceOrState): self
-    {
-        $this->customerProvinceOrState = $customerProvinceOrState; 
-        return $this;
-    }    
-
-    public function setCustomerZip(string $customerZip): self
-    {
-        $this->customerZip = $customerZip; 
-        return $this;
-    }    
-
-    public function setCustomerCountry(string $customerCountry): self
-    {
-        $this->customerCountry = $customerCountry; 
-        return $this;
-    }    
-
-    /*
-    public function setSupplier(Supplier $supplier): self
+    
+    
+    public function setSupplier(SupplierTag $supplier): self
     {
         $this->supplier = $supplier;
         return $this;
     }
 
-    public function setCustomer(Customer $customer): self
+    public function setCustomer(CustomerTag $customer): self
     {
         $this->customer = $customer;
         return $this;
     }
-    */
+    
 
     public function addBody(BodyTag $body): self
     {
