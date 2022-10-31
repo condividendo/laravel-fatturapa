@@ -62,6 +62,7 @@ use Condividendo\FatturaPA\Entities\VatCollectionMode;
 use Condividendo\FatturaPA\Entities\VatNumber;
 use Condividendo\FatturaPA\Entities\VatTax;
 use Condividendo\FatturaPA\Entities\Zip;
+
 use Condividendo\FatturaPA\Enums\LiquidationStatus;
 use Condividendo\FatturaPA\Enums\Nature;
 use Condividendo\FatturaPA\Enums\PaymentCondition;
@@ -99,6 +100,7 @@ use Condividendo\FatturaPA\Tags\GeneralData as GeneralDataTag;
 use Condividendo\FatturaPA\Tags\GeneralDocumentData as GeneralDocumentDataTag;
 use Condividendo\FatturaPA\Tags\GoodsServicesData as GoodsServicesDataTag;
 use Condividendo\FatturaPA\Tags\Header as HeaderTag;
+use Condividendo\FatturaPA\Tags\LiquidationStatus as LiquidationStatusTag;
 use Condividendo\FatturaPA\Tags\OfficeCode as OfficeCodeTag;
 use Condividendo\FatturaPA\Tags\Overview as OverviewTag;
 use Condividendo\FatturaPA\Tags\PaymentAmount as PaymentAmountTag;
@@ -156,14 +158,177 @@ class FatturaPABuilder
     private $senderIdCode;
 
     /**
-     * @var string
+     * @var int
      */
     private $transmissionSequence;
+
+    /**
+     * @var string
+     */
+    private $recipientCode;
+
+    /**
+     * @var string
+     */
+    private $recipientPec;
+
+    /**
+     * @var string
+     */
+    private $supplierVatNumber;
+
+    /**
+     * @var string
+     */
+    private $supplierFiscalCode;
+
+    /**
+     * @var string
+     */
+    private $supplierCompanyName;
+
+    /**
+     * @var TaxRegime
+     */
+    private $supplierTaxRegime;
+
+    /**
+     * @var string
+     */
+    private $supplierStreet;
+
+    /**
+     * @var string
+     */
+    private $supplierStreetNumber;
+
+    /**
+     * @var string
+     */
+    private $supplierCity;
+
+    /**
+     * @var string
+     */
+    private $supplierProvinceOrState;
+
+    /**
+     * @var string
+     */
+    private $supplierZip;
+
+    /**
+     * @var string
+     */
+    private $supplierCountry;
+
+    /**
+     * @var string
+     */
+    private $supplierREAOffice;
+
+    /**
+     * @var string
+     */
+    private $supplierREANumber;
+
+    /**
+     * @var float
+     */
+    private $supplierREACapital;
+
+    /**
+     * @var ShareHolders
+     */
+    private $supplierREAShareHolders;
+
+    /**
+     * @var LiquidationStatus
+     */
+    private $supplierREALiquidationStatus;
+
+    /**
+     * @var string
+     */
+    private $supplierEmail;
+
+    /**
+     * @var string
+     */
+    private $supplierPhone;
+
+    /**
+     * @var string
+     */
+    private $supplierFax;
+
+
+    /**
+     * @var string
+     */
+    private $customerVatNumber;
+
+    /**
+     * @var string
+     */
+    private $customerFiscalCode;
+
+    /**
+     * @var string
+     */
+    private $customerFirstName;
+
+    /**
+     * @var string
+     */
+    private $customerLastName;
+
+    /**
+     * @var string
+     */
+    private $customerTitle;
+
+    /**
+     * @var string
+     */
+    private $customerCompanyName;
+
+    /**
+     * @var string
+     */
+    private $customerStreet;
+
+    /**
+     * @var string
+     */
+    private $customerStreetNumber;
+
+    /**
+     * @var string
+     */
+    private $customerCity;
+
+    /**
+     * @var string
+     */
+    private $customerProvinceOrState;
+
+    /**
+     * @var string
+     */
+    private $customerZip;
+
+    /**
+     * @var string
+     */
+    private $customerCountry;
+    
 
     /**
      * @var Body[]
      */
     private $bodies = [];
+
 
     public function setTransmissionFormat(TransmissionFormat $format): self
     {
@@ -178,7 +343,7 @@ class FatturaPABuilder
         return $this;
     }
 
-    public function setTransmissionSequence(string $sequence): self
+    public function setTransmissionSequence(int $sequence): self
     {
         $this->transmissionSequence = $sequence;
         return $this;
@@ -186,20 +351,211 @@ class FatturaPABuilder
 
     public function setRecipientCode(string $code): self
     {
+        $this->recipientCode = $code; 
         return $this;
     }
 
+    public function setRecipientPec(string $pec): self
+    {
+        $this->recipientPec = $pec; 
+        return $this;
+    }    
+
+    public function setSupplierVatNumber(string $vatNumber): self
+    {
+        $this->supplierVatNumber = $vatNumber; 
+        return $this;
+    }
+
+    public function setSupplierFiscalCode(string $supplierFiscalCode): self
+    {
+        $this->supplierFiscalCode = $supplierFiscalCode; 
+        return $this;
+    }    
+
+    public function setSupplierCompanyName(string $supplierCompanyName): self
+    {
+        $this->supplierCompanyName = $supplierCompanyName; 
+        return $this;
+    }      
+
+    public function setSupplierTaxRegime(TaxRegime $supplierTaxRegime): self
+    {
+        $this->supplierTaxRegime = $supplierTaxRegime; 
+        return $this;
+    }    
+
+    public function setSupplierStreet(string $supplierStreet): self
+    {
+        $this->supplierStreet = $supplierStreet; 
+        return $this;
+    }      
+
+    public function setSupplierStreetNumber(string $supplierStreetNumber): self
+    {
+        $this->supplierStreetNumber = $supplierStreetNumber; 
+        return $this;
+    }      
+
+    public function setSupplierCity(string $supplierCity): self
+    {
+        $this->supplierCity = $supplierCity; 
+        return $this;
+    }       
+
+    public function setSupplierCity(string $supplierProvinceOrState): self
+    {
+        $this->supplierProvinceOrState = $supplierProvinceOrState; 
+        return $this;
+    }    
+
+    public function setSupplierZip(string $supplierZip): self
+    {
+        $this->supplierZip = $supplierZip; 
+        return $this;
+    }    
+
+    public function setSupplierCountry(string $supplierCountry): self
+    {
+        $this->supplierCountry = $supplierCountry; 
+        return $this;
+    }    
+
+    public function setSupplierREAOffice(string $supplierREAOffice): self
+    {
+        $this->supplierREAOffice = $supplierREAOffice; 
+        return $this;
+    }    
+
+    public function setSupplierREANumber(string $supplierREANumber): self
+    {
+        $this->supplierREANumber = $supplierREANumber; 
+        return $this;
+    }    
+
+    public function setSupplierREACapital(float $supplierREACapital): self
+    {
+        $this->supplierREACapital = $supplierREACapital; 
+        return $this;
+    }    
+
+    public function setSupplierREAShareHolders(ShareHolders $supplierREAShareHolders): self
+    {
+        $this->supplierREAShareHolders = $supplierREAShareHolders; 
+        return $this;
+    }    
+
+    public function setSupplierREALiquidationStatus(LiquidationStatus $supplierREALiquidationStatus): self
+    {
+        $this->supplierREALiquidationStatus = $supplierREALiquidationStatus; 
+        return $this;
+    }    
+
+    public function setSupplierEmail(string $supplierEmail): self
+    {
+        $this->supplierEmail = $supplierEmail; 
+        return $this;
+    }    
+
+    public function setSupplierPhone(string $supplierPhone): self
+    {
+        $this->supplierPhone = $supplierPhone; 
+        return $this;
+    }    
+
+    public function setSupplierFax(string $supplierFax): self
+    {
+        $this->supplierFax = $supplierFax; 
+        return $this;
+    }    
+
+    public function setCustomerVatNumber(string $vatNumber): self
+    {
+        $this->customerVatNumber = $vatNumber; 
+        return $this;
+    }    
+
+    public function setCustomerFiscalCode(string $customerFiscalCode): self
+    {
+        $this->customerFiscalCode = $customerFiscalCode; 
+        return $this;
+    }    
+
+    public function setCustomerFirstName(string $customerFirstName): self
+    {
+        $this->customerFirstName = $customerFirstName; 
+        return $this;
+    }    
+
+    public function setCustomerLastName(string $customerLastName): self
+    {
+        $this->customerLastName = $customerLastName; 
+        return $this;
+    }    
+
+    public function setCustomerTitle(string $customerTitle): self
+    {
+        $this->customerTitle = $customerTitle; 
+        return $this;
+    }    
+
+    public function setCustomerCompanyName(string $customerCompanyName): self
+    {
+        $this->customerCompanyName = $customerCompanyName; 
+        return $this;
+    }    
+
+    public function setCustomerStreet(string $customerStreet): self
+    {
+        $this->customerStreet = $customerStreet; 
+        return $this;
+    }    
+
+    public function setCustomerStreetNumber(string $customerStreetNumber): self
+    {
+        $this->customerStreetNumber = $customerStreetNumber; 
+        return $this;
+    }    
+
+    public function setCustomerCity(string $customerCity): self
+    {
+        $this->customerCity = $customerCity; 
+        return $this;
+    }    
+
+    public function setCustomerProvinceOrState(string $customerProvinceOrState): self
+    {
+        $this->customerProvinceOrState = $customerProvinceOrState; 
+        return $this;
+    }    
+
+    public function setCustomerZip(string $customerZip): self
+    {
+        $this->customerZip = $customerZip; 
+        return $this;
+    }    
+
+    public function setCustomerCountry(string $customerCountry): self
+    {
+        $this->customerCountry = $customerCountry; 
+        return $this;
+    }    
+
+    /*
     public function setSupplier(Supplier $supplier): self
     {
+        $this->supplier = $supplier;
         return $this;
     }
 
     public function setCustomer(Customer $customer): self
     {
+        $this->customer = $customer;
         return $this;
     }
+    */
 
-    public function addBody(Body $body): self
+    public function addBody(BodyTag $body): self
     {
         $this->bodies[] = $body;
         return $this;
@@ -230,9 +586,11 @@ class FatturaPABuilder
         return $r;
     }
 
-    private function makeHeader(): Header
+    private function makeHeader(): HeaderTag
     {
-        return Header::make()->setTransmissionData($this->makeTransmissionData());
+        return HeaderTag::make()->setTransmissionData($this->makeTransmissionData())
+                            ->setSupplier($this->makeSupplier())
+                            ->setCustomer($this->makeCustomer());
     }
 
     /**
@@ -249,17 +607,19 @@ class FatturaPABuilder
         return $b;
     }
 
-    private function makeTransmissionData(): TransmissionData
+    private function makeTransmissionData(): TransmissionDataTag
     {
-        return TransmissionData::make()
+        return TransmissionDataTag::make()
             ->setTransmitterId($this->makeTransmitterId())
             ->setTransmissionFormat($this->makeTransmissionFormat())
-            ->setTransmissionSequence($this->makeTransmissionSequence());
+            ->setTransmissionSequence($this->makeTransmissionSequence())
+            ->setRecipientCode($this->makeRecipientCode())
+            ->setRecipientPec($this->makeRecipientPec());
     }
 
-    private function makeTransmitterId(): TransmitterId
+    private function makeTransmitterId(): TransmitterIdTag
     {
-        return TransmitterId::make()
+        return TransmitterIdTag::make()
             ->setCountryId($this->makeCountryId())
             ->setCodeId($this->makeCodeId());
     }
@@ -269,19 +629,240 @@ class FatturaPABuilder
         return TransmissionFormatTag::make()->setFormat($this->transmissionFormat);
     }
 
-    private function makeTransmissionSequence(): TransmissionSequence
+    private function makeTransmissionSequence(): TransmissionSequenceTag
     {
-        return TransmissionSequence::make()
+        return TransmissionSequenceTag::make()
             ->setSequence($this->transmissionSequence);
     }
 
-    private function makeCountryId(): CountryId
+    private function makeRecipientCode(): RecipientCodeTag
     {
-        return CountryId::make()->setId($this->senderIdCountry);
+        $countryCode = strtoloupper(substr($this->supplierCountry,0,2));
+        if($countryCode != "IT") $this->recipientCode = "XXXXXXX";
+        return RecipientCodeTag::make()
+            ->setCode($this->recipientPec ? "0000000" : $this->recipientCode);
     }
 
-    private function makeCodeId(): CodeId
+    private function makeRecipientPec(): ?RecipientPecTag
     {
-        return CodeId::make()->setId($this->senderIdCode);
+        return $this->recipientPec ? RecipientPecTag::make()
+            ->setSequence($this->transmissionSequence) : null;
     }
+
+    private function makeSenderCountryId(): CountryIdTag
+    {
+        return CountryIdTag::make()->setId($this->senderIdCountry);
+    }
+
+    private function makeSenderCodeId(): CodeIdTag
+    {
+        return CodeIdTag::make()->setId($this->senderIdCode);
+    }
+
+    private function makeSupplier(): SupplierTag 
+    {
+        return SupplierTag::make()
+                ->setTaxableEntity($this->makeSupplierTaxableEntity())
+                ->setAddress($this->makeSupplierAddress())
+                ->setREARegistration($this->makeSupplierREARegistration())
+                ->setContacts($this->makeSupplierContacts());
+    }
+
+    private function makeCustomer(): CustomerTag 
+    {
+        return CustomerTag::make()
+                ->setTaxableEntity($this->makeCustomerTaxableEntity())
+                ->setAddress($this->makeCustomerAddress());
+    }
+
+    private function makeCustomerTaxableEntity(): TaxableEntityTag 
+    {
+        return TaxableEntityTag::make()
+                ->setVatNumber($this->makeCustomerVatNumber())
+                ->setFiscalCode($this->makeCustomerFiscalCode())
+                ->setRegistry($this->makeCustomerRegistry());
+    }
+
+    private function makeSupplierTaxableEntity(): TaxableEntityTag 
+    {
+        return TaxableEntityTag::make()
+                ->setVatNumber($this->makeSupplierVatNumber())
+                ->setFiscalCode($this->makeSupplierFiscalCode())
+                ->setRegistry($this->makeSupplierRegistry());
+    }
+
+    private function makeCustomerAddress(): AddressTag 
+    {
+        return AddressTag::make()
+                ->setStreet($this->makeCustomerStreet())
+                ->setStreetNumber($this->makeCustomerStreetNumber())
+                ->setCity($this->makeCustomerCity())
+                ->setZip($this->makeCustomerZip())
+                ->setProvinceOrState($this->makeCustomerProvinceOrState())
+                ->setCountyr($this->makeCustomerCountry());
+    }
+
+    private function makeSupplierAddress(): AddressTag 
+    {
+        return AddressTag::make()
+                ->setStreet($this->makeSupplierStreet())
+                ->setStreetNumber($this->makeSupplierStreetNumber())
+                ->setCity($this->makeSupplierCity())
+                ->setZip($this->makeSupplierZip())
+                ->setProvinceOrState($this->makeSupplierProvinceOrState())
+                ->setCountyr($this->makeSupplierCountry());
+    }
+
+    private function makeSupplierREARegistration(): REARegistrationTag 
+    {
+        return REARegistrationTag::make()
+                ->setOfficeCode($this->makeSupplierREAOffice())
+                ->setREANumber($this->makeSupplierREANumber())
+                ->setREACapital($this->makeSupplierREACapital())
+                ->setREAShareHolders($this->makeSupplierREAShareHolders())
+                ->setREALiquidationStatus($this->makeSupplierREALiquidationStatus());
+    }
+
+    private function makeSupplierContacts(): ContactsTag 
+    {
+        return ContactsTag::make()
+                ->setEmail($this->makeSupplierEmail())
+                ->setPhone($this->makeSupplierPhone())
+                ->setFax($this->makeSupplierFax());
+    }
+
+    private function makeCustomerVatNumber() : ?VatNumberTag
+    {
+        return $this->customerVatNumber ?
+                VatNumberTag::make()
+                    ->setCountryId($this->makeCustomerCountryId())
+                    ->setCodeId($this->makeCustomerVatCode())
+                : null;
+    }
+
+    private function makeSupplierVatNumber() : VatNumberTag
+    {
+        return VatNumberTag::make()
+                    ->setCountryId($this->makeSupplierCountryId())
+                    ->setCodeId($this->makeSupplierVatCode());
+    }
+
+    private function makeSupplierCountryId() : CountryIdTag
+    {
+        return CountryIdTag::make()
+                    ->setId($this->supplierCountryId);
+    }
+
+    private function makeSupplierVatCode() : CodeIdTag
+    {
+        return CodeIdTag::make()
+                    ->setCode($this->supplierVatNumber);
+    }
+
+    private function makeCustomerCountryId() : CountryIdTag
+    {
+        return CountryIdTag::make()
+                    ->setId($this->customerCountryId);
+    }
+
+    private function makeCustomerVatCode() : CodeIdTag
+    {
+        return CodeIdTag::make()
+                    ->setCode($this->customerVatNumber);
+    }
+
+    private function makeCustomerFiscalCode() : ?FiscalCodeTag
+    {
+        return $this->customerFiscalCode ? FiscalCodeTag::make()
+                                            ->setCode($this->customerFiscalCode)
+                                            : null;
+    }
+
+    private function makeSupplierFiscalCode() : ?FiscalCodeTag
+    {
+        return $this->supplierFiscalCode ? FiscalCodeTag::make()
+                                            ->setCode($this->supplierFiscalCode)
+                                            : null;
+    }
+
+    private function makeSupplierRegistry() : RegistryTag
+    {
+        return RegistryTag::make()
+                    ->setCompanyName($this->makeSupplierCompanyName());
+    }
+
+    private function makeCustomerRegistry() : RegistryTag
+    {
+        return RegistryTag::make()
+                    ->setCompanyName($this->makeCustomerCompanyName())
+                    ->setFirstName($this->makeCustomerFirstName())
+                    ->setLastName($this->makeCustomerLastName())
+                    ->setTitle($this->makeCustomerTitle());
+    }
+
+    private function makeSupplierCompanyName() : CompanyNameTag
+    {
+        return CompanyNameTag::make()
+                    ->setName($this->supplierCompanyName);
+    }
+
+    private function makeCustomerCompanyName() : ?CompanyNameTag
+    {
+        return $this->customerCompanyName ? CompanyNameTag::make()
+                                            ->setName($this->customerCompanyName)
+                                            : nulll
+    }
+
+    private function makeCustomerFirstName() : ?FirstNameTag
+    {
+        return $this->customerFirstName ? 
+                FirstNameTag::make()->setName($this->customerFirstName)
+                : null;
+    }
+
+    private function makeCustomerLastName() : ?LastNameTag
+    {
+        return $this->customerLastName ? 
+                LastNameTag::make()->setName($this->customerLastName)
+                : null;
+    }
+
+    private function makeCustomerTitle() : ?TitleTag
+    {
+        return $this->customerTitle ? 
+                TitleTag::make()->setName($this->customerTitle)
+                : null;
+    }
+
+
+    private function makeSupplierREAOffice() : OfficeCodeTag
+    {
+        return OfficeCodeTag::make()
+                ->setCode($this->supplierREAOffice);
+    }
+
+    private function makeSupplierREANumber() : REANumberTag
+    {
+        return REANumberTag::make()
+                ->setNumber($this->supplierREANumber);
+    }
+
+    private function makeSupplierREACapital() : ?CapitalTag
+    {
+        return CapitalTag::make()
+                ->setCapital($this->supplierREACapital);
+    }
+
+    private function makeSupplierREAShareHolders() : ?ShareHoldersTag
+    {
+        return ShareHoldersTag::make()
+                ->setShareHolders($this->supplierREAShareHolders);
+    }
+
+    private function makeSupplierREALiquidationStatus() : LiquidationStatusTag
+    {
+        return LiquidationStatusTag::make()
+                ->setStatus($this->supplierREALiquidationStatus);
+    }
+
 }

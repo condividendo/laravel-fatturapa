@@ -6,18 +6,18 @@ use Condividendo\FatturaPA\Traits\Makeable;
 use DOMDocument;
 use DOMElement;
 
-class Capital extends AbstractTag
+class RecipientPec extends AbstractTag
 {
     use Makeable;
 
     /**
-     * @var float
+     * @var string
      */
-    private $capital;
+    private $pec;
 
-    public function setCapital(float $capital): self
+    public function setPec(string $pec): self
     {
-        $this->capital = $capital;
+        $this->pec = $pec;
         return $this;
     }
 
@@ -26,6 +26,6 @@ class Capital extends AbstractTag
      */
     public function toDOMElement(DOMDocument $dom): DOMElement
     {
-        return $dom->createElement('CapitaleSociale', $this->capital);
+        return $dom->createElement('PECDestinatario', $this->pec);
     }
 }
