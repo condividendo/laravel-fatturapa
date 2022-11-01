@@ -291,7 +291,7 @@ class FatturaPABuilder
     {
         return TransmissionDataTag::make()
             ->setTransmitterId($this->makeTransmitterId())
-            ->setTransmissionFormat($transmissionFormat)
+            ->setTransmissionFormat($this->transmissionFormat)
             ->setTransmissionSequence($this->makeTransmissionSequence())
             ->setRecipientCode($this->makeRecipientCode())
             ->setRecipientPec($this->makeRecipientPec());
@@ -304,11 +304,13 @@ class FatturaPABuilder
             ->setCodeId($this->makeSenderIdCode());
     }
 
+    /*
     private function makeTransmissionFormat(): TransmissionFormatTag
     {
         return TransmissionFormatTag::make()->setFormat($this->transmissionFormat);
     }
-
+    */
+    
     private function makeTransmissionSequence(): TransmissionSequenceTag
     {
         return TransmissionSequenceTag::make()
