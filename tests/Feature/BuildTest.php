@@ -18,9 +18,10 @@ class BuildTest extends TestCase
     {
         /** @var string $xml */
         $xml = FatturaPA::build()
-            ->setTransmissionFormat(TransmissionFormat::FPR12())
             ->setSenderId('IT', '0123456789')
             ->setTransmissionSequence('1')
+            ->setTransmissionFormat(TransmissionFormat::FPR12())
+            ->setRecipientCode('ABC1234')
             ->addBody(
                 Body::make()
             )

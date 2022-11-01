@@ -8,6 +8,7 @@
             </IdTrasmittente>
             <FormatoTrasmissione>FPR12</FormatoTrasmissione>
             <ProgressivoInvio>1</ProgressivoInvio>
+            <CodiceDestinatario>ABC1234</CodiceDestinatario>
         </DatiTrasmissione>
     </FatturaElettronicaHeader>
     <FatturaElettronicaBody/>

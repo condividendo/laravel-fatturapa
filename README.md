@@ -18,10 +18,10 @@ composer require condividendo/laravel-fatturapa
 
 ```php
 $invoice = \Condividendo\FatturaPA\FatturaPA::build()
-    ->setTransmissionFormat(\Condividendo\FatturaPA\Enums\TransmissionFormat::FPR12())
     ->setSenderId('IT', '01879020517')
+    ->setTransmissionFormat(\Condividendo\FatturaPA\Enums\TransmissionFormat::FPR12())
     ->setTransmissionSequence('1')
-    ->setRecipientCode('ABCXCR1')
+    ->setRecipientCode('ABC1234')
     ->setSupplier(
         \Condividendo\FatturaPA\Entities\Supplier::make()
             ->setName('Condividendo italia srl')
