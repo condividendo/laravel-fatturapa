@@ -26,7 +26,7 @@ class TransmitterContacts extends AbstractTag
         $this->email = $email;
         return $this;
     }
-    
+
 
     public function setPhone(Phone $phone): self
     {
@@ -42,8 +42,12 @@ class TransmitterContacts extends AbstractTag
     {
         $e = $dom->createElement('ContattiTrasmittente');
 
-        if($this->email) $e->appendChild($this->email->toDOMElement($dom));
-        if($this->phone) $e->appendChild($this->phone->toDOMElement($dom));
+        if ($this->email) {
+            $e->appendChild($this->email->toDOMElement($dom));
+        }
+        if ($this->phone) {
+            $e->appendChild($this->phone->toDOMElement($dom));
+        }
 
         return $e;
     }

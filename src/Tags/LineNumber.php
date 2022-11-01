@@ -8,14 +8,13 @@ use DOMElement;
 
 class LineNumber extends AbstractTag
 {
-
     use Makeable;
 
     /**
      * @var string
      */
     private $number;
-    
+
     public function setNumber(int $number): self
     {
         $this->number = "$number";

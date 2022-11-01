@@ -11,6 +11,6 @@ use BenSampo\Enum\Enum;
  */
 final class VatCollectionMode extends Enum
 {
-    const I = 'I';
-    const D = 'D';
+    public const I = 'I';
+    public const D = 'D';
 }

@@ -11,6 +11,6 @@ use BenSampo\Enum\Enum;
  */
 final class LiquidationStatus extends Enum
 {
-    const LS = 'LS';
-    const LN = 'LN';
+    public const LS = 'LS';
+    public const LN = 'LN';
 }

@@ -8,7 +8,6 @@ use DOMElement;
 
 class TaxableEntity extends AbstractTag
 {
-
     use Makeable;
 
     /**
@@ -32,39 +31,46 @@ class TaxableEntity extends AbstractTag
     private $taxRegime;
 
 
-    function __construct(){
+    public function __construct()
+    {
         $this->taxRegime->setTaxRegime(\Condividendo\FatturaPA\Enums\TaxRegime::RF01());
     }
 
 
-    public function setFirstName(string $name) : self {
+    public function setFirstName(string $name): self
+    {
         $this->registry->setFirstName($name);
         return $this;
     }
 
-    public function setLastName(string $name) : self{
+    public function setLastName(string $name): self
+    {
         $this->registry->setLastName($name);
         return $this;
     }
 
-    public function setTitle(string $title) : self {
+    public function setTitle(string $title): self
+    {
         $this->registry->setTitle($title);
         return $this;
     }
 
-    public function setCompanyName(string $name) : self{
+    public function setCompanyName(string $name): self
+    {
         $this->registry->setCompanyName($name);
         return $this;
     }
 
-    public function setVatNumber(string $countryCode,string $vatNumber) : self{
+    public function setVatNumber(string $countryCode, string $vatNumber): self
+    {
         $this->vatNumber = VatNumber::make()
         ->setCountryId(CountryId::make()->setId($countryCode))
         ->setCodeId(CodeId::make()->setId($vatNumber));
         return $this;
     }
 
-    public function setVatTag(VatNumber $vatNumber) : self{
+    public function setVatTag(VatNumber $vatNumber): self
+    {
         $this->vatNumber = $vatNumber;
         return $this;
     }
@@ -95,8 +101,12 @@ class TaxableEntity extends AbstractTag
     {
         $e = $dom->createElement('DatiAnagrafici');
 
-        if($this->vatNumber) $e->appendChild($this->vatNumber->toDOMElement($dom));
-        if($this->fiscalCode) $e->appendChild($this->fiscalCode->toDOMElement($dom));
+        if ($this->vatNumber) {
+            $e->appendChild($this->vatNumber->toDOMElement($dom));
+        }
+        if ($this->fiscalCode) {
+            $e->appendChild($this->fiscalCode->toDOMElement($dom));
+        }
         $e->appendChild($this->registry->toDOMElement($dom));
         $e->appendChild($this->taxRegime->toDOMElement($dom));
 

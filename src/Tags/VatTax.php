@@ -8,7 +8,6 @@ use DOMElement;
 
 class VatTax extends AbstractTag
 {
-
     use Makeable;
 
     /**
@@ -21,7 +20,7 @@ class VatTax extends AbstractTag
      */
     public function setRate(float $ratio): self
     {
-        $this->percentage = "" . max(0,min(100,100 * $ratio));
+        $this->percentage = "" . max(0, min(100, 100 * $ratio));
         return $this;
     }
 

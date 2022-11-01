@@ -8,7 +8,6 @@ use DOMElement;
 
 class VatNumber extends AbstractTag
 {
-
     use Makeable;
 
     /**

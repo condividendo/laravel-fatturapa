@@ -8,37 +8,38 @@ use DOMElement;
 
 class Supplier extends AbstractTag
 {
-
     use Makeable;
 
     /**
      * @var TaxableEntity
      */
     private $taxableEntity;
-    
+
     /**
      * @var Address
      */
     private $address;
-    
+
     /**
      * @var REARegistration
      */
     private $reaRegistration;
-    
+
     /**
      * @var Contacts
      */
     private $contacts;
-    
 
-    public function setName(string $name) : self {
+
+    public function setName(string $name): self
+    {
         $this->taxableEntity->setCompanyName($name);
         return $this;
     }
 
-    public function setVatNumber(string $countryCode,string $vatNumber): self {
-        $this->taxableEntity->setVatNumber($countryCode,$vatNumber);
+    public function setVatNumber(string $countryCode, string $vatNumber): self
+    {
+        $this->taxableEntity->setVatNumber($countryCode, $vatNumber);
         return $this;
     }
 

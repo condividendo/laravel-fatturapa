@@ -12,7 +12,7 @@ use BenSampo\Enum\Enum;
  */
 final class PaymentCondition extends Enum
 {
-    const TP01 = 'TP01';
-    const TP02 = 'TP02';
-    const TP03 = 'TP03';
+    public const TP01 = 'TP01';
+    public const TP02 = 'TP02';
+    public const TP03 = 'TP03';
 }

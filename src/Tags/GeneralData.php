@@ -8,7 +8,6 @@ use DOMElement;
 
 class GeneralData extends AbstractTag
 {
-
     use Makeable;
 
     /**
@@ -52,7 +51,7 @@ class GeneralData extends AbstractTag
         $this->generalDocumentData->setDocumentNumber($number);
         return $this;
     }
-    
+
     public function setGeneralDocumentData(GeneralDocumentData $generalDocumentData): self
     {
         $this->generalDocumentData = $generalDocumentData;

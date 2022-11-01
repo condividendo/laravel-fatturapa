@@ -14,7 +14,7 @@ class Description extends AbstractTag
      * @var string
      */
     private $description;
-    
+
     public function setDescription(string $description): self
     {
         $this->description = $description;

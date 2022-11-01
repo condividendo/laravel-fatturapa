@@ -8,7 +8,7 @@ trait Makeable
      * @return self
      * @noinspection PhpMissingReturnTypeInspection
      */
-    static function make()
+    public static function make()
     {
         return new static();
     }

@@ -14,7 +14,7 @@ class Quantity extends AbstractTag
      * @var string
      */
     private $quantity;
-    
+
     public function setQuantity(int $qty): self
     {
         $this->quantity = "$qty";
@@ -28,5 +28,4 @@ class Quantity extends AbstractTag
     {
         return $dom->createElement('Quantita', $this->quantity);
     }
-
 }

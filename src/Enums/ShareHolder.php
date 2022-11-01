@@ -11,6 +11,6 @@ use BenSampo\Enum\Enum;
  */
 final class ShareHolder extends Enum
 {
-    const SU = 'SU';
-    const SM = 'SM';
+    public const SU = 'SU';
+    public const SM = 'SM';
 }

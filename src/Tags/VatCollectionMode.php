@@ -8,7 +8,6 @@ use DOMElement;
 
 class VatCollectionMode extends AbstractTag
 {
-
     use Makeable;
 
     /**

@@ -11,6 +11,6 @@ use BenSampo\Enum\Enum;
  */
 final class TransmissionFormat extends Enum
 {
-    const FPA12 = 'FPA12';
-    const FPR12 = 'FPR12';
+    public const FPA12 = 'FPA12';
+    public const FPR12 = 'FPR12';
 }

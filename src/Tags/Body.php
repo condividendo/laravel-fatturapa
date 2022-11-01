@@ -9,17 +9,17 @@ use DOMElement;
 class Body extends AbstractTag
 {
     use Makeable;
-	
+
     /**
      * @var GeneralData
      */
     private $generalData;
-	
+
     /**
      * @var GoodsServicesData
      */
     private $goodsServicesData;
-	
+
     /**
      * @var PaymentData
      */

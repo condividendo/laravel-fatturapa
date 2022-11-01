@@ -9,32 +9,32 @@ use DOMElement;
 class GeneralDocumentData extends AbstractTag
 {
     use Makeable;
-	
+
     /**
      * @var DocumentType
      */
     private $type;
-    
+
     /**
      * @var Currency
      */
     private $currency;
-    
+
     /**
      * @var Date
      */
     private $date;
-    
+
     /**
      * @var DocumentNumber
      */
     private $number;
-    
+
     /**
      * @var DocumentAmount
      */
     private $amount;
-    
+
     /**
      * @var DocumentDescription
      */
@@ -76,7 +76,7 @@ class GeneralDocumentData extends AbstractTag
         $this->number = DocumentNumber::make()->setDocumentNumber($number);
         return $this;
     }
-    
+
 
     /**
      * @noinspection PhpUnhandledExceptionInspection
@@ -90,9 +90,8 @@ class GeneralDocumentData extends AbstractTag
         $e->appendChild($this->date->toDOMElement($dom));
         $e->appendChild($this->number->toDOMElement($dom));
         $e->appendChild($this->amount->toDOMElement($dom));
-        $e->appendChild($this->description->toDOMElement($dom));        
+        $e->appendChild($this->description->toDOMElement($dom));
 
         return $e;
     }
-
 }

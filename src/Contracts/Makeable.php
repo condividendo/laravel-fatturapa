@@ -7,5 +7,5 @@ interface Makeable
     /**
      * @return self
      */
-    static function make();
+    public static function make();
 }

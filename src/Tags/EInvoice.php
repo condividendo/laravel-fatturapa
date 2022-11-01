@@ -48,7 +48,10 @@ class EInvoice extends AbstractTag
      */
     public function toDOMElement(DOMDocument $dom): DOMElement
     {
-        $e = $dom->createElementNS('http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2', 'q1:FatturaElettronica');
+        $e = $dom->createElementNS(
+            'http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2',
+            'q1:FatturaElettronica'
+        );
 
         $e->setAttribute('versione', $this->format->value);
         $e->appendChild($this->header->toDOMElement($dom));

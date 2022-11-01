@@ -8,7 +8,6 @@ use DOMElement;
 
 class TaxableAmount extends AbstractTag
 {
-
     use Makeable;
 
     /**

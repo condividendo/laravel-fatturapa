@@ -8,7 +8,6 @@ use DOMElement;
 
 class Nature extends AbstractTag
 {
-
     use Makeable;
 
     /**

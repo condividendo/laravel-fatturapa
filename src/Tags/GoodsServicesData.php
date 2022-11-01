@@ -9,23 +9,25 @@ use DOMElement;
 class GoodsServicesData extends AbstractTag
 {
     use Makeable;
-	
+
     /**
      * @var Item[]
      */
     private $lineItems;
-	
+
     /**
      * @var SummaryItem[]
      */
-    private $summaryItems;    
-    
+    private $summaryItems;
+
     /**
      * @param array<int, Item> $items
      */
     public function setItems(array $items): self
     {
-        foreach($items as $item) $this->addItem($item);
+        foreach ($items as $item) {
+            $this->addItem($item);
+        }
         return $this;
     }
 
@@ -36,7 +38,7 @@ class GoodsServicesData extends AbstractTag
         return $this;
     }
 
-    
+
     /**
      * @param array<int, SummaryItem> $summaryItems
      */
@@ -53,10 +55,13 @@ class GoodsServicesData extends AbstractTag
     {
         $e = $dom->createElement('DatiBeniServizi');
 
-        foreach($this->lineItems as $item) $e->appendChild($item->toDOMElement($dom));
-        foreach($this->summaryItems as $item) $e->appendChild($item->toDOMElement($dom));
-        
+        foreach ($this->lineItems as $item) {
+            $e->appendChild($item->toDOMElement($dom));
+        }
+        foreach ($this->summaryItems as $item) {
+            $e->appendChild($item->toDOMElement($dom));
+        }
+
         return $e;
     }
 }
-

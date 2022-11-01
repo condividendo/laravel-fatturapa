@@ -30,11 +30,16 @@ class Contacts extends TransmitterContacts
     {
         $e = $dom->createElement('Contatti');
 
-        if($this->email) $e->appendChild($this->email->toDOMElement($dom));
-        if($this->phone) $e->appendChild($this->phone->toDOMElement($dom));
-        if($this->fax) $e->appendChild($this->fax->toDOMElement($dom));
+        if ($this->email) {
+            $e->appendChild($this->email->toDOMElement($dom));
+        }
+        if ($this->phone) {
+            $e->appendChild($this->phone->toDOMElement($dom));
+        }
+        if ($this->fax) {
+            $e->appendChild($this->fax->toDOMElement($dom));
+        }
 
         return $e;
     }
 }
-

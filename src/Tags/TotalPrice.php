@@ -14,7 +14,7 @@ class TotalPrice extends AbstractTag
      * @var string
      */
     private $totalPrice;
-    
+
     public function setTotalPrice(float $totalPrice): self
     {
         $this->totalPrice = "$totalPrice";

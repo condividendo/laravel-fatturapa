@@ -19,22 +19,22 @@ class Address extends AbstractTag
      * @var StreetNumber
      */
     private $streetNumber;
-    
+
     /**
      * @var City
      */
     private $city;
-    
+
     /**
      * @var Zip
      */
     private $zip;
-    
+
     /**
      * @var ProvinceOrState
      */
     private $provinceOrState;
-    
+
     /**
      * @var Country
      */
@@ -67,7 +67,7 @@ class Address extends AbstractTag
         $this->zip = Zip::make()->setZip($zip);
         return $this;
     }
-    
+
 
     public function setProvince(string $province): self
     {
@@ -100,4 +100,3 @@ class Address extends AbstractTag
         return $e;
     }
 }
-

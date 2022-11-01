@@ -9,7 +9,7 @@ use DOMElement;
 class PaymentData extends AbstractTag
 {
     use Makeable;
-        
+
     /**
      * @var PaymentCondition
      */
@@ -19,20 +19,20 @@ class PaymentData extends AbstractTag
      * @var PaymentDetail
      */
     private $paymentDetail;
-    
+
 
     public function setPaymentDetail(PaymentDetail $paymentDetail): self
     {
         $this->paymentDetail = $paymentDetail;
         return $this;
     }
-    
+
     public function setPaymentCondition(PaymentCondition $paymentCondition): self
     {
-		$this->paymentCondition = $paymentCondition;
+        $this->paymentCondition = $paymentCondition;
         return $this;
     }
-    
+
 
     /**
      * @noinspection PhpUnhandledExceptionInspection
@@ -41,10 +41,9 @@ class PaymentData extends AbstractTag
     {
         $e = $dom->createElement('DatiPagamento');
 
-        $e->appendChild($this->paymentCondition->toDOMElement($dom));   
-        $e->appendChild($this->paymentDetail->toDOMElement($dom));      
+        $e->appendChild($this->paymentCondition->toDOMElement($dom));
+        $e->appendChild($this->paymentDetail->toDOMElement($dom));
 
         return $e;
     }
-    
 }

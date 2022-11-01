@@ -8,7 +8,6 @@ use DOMElement;
 
 class Duty extends AbstractTag
 {
-
     use Makeable;
 
     /**

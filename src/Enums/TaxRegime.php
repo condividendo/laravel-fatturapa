@@ -13,23 +13,23 @@ use BenSampo\Enum\Enum;
  */
 final class TaxRegime extends Enum
 {
-    const RF01 = 'RF01';
-    const RF02 = 'RF02';
-    const RF03 = 'RF03';
-    const RF04 = 'RF04';
-    const RF05 = 'RF05';
-    const RF06 = 'RF06';
-    const RF07 = 'RF07';
-    const RF08 = 'RF08';
-    const RF09 = 'RF09';
-    const RF10 = 'RF10';
-    const RF11 = 'RF11';
-    const RF12 = 'RF12';
-    const RF13 = 'RF13';
-    const RF14 = 'RF14';
-    const RF15 = 'RF15';
-    const RF16 = 'RF16';
-    const RF17 = 'RF17';
-    const RF18 = 'RF18';
-    const RF19 = 'RF19';
+    public const RF01 = 'RF01';
+    public const RF02 = 'RF02';
+    public const RF03 = 'RF03';
+    public const RF04 = 'RF04';
+    public const RF05 = 'RF05';
+    public const RF06 = 'RF06';
+    public const RF07 = 'RF07';
+    public const RF08 = 'RF08';
+    public const RF09 = 'RF09';
+    public const RF10 = 'RF10';
+    public const RF11 = 'RF11';
+    public const RF12 = 'RF12';
+    public const RF13 = 'RF13';
+    public const RF14 = 'RF14';
+    public const RF15 = 'RF15';
+    public const RF16 = 'RF16';
+    public const RF17 = 'RF17';
+    public const RF18 = 'RF18';
+    public const RF19 = 'RF19';
 }

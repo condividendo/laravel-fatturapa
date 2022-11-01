@@ -2,149 +2,27 @@
 
 namespace Condividendo\FatturaPA;
 
-use Condividendo\FatturaPA\Entities\Address;
 use Condividendo\FatturaPA\Entities\Body;
-use Condividendo\FatturaPA\Entities\Capital;
-use Condividendo\FatturaPA\Entities\City;
-use Condividendo\FatturaPA\Entities\CodeId;
-use Condividendo\FatturaPA\Entities\CompanyName;
-use Condividendo\FatturaPA\Entities\Contacts;
-use Condividendo\FatturaPA\Entities\Country;
-use Condividendo\FatturaPA\Entities\CountryId;
-use Condividendo\FatturaPA\Entities\Currency;
-use Condividendo\FatturaPA\Entities\Customer;
-use Condividendo\FatturaPA\Entities\Date;
-use Condividendo\FatturaPA\Entities\Description;
-use Condividendo\FatturaPA\Entities\DocumentAmount;
-use Condividendo\FatturaPA\Entities\DocumentDescription;
-use Condividendo\FatturaPA\Entities\DocumentNumber;
-use Condividendo\FatturaPA\Entities\Duty;
-use Condividendo\FatturaPA\Entities\Email;
-use Condividendo\FatturaPA\Entities\Fax;
-use Condividendo\FatturaPA\Entities\FirstName;
-use Condividendo\FatturaPA\Entities\FiscalCode;
-use Condividendo\FatturaPA\Entities\GeneralData;
-use Condividendo\FatturaPA\Entities\GeneralDocumentData;
-use Condividendo\FatturaPA\Entities\GoodsServicesData;
-use Condividendo\FatturaPA\Entities\Header;
-use Condividendo\FatturaPA\Entities\OfficeCode;
-use Condividendo\FatturaPA\Entities\SummaryItem;
-use Condividendo\FatturaPA\Entities\PaymentAmount;
-use Condividendo\FatturaPA\Entities\PaymentCondition as PaymentConditionEntity;
-use Condividendo\FatturaPA\Entities\PaymentData;
-use Condividendo\FatturaPA\Entities\PaymentDetail;
-use Condividendo\FatturaPA\Entities\PaymentExpirationDate;
-use Condividendo\FatturaPA\Entities\PaymentMethod as PaymentMethodEntity;
-use Condividendo\FatturaPA\Entities\Phone;
-use Condividendo\FatturaPA\Entities\ProvinceOrState;
-use Condividendo\FatturaPA\Entities\Quantity;
-use Condividendo\FatturaPA\Entities\REANumber;
-use Condividendo\FatturaPA\Entities\REARegistration;
-use Condividendo\FatturaPA\Entities\RecipientCode;
-use Condividendo\FatturaPA\Entities\RecipientPec;
-use Condividendo\FatturaPA\Entities\Registry;
-use Condividendo\FatturaPA\Entities\RegulatoryReference as RegulatoryReferenceEntity;
-use Condividendo\FatturaPA\Entities\ShareHolders;
-use Condividendo\FatturaPA\Entities\Street;
-use Condividendo\FatturaPA\Entities\StreetNumber;
-use Condividendo\FatturaPA\Entities\Supplier;
-use Condividendo\FatturaPA\Entities\TaxableAmount;
-use Condividendo\FatturaPA\Entities\TaxableEntity;
-use Condividendo\FatturaPA\Entities\Title;
-use Condividendo\FatturaPA\Entities\TotalPrice;
-use Condividendo\FatturaPA\Entities\TransmissionData;
-use Condividendo\FatturaPA\Entities\TransmissionFormat as TransmissionFormatEntity;
-use Condividendo\FatturaPA\Entities\TransmissionSequence;
-use Condividendo\FatturaPA\Entities\TransmitterContacts;
-use Condividendo\FatturaPA\Entities\TransmitterId;
-use Condividendo\FatturaPA\Entities\Type;
-use Condividendo\FatturaPA\Entities\UnitPrice;
-use Condividendo\FatturaPA\Entities\VatCollectionMode;
-use Condividendo\FatturaPA\Entities\VatNumber;
-use Condividendo\FatturaPA\Entities\VatTax;
-use Condividendo\FatturaPA\Entities\Zip;
-
-use Condividendo\FatturaPA\Enums\LiquidationStatus;
-use Condividendo\FatturaPA\Enums\Nature;
-use Condividendo\FatturaPA\Enums\PaymentCondition;
-use Condividendo\FatturaPA\Enums\PaymentMethod;
-use Condividendo\FatturaPA\Enums\RegulatoryReference;
-use Condividendo\FatturaPA\Enums\ShareHolder;
-use Condividendo\FatturaPA\Enums\TaxRegime;
 use Condividendo\FatturaPA\Enums\TransmissionFormat;
-use Condividendo\FatturaPA\Enums\VatCollection;
-
-use Condividendo\FatturaPA\Tags\Address as AddressTag;
 use Condividendo\FatturaPA\Tags\Body as BodyTag;
-use Condividendo\FatturaPA\Tags\Capital as CapitalTag;
-use Condividendo\FatturaPA\Tags\City as CityTag;
 use Condividendo\FatturaPA\Tags\CodeId as CodeIdTag;
-use Condividendo\FatturaPA\Tags\CompanyName as CompanyNameTag;
-use Condividendo\FatturaPA\Tags\Contacts as ContactsTag;
-use Condividendo\FatturaPA\Tags\Country as CountryTag;
 use Condividendo\FatturaPA\Tags\CountryId as CountryIdTag;
-use Condividendo\FatturaPA\Tags\Currency as CurrencyTag;
 use Condividendo\FatturaPA\Tags\Customer as CustomerTag;
-use Condividendo\FatturaPA\Tags\Date as DateTag;
-use Condividendo\FatturaPA\Tags\Description as DescriptionTag;
-use Condividendo\FatturaPA\Tags\DocumentAmount as DocumentAmountTag;
-use Condividendo\FatturaPA\Tags\DocumentDescription as DocumentDescriptionTag;
-use Condividendo\FatturaPA\Tags\DocumentNumber as DocumentNumberTag;
-use Condividendo\FatturaPA\Tags\DocumentType;
-use Condividendo\FatturaPA\Tags\Duty as DutyTag;
 use Condividendo\FatturaPA\Tags\EInvoice;
-use Condividendo\FatturaPA\Tags\Email as EmailTag;
-use Condividendo\FatturaPA\Tags\Fax as FaxTag;
-use Condividendo\FatturaPA\Tags\FirstName as FirstNameTag;
-use Condividendo\FatturaPA\Tags\FiscalCode as FiscalCodeTag;
-use Condividendo\FatturaPA\Tags\GeneralData as GeneralDataTag;
-use Condividendo\FatturaPA\Tags\GeneralDocumentData as GeneralDocumentDataTag;
-use Condividendo\FatturaPA\Tags\GoodsServicesData as GoodsServicesDataTag;
 use Condividendo\FatturaPA\Tags\Header as HeaderTag;
-use Condividendo\FatturaPA\Tags\LiquidationStatus as LiquidationStatusTag;
-use Condividendo\FatturaPA\Tags\OfficeCode as OfficeCodeTag;
-use Condividendo\FatturaPA\Tags\SummaryItem as SummaryItemTag;
-use Condividendo\FatturaPA\Tags\PaymentAmount as PaymentAmountTag;
-use Condividendo\FatturaPA\Tags\PaymentCondition as PaymentConditionTag;
-use Condividendo\FatturaPA\Tags\PaymentData as PaymentDataTag;
-use Condividendo\FatturaPA\Tags\PaymentDetail as PaymentDetailTag;
-use Condividendo\FatturaPA\Tags\PaymentExpirationDate as PaymentExpirationDateTag;
-use Condividendo\FatturaPA\Tags\PaymentMethod as PaymentMethodTag;
-use Condividendo\FatturaPA\Tags\Phone as PhoneTag;
-use Condividendo\FatturaPA\Tags\ProvinceOrState as ProvinceOrStateTag;
-use Condividendo\FatturaPA\Tags\Quantity as QuantityTag;
-use Condividendo\FatturaPA\Tags\REANumber as REANumberTag;
-use Condividendo\FatturaPA\Tags\REARegistration as REARegistrationTag;
 use Condividendo\FatturaPA\Tags\RecipientCode as RecipientCodeTag;
 use Condividendo\FatturaPA\Tags\RecipientPec as RecipientPecTag;
-use Condividendo\FatturaPA\Tags\Registry as RegistryTag;
-use Condividendo\FatturaPA\Tags\RegulatoryReference as RegulatoryReferenceTag;
-use Condividendo\FatturaPA\Tags\ShareHolders as ShareHoldersTag;
-use Condividendo\FatturaPA\Tags\Street as StreetTag;
-use Condividendo\FatturaPA\Tags\StreetNumber as StreetNumberTag;
 use Condividendo\FatturaPA\Tags\Supplier as SupplierTag;
-use Condividendo\FatturaPA\Tags\TaxableAmount as TaxableAmountTag;
-use Condividendo\FatturaPA\Tags\TaxableEntity as TaxableEntityTag;
-use Condividendo\FatturaPA\Tags\Title as TitleTag;
-use Condividendo\FatturaPA\Tags\TotalPrice as TotalPriceTag;
 use Condividendo\FatturaPA\Tags\TransmissionData as TransmissionDataTag;
-use Condividendo\FatturaPA\Tags\TransmissionFormat as TransmissionFormatTag;
 use Condividendo\FatturaPA\Tags\TransmissionSequence as TransmissionSequenceTag;
-use Condividendo\FatturaPA\Tags\TransmitterContacts as TransmitterContactsTag;
 use Condividendo\FatturaPA\Tags\TransmitterId as TransmitterIdTag;
-use Condividendo\FatturaPA\Tags\UnitPrice as UnitPriceTag;
-use Condividendo\FatturaPA\Tags\VatCollectionMode as VatCollectionModeTag;
-use Condividendo\FatturaPA\Tags\VatNumber as VatNumberTag;
-use Condividendo\FatturaPA\Tags\VatTax as VatTaxTag;
-use Condividendo\FatturaPA\Tags\Zip as ZipTag;
-
-use \DOMDocument;
-use \SimpleXMLElement;
+use DOMDocument;
+use SimpleXMLElement;
 
 class FatturaPABuilder
 {
     /**
-     * @var \Condividendo\FatturaPA\Enums\TransmissionFormat
+     * @var TransmissionFormat
      */
     private $transmissionFormat;
 
@@ -182,7 +60,7 @@ class FatturaPABuilder
      * @var CustomerTag
      */
     private $customer;
-        
+
 
     /**
      * @var Body[]
@@ -190,7 +68,7 @@ class FatturaPABuilder
     private $bodies = [];
 
 
-    public function setTransmissionFormat(\Condividendo\FatturaPA\Enums\TransmissionFormat $format): self
+    public function setTransmissionFormat(TransmissionFormat $format): self
     {
         $this->transmissionFormat = $format;
         return $this;
@@ -211,17 +89,17 @@ class FatturaPABuilder
 
     public function setRecipientCode(string $code): self
     {
-        $this->recipientCode = $code; 
+        $this->recipientCode = $code;
         return $this;
     }
 
     public function setRecipientPec(string $pec): self
     {
-        $this->recipientPec = $pec; 
+        $this->recipientPec = $pec;
         return $this;
-    }    
-    
-    
+    }
+
+
     public function setSupplier(SupplierTag $supplier): self
     {
         $this->supplier = $supplier;
@@ -233,7 +111,7 @@ class FatturaPABuilder
         $this->customer = $customer;
         return $this;
     }
-    
+
 
     public function addBody(Body $body): self
     {
@@ -269,8 +147,8 @@ class FatturaPABuilder
     private function makeHeader(): HeaderTag
     {
         return HeaderTag::make()->setTransmissionData($this->makeTransmissionData())
-                            ->setSupplier($this->supplier)
-                            ->setCustomer($this->customer);
+            ->setSupplier($this->supplier)
+            ->setCustomer($this->customer);
     }
 
     /**
@@ -310,7 +188,7 @@ class FatturaPABuilder
         return TransmissionFormatTag::make()->setFormat($this->transmissionFormat);
     }
     */
-    
+
     private function makeTransmissionSequence(): TransmissionSequenceTag
     {
         return TransmissionSequenceTag::make()
@@ -339,7 +217,7 @@ class FatturaPABuilder
     }
 
     /*
-    private function makeSupplier(): SupplierTag 
+    private function makeSupplier(): SupplierTag
     {
         return SupplierTag::make()
                 ->setTaxableEntity($this->makeSupplierTaxableEntity())
@@ -348,13 +226,13 @@ class FatturaPABuilder
                 ->setContacts($this->makeSupplierContacts());
     }
 
-    private function makeCustomer(): CustomerTag 
+    private function makeCustomer(): CustomerTag
     {
         return CustomerTag::make()
                 ->setTaxableEntity($this->makeCustomerTaxableEntity())
                 ->setAddress($this->makeCustomerAddress());
     }
-    private function makeCustomerAddress(): AddressTag 
+    private function makeCustomerAddress(): AddressTag
     {
         return AddressTag::make()
                 ->setStreet($this->makeCustomerStreet())
@@ -365,7 +243,7 @@ class FatturaPABuilder
                 ->setCountyr($this->makeCustomerCountry());
     }
 
-    private function makeSupplierAddress(): AddressTag 
+    private function makeSupplierAddress(): AddressTag
     {
         return AddressTag::make()
                 ->setStreet($this->makeSupplierStreet())
@@ -375,7 +253,7 @@ class FatturaPABuilder
                 ->setProvinceOrState($this->makeSupplierProvinceOrState())
                 ->setCountry($this->makeSupplierCountry());
     }
-    private function makeCustomerTaxableEntity(): TaxableEntityTag 
+    private function makeCustomerTaxableEntity(): TaxableEntityTag
     {
         return TaxableEntityTag::make()
                 ->setVat($this->makeCustomerVatNumber())
@@ -383,7 +261,7 @@ class FatturaPABuilder
                 ->setRegistry($this->makeCustomerRegistry());
     }
 
-    private function makeSupplierTaxableEntity(): TaxableEntityTag 
+    private function makeSupplierTaxableEntity(): TaxableEntityTag
     {
         return TaxableEntityTag::make()
                 ->setVatTag($this->makeSupplierVatNumber())
@@ -392,7 +270,7 @@ class FatturaPABuilder
     }
 
 
-    private function makeSupplierREARegistration(): REARegistrationTag 
+    private function makeSupplierREARegistration(): REARegistrationTag
     {
         return REARegistrationTag::make()
                 ->setOfficeCode($this->makeSupplierREAOffice())
@@ -402,7 +280,7 @@ class FatturaPABuilder
                 ->setLiquidationStatus($this->makeSupplierREALiquidationStatus());
     }
 
-    private function makeSupplierContacts(): ContactsTag 
+    private function makeSupplierContacts(): ContactsTag
     {
         return ContactsTag::make()
                 ->setEmail($this->makeSupplierEmail())
@@ -494,21 +372,21 @@ class FatturaPABuilder
 
     private function makeCustomerFirstName() : ?FirstNameTag
     {
-        return $this->customerFirstName ? 
+        return $this->customerFirstName ?
                 FirstNameTag::make()->setName($this->customerFirstName)
                 : null;
     }
 
     private function makeCustomerLastName() : ?LastNameTag
     {
-        return $this->customerLastName ? 
+        return $this->customerLastName ?
                 LastNameTag::make()->setName($this->customerLastName)
                 : null;
     }
 
     private function makeCustomerTitle() : ?TitleTag
     {
-        return $this->customerTitle ? 
+        return $this->customerTitle ?
                 TitleTag::make()->setName($this->customerTitle)
                 : null;
     }
@@ -544,6 +422,4 @@ class FatturaPABuilder
                 ->setStatus($this->supplierREALiquidationStatus);
     }
     */
-
-
 }

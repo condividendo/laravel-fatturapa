@@ -9,27 +9,27 @@ use DOMElement;
 class REARegistration extends AbstractTag
 {
     use Makeable;
-        
+
     /**
      * @var OfficeCode
      */
     private $officeCode;
-    
+
     /**
      * @var REANumber
      */
     private $reaNumber;
-    
+
     /**
      * @var ?Capital
      */
     private $capital;
-    
+
     /**
      * @var ?ShareHolders
      */
     private $shareHolders;
-    
+
     /**
      * @var LiquidationStatus
      */
@@ -78,13 +78,16 @@ class REARegistration extends AbstractTag
         $e = $dom->createElement('IscrizioneREA');
 
         $e->appendChild($this->officeCode->toDOMElement($dom));
-        $e->appendChild($this->reaNumber->toDOMElement($dom));        
-        if($this->capital) $e->appendChild($this->capital->toDOMElement($dom));
-        if($this->shareHolders) $e->appendChild($this->shareHolders->toDOMElement($dom));
+        $e->appendChild($this->reaNumber->toDOMElement($dom));
+        if ($this->capital) {
+            $e->appendChild($this->capital->toDOMElement($dom));
+        }
+        if ($this->shareHolders) {
+            $e->appendChild($this->shareHolders->toDOMElement($dom));
+        }
         $e->appendChild($this->liquidationStatus->toDOMElement($dom));
-        
+
 
         return $e;
     }
-
 }

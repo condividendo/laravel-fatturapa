@@ -9,40 +9,40 @@ use DOMElement;
 class PaymentDetail extends AbstractTag
 {
     use Makeable;
-        
+
     /**
      * @var PaymentMethod
      */
     private $paymentMethod;
-		
+
     /**
      * @var PaymentExpirationDate
      */
-    private $paymentExpirationDate;    
-		
+    private $paymentExpirationDate;
+
     /**
      * @var PaymentAmount
      */
-    private $amount; 
-    
+    private $amount;
+
 
     public function setPaymentMethod(PaymentMethod $paymentMethod): self
     {
         $this->paymentMethod = $paymentMethod;
         return $this;
     }
-    
+
     public function setPaymentExpirationDate(PaymentExpirationDate $date): self
     {
-		$this->paymentExpirationDate = $date;
+        $this->paymentExpirationDate = $date;
         return $this;
     }
-    
+
     public function setPaymentAmount(PaymentAmount $amount): self
     {
         $this->amount = $amount;
         return $this;
-    } 
+    }
 
 
     /**
@@ -53,11 +53,10 @@ class PaymentDetail extends AbstractTag
         $e = $dom->createElement('DettaglioPagamento');
 
         $e->appendChild($this->paymentMethod->toDOMElement($dom));
-        $e->appendChild($this->paymentExpirationDate->toDOMElement($dom));        
+        $e->appendChild($this->paymentExpirationDate->toDOMElement($dom));
         $e->appendChild($this->amount->toDOMElement($dom));
-        
+
 
         return $e;
     }
-    
 }

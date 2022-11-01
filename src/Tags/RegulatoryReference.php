@@ -8,7 +8,6 @@ use DOMElement;
 
 class RegulatoryReference extends AbstractTag
 {
-
     use Makeable;
 
     /**
