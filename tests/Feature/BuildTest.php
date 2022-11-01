@@ -20,7 +20,7 @@ class BuildTest extends TestCase
         $xml = FatturaPA::build()
             ->setTransmissionFormat(TransmissionFormat::FPR12())
             ->setSenderId('IT', '0123456789')
-            ->setTransmissionSequence(1)
+            ->setTransmissionSequence('1')
             ->addBody(
                 Body::make()
             )

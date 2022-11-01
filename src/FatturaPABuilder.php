@@ -37,7 +37,7 @@ class FatturaPABuilder
     private $senderIdCode;
 
     /**
-     * @var int
+     * @var string
      */
     private $transmissionSequence;
 
@@ -81,7 +81,7 @@ class FatturaPABuilder
         return $this;
     }
 
-    public function setTransmissionSequence(int $sequence): self
+    public function setTransmissionSequence(string $sequence): self
     {
         $this->transmissionSequence = $sequence;
         return $this;
