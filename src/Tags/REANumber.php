@@ -15,7 +15,7 @@ class REANumber extends AbstractTag
      */
     private $number;
 
-    public function setNumber(string $number): self
+    public function setREANumber(string $number): self
     {
         $this->number = $number;
         return $this;

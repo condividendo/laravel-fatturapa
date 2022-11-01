@@ -3,18 +3,18 @@
 namespace Condividendo\FatturaPA\Entities;
 
 use Condividendo\FatturaPA\Contracts\Tag;
-use Condividendo\FatturaPA\Tags\Overview as OverviewTag;
+use Condividendo\FatturaPA\Tags\Item as ItemTag;
 use Condividendo\FatturaPA\Traits\Makeable;
 
-class Overview extends AbstractEntity
+class Item extends AbstractEntity
 {
     use Makeable;
 
     /**
-     * @return OverviewTag
+     * @return ItemTag
      */
     public function getTag()
     {
-        return OverviewTag::make();
+        return ItemTag::make();
     }
 }

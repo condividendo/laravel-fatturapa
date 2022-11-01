@@ -15,7 +15,7 @@ class OfficeCode extends AbstractTag
      */
     private $code;
 
-    public function setCode(string $code): self
+    public function setOfficeCode(string $code): self
     {
         $this->code = $code;
         return $this;

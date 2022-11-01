@@ -3,18 +3,18 @@
 namespace Condividendo\FatturaPA\Entities;
 
 use Condividendo\FatturaPA\Contracts\Tag;
-use Condividendo\FatturaPA\Tags\LineItem as LineItemTag;
+use Condividendo\FatturaPA\Tags\SummaryItem as SummaryItemTag;
 use Condividendo\FatturaPA\Traits\Makeable;
 
-class LineItem extends AbstractEntity
+class SummaryItem extends AbstractEntity
 {
     use Makeable;
 
     /**
-     * @return LineItemTag
+     * @return SummaryItemTag
      */
     public function getTag()
     {
-        return LineItemTag::make();
+        return SummaryItemTag::make();
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Condividendo\FatturaPA\Tags;
 
-class LineItem extends AbstractTag
+class Item extends AbstractTag
 {
     use Makeable;
 	
@@ -37,39 +37,39 @@ class LineItem extends AbstractTag
     private $vatTax;
     
 
-    public function setLineNumber(LineNumber $lineNumber): self
+    public function setNumber(string $lineNumber): self
     {
-        $this->lineNumber = $lineNumber;
+        $this->lineNumber = LineNumber::make()->setNumber($lineNumber);
         return $this;
     }
     
-    public function setDescription(Description $description): self
+    public function setDescription(string $description): self
     {
-        $this->description = $description;
+        $this->description = Description::make()->setDescription($description);
         return $this;
     }
     
-    public function setQuantity(Quantity $quantity): self
+    public function setQuantity(int $quantity): self
     {
-        $this->quantity = $quantity;
+        $this->quantity = Quantity::make()->setQuantity($quantity);
         return $this;
     }
     
-    public function setUnitPrice(UnitPrice $unitPrice): self
+    public function setUnitPrice(float $unitPrice): self
     {
-        $this->unitPrice = $unitPrice;
+        $this->unitPrice = UnitPrice::make()->setUnitPrice($unitPrice);
         return $this;
     }
     
-    public function setTotalPrice(TotalPrice $totalPrice): self
+    public function setTotalAmount(float $totalPrice): self
     {
-        $this->totalPrice = $totalPrice;
+        $this->totalPrice = TotalPrice::make()->setTotalPrice($totalPrice);
         return $this;
     }
     
-    public function setVatTax(VatTax $vatTax): self
+    public function setTaxRate(float $rate): self
     {
-        $this->vatTax = $vatTax;
+        $this->vatTax = VatTax::make()->setRate($vatTax);
         return $this;
     }
 

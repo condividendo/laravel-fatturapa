@@ -2,7 +2,7 @@
 
 namespace Condividendo\FatturaPA\Tags;
 
-class Overview extends AbstractTag
+class SummaryItem extends AbstractTag
 {
     use Makeable;
 		
@@ -37,44 +37,44 @@ class Overview extends AbstractTag
     private $regulatoryReference;
     
     	
-    public function setVatTaxAmount(VatTax $amount): self
+    public function setTaxRate(float $rate): self
     {
-        $this->vatTax = $amount;
+        $this->vatTax = VatTax::make()->setRate($rate);
         return $this;
     }
     
     
-    public function setTaxableAmount(TaxableAmount $amount): self
+    public function setTaxableAmount(float $amount): self
     {
-        $this->taxableAmount = $amount;
+        $this->taxableAmount = TaxableAmount::make()->setAmount($amount);
         return $this;
     }
     
     
-    public function setDuty(Duty $duty): self
+    public function setTaxAmount(float $amount): self
     {
-        $this->duty = $duty;
+        $this->duty = Duty::make()->setDuty($duty);
         return $this;
     }
     
     
-    public function setNature(Nature $nature): self
+    public function setNature(string $nature): self
     {
-        $this->nature = $nature;
+        $this->nature = Nature::make()->setNature($nature);
         return $this;
     }
     
     
-    public function setRegulatoryReference(RegulatoryReference $ref): self
+    public function setRegulatoryReference(string $ref): self
     {
-        $this->regulatoryReference = $ref;
+        $this->regulatoryReference = RegulatoryReference::make()->setRegulatoryReference($ref);
         return $this;
     }
         
     
-    public function setVatCollection(VatCollectionMode $collectionMode): self
+    public function setVatCollectionMode(string $collectionMode): self
     {
-        $this->vatCollectionMode = $collectionMode;
+        $this->vatCollectionMode = VatCollectionMode::make()->setVatCollectionMode($collectionMode);
         return $this;
     }
 

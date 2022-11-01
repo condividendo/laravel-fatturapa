@@ -15,7 +15,7 @@ class LiquidationStatus extends AbstractTag
      */
     private $status;
 
-    public function setStatus(string $status): self
+    public function setLiquidationStatus(string $status): self
     {
         $this->status = $status;
         return $this;

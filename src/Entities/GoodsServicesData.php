@@ -3,18 +3,18 @@
 namespace Condividendo\FatturaPA\Entities;
 
 use Condividendo\FatturaPA\Contracts\Tag;
-use Condividendo\FatturaPA\Tags\GoodServicesData as GoodServicesDataTag;
+use Condividendo\FatturaPA\Tags\GoodsServicesData as GoodsServicesDataTag;
 use Condividendo\FatturaPA\Traits\Makeable;
 
-class GoodServicesData extends AbstractEntity
+class GoodsServicesData extends AbstractEntity
 {
     use Makeable;
 
     /**
-     * @return GoodServicesDataTag
+     * @return GoodsServicesDataTag
      */
     public function getTag()
     {
-        return GoodServicesDataTag::make();
+        return GoodsServicesDataTag::make();
     }
 }

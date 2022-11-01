@@ -36,37 +36,37 @@ class REARegistration extends AbstractTag
     private $liquidationStatus;
 
 
-    public function setOfficeCode(OfficeCode $officeCode): self
+    public function setOfficeCode(string $officeCode): self
     {
-        $this->officeCode = $officeCode;
+        $this->officeCode = OfficeCode::make()->setOfficeCode($officeCode);
         return $this;
     }
 
 
-    public function setREANumber(REANumber $reaNumber): self
+    public function setREANumber(string $reaNumber): self
     {
-        $this->reaNumber = $reaNumber;
+        $this->reaNumber = REANumber::make()->setREANumber($reaNumber);
         return $this;
     }
 
 
-    public function setCapital(Capital $capital): self
+    public function setCapital(float $capital): self
     {
-        $this->capital = $capital;
+        $this->capital = Capital::make()->setCapital($capital);
         return $this;
     }
 
 
-    public function setShareHolders(ShareHolders $shareHolders): self
+    public function setShareHolders(string $shareHolders): self
     {
-        $this->shareHolders = $shareHolders;
+        $this->shareHolders = ShareHolders::make()->setShareHolders($shareHolders);
         return $this;
     }
 
 
-    public function setLiquidationStatus(LiquidationStatus $liquidationStatus): self
+    public function setLiquidationStatus(string $liquidationStatus): self
     {
-        $this->liquidationStatus = $liquidationStatus;
+        $this->liquidationStatus = LiquidationStatus::make()->setLiquidationStatus($liquidationStatus);
         return $this;
     }
 

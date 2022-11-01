@@ -9,7 +9,7 @@ use BenSampo\Enum\Enum;
  * @method static self I() Immediata
  * @method static self D() Differita
  */
-final class VatCollection extends Enum
+final class VatCollectionMode extends Enum
 {
     const I = 'I';
     const D = 'D';

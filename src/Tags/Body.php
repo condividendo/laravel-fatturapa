@@ -70,6 +70,20 @@ class Body extends AbstractTag
     }
 
 
+    public function setItems(array $items): self
+    {
+        $this->goodsServicesData->setItems($items);
+        return $this;
+    }
+
+
+    public function setSummaryItems(array $items): self
+    {
+        $this->goodsServicesData->setSummaryItems($items);
+        return $this;
+    }
+
+
     public function setGeneralData(GeneralData $generalData): self
     {
         $this->generalData = $generalData;

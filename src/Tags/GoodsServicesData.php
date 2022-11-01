@@ -7,21 +7,15 @@ class GoodsServicesData extends AbstractTag
     use Makeable;
 	
     /**
-     * @var LineItems[]
+     * @var Item[]
      */
     private $lineItems;
 	
     /**
-     * @var Overview
+     * @var SummaryItem[]
      */
-    private $overview;    
+    private $summaryItems;    
     
-
-    public function setOverview(Overview $overview): self
-    {
-        $this->overview = $overview;
-        return $this;
-    }
 
     public function setItems(array $items): self
     {
@@ -29,13 +23,18 @@ class GoodsServicesData extends AbstractTag
         return $this;
     }
 
-    public function addItem(LineItem $item): self
+    public function addItem(Item $item): self
     {
         $this->lineItems[] = $item;
         $item->setLineNumber(count($this->lineItems));
         return $this;
     }
 
+    public function setSummaryItems(array $summaryItems): self
+    {
+        $this->summaryItems = $summaryItems;
+        return $this;
+    }
 
     /**
      * @noinspection PhpUnhandledExceptionInspection
@@ -45,7 +44,7 @@ class GoodsServicesData extends AbstractTag
         $e = $dom->createElement('DatiBeniServizi');
 
         foreach($this->lineItems as $item) $e->appendChild($item->toDOMElement($dom));
-        $e->appendChild($this->overview->toDOMElement($dom));
+        foreach($this->summaryItems as $item) $e->appendChild($item->toDOMElement($dom));
         
         return $e;
     }
