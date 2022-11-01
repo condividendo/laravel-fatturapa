@@ -64,9 +64,9 @@ class Registry extends AbstractTag
 
         if($this->companyName) $e->appendChild($this->companyName->toDOMElement($dom));
         else {
-            $e->appendChild($this->title->toDOMElement($dom));
-            $e->appendChild($this->firstName->toDOMElement($dom));
-            $e->appendChild($this->lastName->toDOMElement($dom));
+            if($this->title) $e->appendChild($this->title->toDOMElement($dom));
+            if($this->firstName) $e->appendChild($this->firstName->toDOMElement($dom));
+            if($this->lastName) $e->appendChild($this->lastName->toDOMElement($dom));
         }
 
         return $e;
