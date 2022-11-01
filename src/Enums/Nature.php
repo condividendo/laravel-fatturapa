@@ -16,15 +16,15 @@ use BenSampo\Enum\Enum;
  * @method static self N3_6() non imponibili – altre operazioni che non concorrono alla formazione del plafond
  * @method static self N4() esenti
  * @method static self N5() regime del margine / IVA non esposta in fattura
- * @method static self N6.1() inversione contabile – cessione di rottami e altri materiali di recupero
- * @method static self N6.2() inversione contabile – cessione di oro e argento puro
- * @method static self N6.3() inversione contabile – subappalto nel settore edile
- * @method static self N6.4() inversione contabile – cessione di fabbricati
- * @method static self N6.5() inversione contabile – cessione di telefoni cellulari
- * @method static self N6.6() inversione contabile – cessione di prodotti elettronici
- * @method static self N6.7() inversione contabile – prestazioni comparto edile e settori connessi
- * @method static self N6.8() inversione contabile – operazioni settore energetico
- * @method static self N6.9() inversione contabile – altri casi
+ * @method static self N6_1() inversione contabile – cessione di rottami e altri materiali di recupero
+ * @method static self N6_2() inversione contabile – cessione di oro e argento puro
+ * @method static self N6_3() inversione contabile – subappalto nel settore edile
+ * @method static self N6_4() inversione contabile – cessione di fabbricati
+ * @method static self N6_5() inversione contabile – cessione di telefoni cellulari
+ * @method static self N6_6() inversione contabile – cessione di prodotti elettronici
+ * @method static self N6_7() inversione contabile – prestazioni comparto edile e settori connessi
+ * @method static self N6_8() inversione contabile – operazioni settore energetico
+ * @method static self N6_9() inversione contabile – altri casi
  */
 final class Nature extends Enum
 {

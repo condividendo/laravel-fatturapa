@@ -12,7 +12,7 @@ class LineNumber extends AbstractTag
     use Makeable;
 
     /**
-     * @var int
+     * @var string
      */
     private $number;
     

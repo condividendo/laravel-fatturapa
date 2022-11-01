@@ -12,7 +12,7 @@ class Duty extends AbstractTag
     use Makeable;
 
     /**
-     * @var float
+     * @var string
      */
     private $duty;
 

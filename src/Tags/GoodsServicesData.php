@@ -20,7 +20,9 @@ class GoodsServicesData extends AbstractTag
      */
     private $summaryItems;    
     
-
+    /**
+     * @param array<int, Item> $items
+     */
     public function setItems(array $items): self
     {
         foreach($items as $item) $this->addItem($item);
@@ -34,6 +36,10 @@ class GoodsServicesData extends AbstractTag
         return $this;
     }
 
+    
+    /**
+     * @param array<int, SummaryItem> $summaryItems
+     */
     public function setSummaryItems(array $summaryItems): self
     {
         $this->summaryItems = $summaryItems;

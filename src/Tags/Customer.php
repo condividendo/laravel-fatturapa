@@ -27,28 +27,34 @@ class Customer extends AbstractTag
     }
 
 
-    public function setCompanyName(string $name){
+    public function setCompanyName(string $name): self{
         $this->taxableEntity->setCompanyName($name);
+        return $this;
     }
 
-    public function setVatNumber(string $countryCode,string $vatNumber){
+    public function setVatNumber(string $countryCode,string $vatNumber): self{
         $this->taxableEntity->setVatNumber($countryCode,$vatNumber);
+        return $this;
     }
 
-    public function setFiscalCode(string $code){
+    public function setFiscalCode(string $code): self{
         $this->taxableEntity->setFiscalCode($code);
+        return $this;
     }
 
-    public function setFirstName(string $name){
+    public function setFirstName(string $name): self{
         $this->taxableEntity->setFirstName($name);
+        return $this;
     }
 
-    public function setLastName(string $name){
+    public function setLastName(string $name): self{
         $this->taxableEntity->setLastName($name);
+        return $this;
     }
 
-    public function setTitle(string $title){
+    public function setTitle(string $title): self{
         $this->taxableEntity->setTitle($title);
+        return $this;
     }
 
 

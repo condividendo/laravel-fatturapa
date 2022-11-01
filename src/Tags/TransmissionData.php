@@ -48,9 +48,9 @@ class TransmissionData extends AbstractTag
         return $this;
     }
 
-    public function setTransmissionFormat(TransmissionFormat $format): self
+    public function setTransmissionFormat(Condividendo\FatturaPA\Enums\TransmissionFormat $format): self
     {
-        $this->transmissionFormat = $format;
+        $this->transmissionFormat = TransmissionFormat::make()->setFormat($format);
         return $this;
     }
 

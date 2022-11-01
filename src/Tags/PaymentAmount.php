@@ -11,7 +11,7 @@ class PaymentAmount extends AbstractTag
     use Makeable;
 
     /**
-     * @var float
+     * @var string
      */
     private $amount;
 

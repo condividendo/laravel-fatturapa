@@ -11,7 +11,7 @@ class TotalPrice extends AbstractTag
     use Makeable;
 
     /**
-     * @var float
+     * @var string
      */
     private $totalPrice;
     
@@ -21,11 +21,12 @@ class TotalPrice extends AbstractTag
         return $this;
     }
 
+
     /**
-     * @return TotalPriceTag
+     * @noinspection PhpUnhandledExceptionInspection
      */
-    public function getTag()
+    public function toDOMElement(DOMDocument $dom): DOMElement
     {
-        return TotalPriceTag::make();
+        return $dom->createElement('PrezzoTotale', $this->totalPrice);
     }
 }

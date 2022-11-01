@@ -12,7 +12,7 @@ class TaxableAmount extends AbstractTag
     use Makeable;
 
     /**
-     * @var float
+     * @var string
      */
     private $amount;
 

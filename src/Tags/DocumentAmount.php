@@ -11,11 +11,11 @@ class DocumentAmount extends AbstractTag
     use Makeable;
 
     /**
-     * @var float
+     * @var string
      */
     private $amount;
 
-    public function setDescription(float $amount): self
+    public function setDocumentAmount(float $amount): self
     {
         $this->amount = $amount;
         return $this;

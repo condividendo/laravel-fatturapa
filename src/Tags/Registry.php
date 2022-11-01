@@ -11,47 +11,47 @@ class Registry extends AbstractTag
     use Makeable;
 
     /**
-     * @var string
+     * @var CompanyName
      */
     private $companyName;
 
     /**
-     * @var string
+     * @var FirstName
      */
     private $firstName;
 
     /**
-     * @var string
+     * @var LastName
      */
     private $lastName;
 
     /**
-     * @var string
+     * @var Title
      */
     private $title;
 
     
-    public function setCompanyName(CompanyName $companyName): self
+    public function setCompanyName(string $companyName): self
     {
-        $this->companyName = $companyName;
+        $this->companyName = CompanyName::make()->setName($companyName);
         return $this;
     }
 
-    public function setTitle(Title $title): self
+    public function setTitle(string $title): self
     {
-        $this->title = $title;
+        $this->title = Title::make()->setTitle($title);
         return $this;
     }
 
-    public function setFirstName(FirstName $firstName): self
+    public function setFirstName(string $firstName): self
     {
-        $this->firstName = $firstName;
+        $this->firstName = FirstName::make()->setName($firstName);
         return $this;
     }
 
-    public function setLastName(LastName $lastName): self
+    public function setLastName(string $lastName): self
     {
-        $this->lastName = $lastName;
+        $this->lastName = LastName::make()->setName($lastName);
         return $this;
     }
 
@@ -62,7 +62,7 @@ class Registry extends AbstractTag
     {
         $e = $dom->createElement('Anagrafica');
 
-        if($this->$companyName) $e->appendChild($this->companyName->toDOMElement($dom));
+        if($this->companyName) $e->appendChild($this->companyName->toDOMElement($dom));
         else {
             $e->appendChild($this->title->toDOMElement($dom));
             $e->appendChild($this->firstName->toDOMElement($dom));

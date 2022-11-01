@@ -22,10 +22,10 @@ class Description extends AbstractTag
     }
 
     /**
-     * @return DescriptionTag
+     * @noinspection PhpUnhandledExceptionInspection
      */
-    public function getTag()
+    public function toDOMElement(DOMDocument $dom): DOMElement
     {
-        return DescriptionTag::make();
+        return $dom->createElement('Descrizione', $this->description);
     }
 }

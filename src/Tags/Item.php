@@ -41,7 +41,7 @@ class Item extends AbstractTag
     private $vatTax;
     
 
-    public function setNumber(string $lineNumber): self
+    public function setLineNumber(int $lineNumber): self
     {
         $this->lineNumber = LineNumber::make()->setNumber($lineNumber);
         return $this;
@@ -73,7 +73,7 @@ class Item extends AbstractTag
     
     public function setTaxRate(float $rate): self
     {
-        $this->vatTax = VatTax::make()->setRate($vatTax);
+        $this->vatTax = VatTax::make()->setRate($rate);
         return $this;
     }
 

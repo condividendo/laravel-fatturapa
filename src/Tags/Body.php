@@ -70,6 +70,9 @@ class Body extends AbstractTag
     }
 
 
+    /**
+     * @param array<int, Item> $items
+     */
     public function setItems(array $items): self
     {
         $this->goodsServicesData->setItems($items);
@@ -77,6 +80,9 @@ class Body extends AbstractTag
     }
 
 
+    /**
+     * @param array<int, SummaryItem> $items
+     */
     public function setSummaryItems(array $items): self
     {
         $this->goodsServicesData->setSummaryItems($items);

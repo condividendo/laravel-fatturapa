@@ -11,7 +11,7 @@ class UnitPrice extends AbstractTag
     use Makeable;
 
     /**
-     * @var float
+     * @var string
      */
     private $unitPrice;
     
@@ -22,10 +22,10 @@ class UnitPrice extends AbstractTag
     }
 
     /**
-     * @return UnitPriceTag
+     * @noinspection PhpUnhandledExceptionInspection
      */
-    public function getTag()
+    public function toDOMElement(DOMDocument $dom): DOMElement
     {
-        return UnitPriceTag::make();
+        return $dom->createElement('PrezzoUnitario', $this->unitPrice);
     }
 }

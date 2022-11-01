@@ -14,7 +14,7 @@ class TransmissionFormat extends AbstractTag
     use Makeable;
 
     /**
-     * @var string
+     * @var \Condividendo\FatturaPA\Enums\TransmissionFormat
      */
     private $format;
 
@@ -29,6 +29,6 @@ class TransmissionFormat extends AbstractTag
      */
     public function toDOMElement(DOMDocument $dom): DOMElement
     {
-        return $dom->createElement('FormatoTrasmissione', $this->format);
+        return $dom->createElement('FormatoTrasmissione', $this->format->value);
     }
 }

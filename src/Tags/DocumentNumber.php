@@ -15,7 +15,7 @@ class DocumentNumber extends AbstractTag
      */
     private $number;
 
-    public function setNumber(string $number): self
+    public function setDocumentNumber(string $number): self
     {
         $this->number = $number;
         return $this;

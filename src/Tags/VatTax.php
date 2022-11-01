@@ -12,7 +12,7 @@ class VatTax extends AbstractTag
     use Makeable;
 
     /**
-     * @var float
+     * @var string
      */
     private $percentage;
 

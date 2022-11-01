@@ -13,12 +13,12 @@ class TransmitterContacts extends AbstractTag
     /**
      * @var Email
      */
-    private $email;
+    protected $email;
 
     /**
      * @var Phone
      */
-    private $phone;
+    protected $phone;
 
 
     public function setEmail(Email $email): self

@@ -40,25 +40,35 @@ class TaxableEntity extends AbstractTag
     }
 
 
-    public function setFirstName(string $name){
+    public function setFirstName(string $name) : self {
         $this->registry->setFirstName($name);
+        return $this;
     }
 
-    public function setLastName(string $name){
+    public function setLastName(string $name) : self{
         $this->registry->setLastName($name);
+        return $this;
     }
 
-    public function setTitle(string $name){
-        $this->registry->setTitle($name);
+    public function setTitle(string $title) : self {
+        $this->registry->setTitle($title);
+        return $this;
     }
 
-    public function setCompanyName(string $name){
+    public function setCompanyName(string $name) : self{
         $this->registry->setCompanyName($name);
+        return $this;
     }
 
-    public function setVatNumber(string $countryCode,string $vatNumber){
+    public function setVatNumber(string $countryCode,string $vatNumber) : self{
         $this->vatNumber->setCountryId(CountryId::make()->setId($countryCode));
         $this->vatNumber->setCodeId(CodeId::make()->setId($vatNumber));
+        return $this;
+    }
+
+    public function setVatTag(VatNumber $vatNumber) : self{
+        $this->vatNumber = $vatNumber;
+        return $this;
     }
 
 

@@ -11,21 +11,22 @@ class Quantity extends AbstractTag
     use Makeable;
 
     /**
-     * @var int
+     * @var string
      */
     private $quantity;
     
     public function setQuantity(int $qty): self
     {
-        $this->qty = $qty;
+        $this->quantity = $qty;
         return $this;
     }
 
     /**
-     * @return QuantityTag
+     * @noinspection PhpUnhandledExceptionInspection
      */
-    public function getTag()
+    public function toDOMElement(DOMDocument $dom): DOMElement
     {
-        return QuantityTag::make();
+        return $dom->createElement('Quantita', $this->quantity);
     }
+
 }

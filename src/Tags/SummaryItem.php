@@ -57,7 +57,7 @@ class SummaryItem extends AbstractTag
     
     public function setTaxAmount(float $amount): self
     {
-        $this->duty = Duty::make()->setDuty($duty);
+        $this->duty = Duty::make()->setDuty($amount);
         return $this;
     }
     
