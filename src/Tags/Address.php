@@ -2,6 +2,10 @@
 
 namespace Condividendo\FatturaPA\Tags;
 
+use Condividendo\FatturaPA\Traits\Makeable;
+use DOMDocument;
+use DOMElement;
+
 class Address extends AbstractTag
 {
     use Makeable;

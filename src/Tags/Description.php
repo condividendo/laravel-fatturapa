@@ -1,10 +1,10 @@
 <?php
 
-namespace Condividendo\FatturaPA\Entities;
+namespace Condividendo\FatturaPA\Tags;
 
-use Condividendo\FatturaPA\Contracts\Tag;
-use Condividendo\FatturaPA\Tags\Description as DescriptionTag;
 use Condividendo\FatturaPA\Traits\Makeable;
+use DOMDocument;
+use DOMElement;
 
 class Description extends AbstractTag
 {

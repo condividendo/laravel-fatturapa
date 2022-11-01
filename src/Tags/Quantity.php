@@ -1,10 +1,10 @@
 <?php
 
-namespace Condividendo\FatturaPA\Entities;
+namespace Condividendo\FatturaPA\Tags;
 
-use Condividendo\FatturaPA\Contracts\Tag;
-use Condividendo\FatturaPA\Tags\Quantity as QuantityTag;
 use Condividendo\FatturaPA\Traits\Makeable;
+use DOMDocument;
+use DOMElement;
 
 class Quantity extends AbstractTag
 {
