@@ -26,17 +26,17 @@ class SummaryItem extends AbstractTag
     private $duty;
     
     /**
-     * @var VatCollectionMode
+     * @var ?VatCollectionMode
      */
     private $vatCollectionMode;
     
     /**
-     * @var Nature
+     * @var ?Nature
      */
     private $nature;
     
     /**
-     * @var RegulatoryReference
+     * @var ?RegulatoryReference
      */
     private $regulatoryReference;
     

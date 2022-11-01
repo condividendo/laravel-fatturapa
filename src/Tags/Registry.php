@@ -11,22 +11,22 @@ class Registry extends AbstractTag
     use Makeable;
 
     /**
-     * @var CompanyName
+     * @var ?CompanyName
      */
     private $companyName;
 
     /**
-     * @var FirstName
+     * @var ?FirstName
      */
     private $firstName;
 
     /**
-     * @var LastName
+     * @var ?LastName
      */
     private $lastName;
 
     /**
-     * @var Title
+     * @var ?Title
      */
     private $title;
 

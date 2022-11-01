@@ -18,7 +18,7 @@ class LineNumber extends AbstractTag
     
     public function setNumber(int $number): self
     {
-        $this->number = $number;
+        $this->number = "$number";
         return $this;
     }
 

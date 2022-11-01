@@ -17,7 +17,7 @@ class DocumentAmount extends AbstractTag
 
     public function setDocumentAmount(float $amount): self
     {
-        $this->amount = $amount;
+        $this->amount = "$amount";
         return $this;
     }
 

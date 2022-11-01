@@ -15,7 +15,7 @@ class DocumentDescription extends AbstractTag
      */
     private $description;
 
-    public function setDescription(string $description): self
+    public function setDocumentDescription(string $description): self
     {
         $this->description = $description;
         return $this;

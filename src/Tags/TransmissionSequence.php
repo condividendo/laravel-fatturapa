@@ -20,7 +20,7 @@ class TransmissionSequence extends AbstractTag
 
     public function setSequence(int $sequence): self
     {
-        $this->sequence = $sequence;
+        $this->sequence = "$sequence";
         return $this;
     }
 

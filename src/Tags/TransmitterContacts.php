@@ -11,12 +11,12 @@ class TransmitterContacts extends AbstractTag
     use Makeable;
 
     /**
-     * @var Email
+     * @var ?Email
      */
     protected $email;
 
     /**
-     * @var Phone
+     * @var ?Phone
      */
     protected $phone;
 

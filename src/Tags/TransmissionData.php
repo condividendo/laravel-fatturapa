@@ -31,7 +31,7 @@ class TransmissionData extends AbstractTag
     private $recipientCode;
 
     /**
-     * @var RecipientPec
+     * @var ?RecipientPec
      */
     private $recipientPec;
 
@@ -48,7 +48,7 @@ class TransmissionData extends AbstractTag
         return $this;
     }
 
-    public function setTransmissionFormat(Condividendo\FatturaPA\Enums\TransmissionFormat $format): self
+    public function setTransmissionFormat(\Condividendo\FatturaPA\Enums\TransmissionFormat $format): self
     {
         $this->transmissionFormat = TransmissionFormat::make()->setFormat($format);
         return $this;
@@ -60,7 +60,7 @@ class TransmissionData extends AbstractTag
         return $this;
     }
 
-    public function setRecipientPec(RecipientPec $recipientPec): self
+    public function setRecipientPec(?RecipientPec $recipientPec): self
     {
         $this->recipientPec = $recipientPec;
         return $this;

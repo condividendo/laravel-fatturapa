@@ -21,12 +21,12 @@ class REARegistration extends AbstractTag
     private $reaNumber;
     
     /**
-     * @var Capital
+     * @var ?Capital
      */
     private $capital;
     
     /**
-     * @var ShareHolders
+     * @var ?ShareHolders
      */
     private $shareHolders;
     

@@ -144,7 +144,7 @@ use \SimpleXMLElement;
 class FatturaPABuilder
 {
     /**
-     * @var Condividendo\FatturaPA\Enums\TransmissionFormat
+     * @var \Condividendo\FatturaPA\Enums\TransmissionFormat
      */
     private $transmissionFormat;
 
@@ -190,12 +190,12 @@ class FatturaPABuilder
         
 
     /**
-     * @var BodyTag[]
+     * @var Body[]
      */
     private $bodies = [];
 
 
-    public function setTransmissionFormat(Condividendo\FatturaPA\Enums\TransmissionFormat $format): self
+    public function setTransmissionFormat(\Condividendo\FatturaPA\Enums\TransmissionFormat $format): self
     {
         $this->transmissionFormat = $format;
         return $this;
@@ -240,7 +240,7 @@ class FatturaPABuilder
     }
     
 
-    public function addBody(BodyTag $body): self
+    public function addBody(Body $body): self
     {
         $this->bodies[] = $body;
         return $this;
@@ -305,8 +305,8 @@ class FatturaPABuilder
     private function makeTransmitterId(): TransmitterIdTag
     {
         return TransmitterIdTag::make()
-            ->setCountryId($this->makeSenderCountryId())
-            ->setCodeId($this->makeSenderCodeId());
+            ->setCountryId($this->makeSenderIdCountry())
+            ->setCodeId($this->makeSenderIdCode());
     }
 
     private function makeTransmissionFormat(): TransmissionFormatTag
@@ -322,26 +322,23 @@ class FatturaPABuilder
 
     private function makeRecipientCode(): RecipientCodeTag
     {
-        $countryCode = strtoupper(substr($this->supplierCountryId,0,2));
-        if($countryCode != "IT") $this->recipientCode = "XXXXXXX";
         return RecipientCodeTag::make()
             ->setCode($this->recipientPec ? "0000000" : $this->recipientCode);
     }
 
     private function makeRecipientPec(): ?RecipientPecTag
     {
-        return $this->recipientPec ? RecipientPecTag::make()
-            ->setSequence($this->transmissionSequence) : null;
+        return $this->recipientPec ? RecipientPecTag::make()->setPec($this->recipientPec) : null;
     }
 
-    private function makeSenderCountryId(): CountryIdTag
+    private function makeSenderIdCountry(): CountryIdTag
     {
-        return CountryIdTag::make()->setId($this->senderCountryId);
+        return CountryIdTag::make()->setId($this->senderIdCountry);
     }
 
-    private function makeSenderCodeId(): CodeIdTag
+    private function makeSenderIdCode(): CodeIdTag
     {
-        return CodeIdTag::make()->setId($this->senderCodeId);
+        return CodeIdTag::make()->setId($this->senderIdCode);
     }
 
     /*

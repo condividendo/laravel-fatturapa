@@ -11,7 +11,7 @@ class Contacts extends TransmitterContacts
     use Makeable;
 
     /**
-     * @var Fax
+     * @var ?Fax
      */
     private $fax;
 

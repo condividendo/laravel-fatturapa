@@ -12,12 +12,12 @@ class TaxableEntity extends AbstractTag
     use Makeable;
 
     /**
-     * @var VatNumber
+     * @var ?VatNumber
      */
     private $vatNumber;
 
     /**
-     * @var FiscalCode
+     * @var ?FiscalCode
      */
     private $fiscalCode;
 

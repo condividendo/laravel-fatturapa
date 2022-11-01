@@ -18,7 +18,7 @@ class TaxableAmount extends AbstractTag
 
     public function setAmount(float $amount): self
     {
-        $this->amount = $amount;
+        $this->amount = "$amount";
         return $this;
     }
 

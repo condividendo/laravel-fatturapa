@@ -17,7 +17,7 @@ class Quantity extends AbstractTag
     
     public function setQuantity(int $qty): self
     {
-        $this->quantity = $qty;
+        $this->quantity = "$qty";
         return $this;
     }
 

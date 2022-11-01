@@ -17,7 +17,7 @@ class Capital extends AbstractTag
 
     public function setCapital(float $capital): self
     {
-        $this->capital = $capital;
+        $this->capital = "$capital";
         return $this;
     }
 
