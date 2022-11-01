@@ -174,11 +174,6 @@ class FatturaPABuilder
     private $recipientPec;
 
     /**
-     * @var string
-     */
-    private $supplierCountryId;
-
-    /**
      * @var SupplierTag
      */
     private $supplier;
@@ -296,7 +291,7 @@ class FatturaPABuilder
     {
         return TransmissionDataTag::make()
             ->setTransmitterId($this->makeTransmitterId())
-            ->setTransmissionFormat($this->makeTransmissionFormat())
+            ->setTransmissionFormat($transmissionFormat)
             ->setTransmissionSequence($this->makeTransmissionSequence())
             ->setRecipientCode($this->makeRecipientCode())
             ->setRecipientPec($this->makeRecipientPec());

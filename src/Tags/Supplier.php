@@ -30,12 +30,7 @@ class Supplier extends AbstractTag
      * @var Contacts
      */
     private $contacts;
-
-
-    function __construct(){
-        $this->taxableEntity = TaxableEntity::make();
-    }
-
+    
 
     public function setName(string $name) : self {
         $this->taxableEntity->setCompanyName($name);

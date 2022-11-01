@@ -17,11 +17,6 @@ class GeneralData extends AbstractTag
     private $generalDocumentData;
 
 
-    function __construct(){
-        $this->generalDocumentData = GeneralDocumentData::make();
-    }
-
-
     public function setType(string $type): self
     {
         $this->generalDocumentData->setType($type);

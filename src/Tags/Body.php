@@ -26,13 +26,6 @@ class Body extends AbstractTag
     private $paymentData;
 
 
-    function __construct(){
-        $this->generalData = GeneralData::make();
-        $this->goodsServicesData = GoodsServicesData::make();
-        $this->paymentData = PaymentData::make();
-    }
-
-
     public function setType(string $type): self
     {
         $this->generalData->setType($type);

@@ -20,12 +20,7 @@ class Customer extends AbstractTag
      * @var Address
      */
     private $address;
-
-
-    function __construct(){
-        $this->taxableEntity = TaxableEntity::make();
-    }
-
+    
 
     public function setCompanyName(string $name): self{
         $this->taxableEntity->setCompanyName($name);

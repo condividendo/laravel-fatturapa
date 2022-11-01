@@ -33,9 +33,6 @@ class TaxableEntity extends AbstractTag
 
 
     function __construct(){
-        $this->vatNumber = VatNumber::make();
-        $this->registry = Registry::make();
-        $this->taxRegime = TaxRegime::make();
         $this->taxRegime->setTaxRegime(\Condividendo\FatturaPA\Enums\TaxRegime::RF01());
     }
 
@@ -61,8 +58,9 @@ class TaxableEntity extends AbstractTag
     }
 
     public function setVatNumber(string $countryCode,string $vatNumber) : self{
-        $this->vatNumber->setCountryId(CountryId::make()->setId($countryCode));
-        $this->vatNumber->setCodeId(CodeId::make()->setId($vatNumber));
+        $this->vatNumber = VatNumber::make()
+        ->setCountryId(CountryId::make()->setId($countryCode))
+        ->setCodeId(CodeId::make()->setId($vatNumber));
         return $this;
     }
 
