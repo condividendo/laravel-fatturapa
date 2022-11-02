@@ -95,7 +95,7 @@ class FatturaPABuilder
     public function setRecipientCountryId(string $countryId): self
     {
         $this->recipientCountryId = $countryId;
-        if(in_array(strtoupper($this->recipientCountryId), ["SM","VA"])){
+        if (in_array(strtoupper($this->recipientCountryId), ["SM","VA"])) {
             $this->recipientCode = "XXXXXXX"; // <== recipient code for San Marino and Vatican suppliers
         }
         return $this;
