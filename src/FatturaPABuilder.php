@@ -95,7 +95,9 @@ class FatturaPABuilder
     public function setRecipientCountryId(string $countryId): self
     {
         $this->recipientCountryId = $countryId;
-        if(in_array(strtoupper($this->recipientCountryId),["SM","VA"])) $this->recipientCode = "XXXXXXX"; // <== recipient code for San Marino and Vatican suppliers
+        if(in_array(strtoupper($this->recipientCountryId), ["SM","VA"])){
+            $this->recipientCode = "XXXXXXX"; // <== recipient code for San Marino and Vatican suppliers
+        }
         return $this;
     }
 
@@ -209,7 +211,7 @@ class FatturaPABuilder
 
     private function makeRecipientCode(): RecipientCodeTag
     {
-        assert(!empty($this->recipientCode) || !empty($this->recipientPec),"Either Recipient Pec, Recipient Code or Recipient Country ID must be non empty and have a valid value");
+        assert(!empty($this->recipientCode) || !empty($this->recipientPec), "Either Recipient Pec, Recipient Code or Recipient Country ID must be non empty and have a valid value");
         return RecipientCodeTag::make()
             ->setCode($this->recipientPec ? "0000000" : $this->recipientCode);
     }
