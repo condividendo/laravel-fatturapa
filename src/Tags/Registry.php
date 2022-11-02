@@ -65,6 +65,7 @@ class Registry extends AbstractTag
         if ($this->companyName) {
             $e->appendChild($this->companyName->toDOMElement($dom));
         } else {
+            assert(!empty($this->firstName) && !empty($this->lastName),"Please specify either Company Name, or physical person name and last name");
             if ($this->title) {
                 $e->appendChild($this->title->toDOMElement($dom));
             }
