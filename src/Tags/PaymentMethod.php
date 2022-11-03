@@ -11,11 +11,11 @@ class PaymentMethod extends AbstractTag
     use Makeable;
 
     /**
-     * @var string
+     * @var \Condividendo\FatturaPA\Enums\PaymentMethod
      */
     private $method;
 
-    public function setMethod(string $method): self
+    public function setMethod(\Condividendo\FatturaPA\Enums\PaymentMethod $method): self
     {
         $this->method = $method;
         return $this;
@@ -26,6 +26,6 @@ class PaymentMethod extends AbstractTag
      */
     public function toDOMElement(DOMDocument $dom): DOMElement
     {
-        return $dom->createElement('ModalitaPagamento', $this->method);
+        return $dom->createElement('ModalitaPagamento', $this->method->value);
     }
 }

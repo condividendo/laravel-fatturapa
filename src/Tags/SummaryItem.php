@@ -62,21 +62,21 @@ class SummaryItem extends AbstractTag
     }
 
 
-    public function setNature(string $nature): self
+    public function setNature(\Condividendo\FatturaPA\Enums\Nature $nature): self
     {
         $this->nature = Nature::make()->setNature($nature);
         return $this;
     }
 
 
-    public function setRegulatoryReference(string $ref): self
+    public function setRegulatoryReference(\Condividendo\FatturaPA\Enums\RegulatoryReference $ref): self
     {
         $this->regulatoryReference = RegulatoryReference::make()->setRegulatoryReference($ref);
         return $this;
     }
 
 
-    public function setVatCollectionMode(string $collectionMode): self
+    public function setVatCollectionMode(\Condividendo\FatturaPA\Enums\VatCollectionMode $collectionMode): self
     {
         $this->vatCollectionMode = VatCollectionMode::make()->setVatCollectionMode($collectionMode);
         return $this;

@@ -10,6 +10,85 @@
             <ProgressivoInvio>1</ProgressivoInvio>
             <CodiceDestinatario>ABC1234</CodiceDestinatario>
         </DatiTrasmissione>
+        <CedentePrestatore>
+            <DatiAnagrafici>
+                <IdFiscaleIVA>
+                    <IdPaese>IT</IdPaese>
+                    <IdCodice>12345640962</IdCodice>
+                </IdFiscaleIVA>
+                <Anagrafica>
+                    <Denominazione>Condividendo Italia srl</Denominazione>
+                </Anagrafica>
+                <RegimeFiscale>RF01</RegimeFiscale>
+            </DatiAnagrafici>
+            <Sede>
+                <Indirizzo>Via Italia</Indirizzo>
+                <NumeroCivico>123</NumeroCivico>
+                <CAP>123456</CAP>
+                <Comune>Milano</Comune>
+                <Provincia>MI</Provincia>
+                <Nazione>IT</Nazione>
+            </Sede>
+            <IscrizioneREA>
+                <Ufficio>MI</Ufficio>
+                <NumeroREA>12123</NumeroREA>
+                <CapitaleSociale>11111.00</CapitaleSociale>
+                <SocioUnico>SM</SocioUnico>
+                <StatoLiquidazione>LN</StatoLiquidazione>
+            </IscrizioneREA>
+        </CedentePrestatore>
+        <CessionarioCommittente>
+            <DatiAnagrafici>
+                <CodiceFiscale>RSSMRA73L09Z103F</CodiceFiscale>
+                <Anagrafica>
+                    <Nome>Mario</Nome>
+                    <Cognome>Rossi</Cognome>
+                </Anagrafica>
+            </DatiAnagrafici>
+            <Sede>
+                <Indirizzo>Via Italia</Indirizzo>
+                <NumeroCivico>123</NumeroCivico>
+                <CAP>123456</CAP>
+                <Comune>Milano</Comune>
+                <Provincia>MI</Provincia>
+                <Nazione>IT</Nazione>
+            </Sede>
+        </CessionarioCommittente>
     </FatturaElettronicaHeader>
-    <FatturaElettronicaBody/>
+    <FatturaElettronicaBody>
+        <DatiGenerali>
+            <DatiGeneraliDocumento>
+                <TipoDocumento>TD01</TipoDocumento>
+                <Divisa>EUR</Divisa>
+                <Data>2022-01-23</Data>
+                <Numero>1</Numero>
+                <ImportoTotaleDocumento>12.20</ImportoTotaleDocumento>
+                <Causale>Causale esempio</Causale>
+            </DatiGeneraliDocumento>
+        </DatiGenerali>
+        <DatiBeniServizi>
+            <DettaglioLinee>
+                <NumeroLinea>1</NumeroLinea>
+                <Descrizione>Product description</Descrizione>
+                <Quantita>1.00</Quantita>
+                <PrezzoUnitario>10.00</PrezzoUnitario>
+                <PrezzoTotale>10.00</PrezzoTotale>
+                <AliquotaIVA>22.00</AliquotaIVA>
+            </DettaglioLinee>
+            <DatiRiepilogo>
+                <AliquotaIVA>22.00</AliquotaIVA>
+                <ImponibileImporto>10.00</ImponibileImporto>
+                <Imposta>2.20</Imposta>
+                <EsigibilitaIVA>I</EsigibilitaIVA>
+            </DatiRiepilogo>
+        </DatiBeniServizi>
+        <DatiPagamento>
+            <CondizioniPagamento>TP02</CondizioniPagamento>
+            <DettaglioPagamento>
+                <ModalitaPagamento>MP21</ModalitaPagamento>
+                <DataScadenzaPagamento>2022-10-28</DataScadenzaPagamento>
+                <ImportoPagamento>12.20</ImportoPagamento>
+            </DettaglioPagamento>
+        </DatiPagamento>
+    </FatturaElettronicaBody>
 </q1:FatturaElettronica>

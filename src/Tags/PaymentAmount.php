@@ -17,7 +17,7 @@ class PaymentAmount extends AbstractTag
 
     public function setAmount(float $amount): self
     {
-        $this->amount = "$amount";
+        $this->amount = sprintf("%.2f",$amount);
         return $this;
     }
 

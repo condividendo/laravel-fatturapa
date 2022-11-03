@@ -17,7 +17,7 @@ class Duty extends AbstractTag
 
     public function setDuty(float $duty): self
     {
-        $this->duty = "$duty";
+        $this->duty = sprintf("%.2f",$duty);
         return $this;
     }
 

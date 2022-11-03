@@ -11,11 +11,11 @@ class Nature extends AbstractTag
     use Makeable;
 
     /**
-     * @var string
+     * @var \Condividendo\FatturaPA\Enums\Nature
      */
     private $nature;
 
-    public function setNature(string $nature): self
+    public function setNature(\Condividendo\FatturaPA\Enums\Nature $nature): self
     {
         $this->nature = $nature;
         return $this;
@@ -26,6 +26,6 @@ class Nature extends AbstractTag
      */
     public function toDOMElement(DOMDocument $dom): DOMElement
     {
-        return $dom->createElement('Natura', $this->nature);
+        return $dom->createElement('Natura', $this->nature->value);
     }
 }

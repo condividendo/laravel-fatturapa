@@ -57,14 +57,14 @@ class REARegistration extends AbstractTag
     }
 
 
-    public function setShareHolders(string $shareHolders): self
+    public function setShareHolders(\Condividendo\FatturaPA\Enums\ShareHolder $shareHolders): self
     {
         $this->shareHolders = ShareHolders::make()->setShareHolders($shareHolders);
         return $this;
     }
 
 
-    public function setLiquidationStatus(string $liquidationStatus): self
+    public function setLiquidationStatus(\Condividendo\FatturaPA\Enums\LiquidationStatus $liquidationStatus): self
     {
         $this->liquidationStatus = LiquidationStatus::make()->setLiquidationStatus($liquidationStatus);
         return $this;

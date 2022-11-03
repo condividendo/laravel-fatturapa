@@ -17,7 +17,7 @@ class TaxRegime extends AbstractTag
 
     public function setTaxRegime(\Condividendo\FatturaPA\Enums\TaxRegime $taxRegime): self
     {
-        $this->taxRegime = (string)$taxRegime;
+        $this->taxRegime = $taxRegime->value;
         return $this;
     }
 

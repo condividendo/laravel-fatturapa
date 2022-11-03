@@ -17,7 +17,7 @@ class TotalPrice extends AbstractTag
 
     public function setTotalPrice(float $totalPrice): self
     {
-        $this->totalPrice = "$totalPrice";
+        $this->totalPrice = sprintf("%.2f",$totalPrice);
         return $this;
     }
 

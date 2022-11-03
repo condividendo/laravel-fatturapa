@@ -11,11 +11,11 @@ class VatCollectionMode extends AbstractTag
     use Makeable;
 
     /**
-     * @var string
+     * @var \Condividendo\FatturaPA\Enums\VatCollectionMode
      */
     private $collectionMode;
 
-    public function setVatCollectionMode(string $collectionMode): self
+    public function setVatCollectionMode(\Condividendo\FatturaPA\Enums\VatCollectionMode $collectionMode): self
     {
         $this->collectionMode = $collectionMode;
         return $this;
@@ -26,6 +26,6 @@ class VatCollectionMode extends AbstractTag
      */
     public function toDOMElement(DOMDocument $dom): DOMElement
     {
-        return $dom->createElement('EsigibilitaIVA', $this->collectionMode);
+        return $dom->createElement('EsigibilitaIVA', $this->collectionMode->value);
     }
 }

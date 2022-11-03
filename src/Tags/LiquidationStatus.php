@@ -11,11 +11,11 @@ class LiquidationStatus extends AbstractTag
     use Makeable;
 
     /**
-     * @var string
+     * @var \Condividendo\FatturaPA\Enums\LiquidationStatus
      */
     private $status;
 
-    public function setLiquidationStatus(string $status): self
+    public function setLiquidationStatus(\Condividendo\FatturaPA\Enums\LiquidationStatus $status): self
     {
         $this->status = $status;
         return $this;
@@ -26,6 +26,6 @@ class LiquidationStatus extends AbstractTag
      */
     public function toDOMElement(DOMDocument $dom): DOMElement
     {
-        return $dom->createElement('StatoLiquidazione', $this->status);
+        return $dom->createElement('StatoLiquidazione', $this->status->value);
     }
 }

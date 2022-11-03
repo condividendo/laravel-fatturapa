@@ -11,11 +11,11 @@ class RegulatoryReference extends AbstractTag
     use Makeable;
 
     /**
-     * @var string
+     * @var \Condividendo\FatturaPA\Enums\RegulatoryReference
      */
     private $regulatoryReference;
 
-    public function setRegulatoryReference(string $regulatoryReference): self
+    public function setRegulatoryReference(\Condividendo\FatturaPA\Enums\RegulatoryReference $regulatoryReference): self
     {
         $this->regulatoryReference = $regulatoryReference;
         return $this;
@@ -26,6 +26,6 @@ class RegulatoryReference extends AbstractTag
      */
     public function toDOMElement(DOMDocument $dom): DOMElement
     {
-        return $dom->createElement('RiferimentoNormativo', $this->regulatoryReference);
+        return $dom->createElement('RiferimentoNormativo', $this->regulatoryReference->value);
     }
 }

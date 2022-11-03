@@ -11,7 +11,7 @@ class DocumentType extends AbstractTag
     use Makeable;
 
     /**
-     * @var string
+     * @var \Condividendo\FatturaPA\Enums\Type
      */
     private $type;
 
@@ -26,6 +26,6 @@ class DocumentType extends AbstractTag
      */
     public function toDOMElement(DOMDocument $dom): DOMElement
     {
-        return $dom->createElement('TipoDocumento', $this->type);
+        return $dom->createElement('TipoDocumento', $this->type->value);
     }
 }
