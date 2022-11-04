@@ -15,7 +15,7 @@ class DocumentType extends AbstractTag
      */
     private $type;
 
-    public function setType(string $type): self
+    public function setType(\Condividendo\FatturaPA\Enums\Type $type): self
     {
         $this->type = $type;
         return $this;

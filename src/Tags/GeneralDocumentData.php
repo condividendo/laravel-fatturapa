@@ -41,7 +41,7 @@ class GeneralDocumentData extends AbstractTag
     private $description;
 
 
-    public function setType(string $type): self
+    public function setType(\Condividendo\FatturaPA\Enums\Type $type): self
     {
         $this->type = DocumentType::make()->setType($type);
         return $this;

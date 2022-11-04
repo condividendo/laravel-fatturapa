@@ -26,7 +26,7 @@ class Body extends AbstractTag
     private $paymentData;
 
 
-    public function setType(string $type): self
+    public function setType(\Condividendo\FatturaPA\Enums\Type $type): self
     {
         $this->generalData->setType($type);
         return $this;
