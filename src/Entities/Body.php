@@ -121,6 +121,14 @@ class Body extends AbstractEntity
      */
     public function getTag()
     {
+        $items = [];
+        $summaryItems = [];
+        foreach($this->items as $item){
+            $items[] = $item->getTag();
+        }
+        foreach($this->summaryItems as $item){
+            $summaryItems[] = $item->getTag();
+        }
         return BodyTag::make()
                 ->setType($this->type)
                 ->setCurrency($this->currency)
@@ -128,8 +136,8 @@ class Body extends AbstractEntity
                 ->setDocumentDescription($this->description)
                 ->setDate($this->date)
                 ->setNumber($this->number)
-                ->setItems($this->items)
-                ->setSummaryItems($this->summaryItems)
-                ->setPaymentData($this->paymentData);
+                ->setItems($items)
+                ->setSummaryItems($summaryItems)
+                ->setPaymentData($this->paymentData->getTag());
     }
 }

@@ -31,10 +31,30 @@ class Supplier extends AbstractEntity
     private $vatNumber;
 
     /**
-     * @var ?\Condividendo\FatturaPA\Entities\TaxRegime
+     * @var ?\Condividendo\FatturaPA\Enums\TaxRegime
      */
     private $taxRegime;
 
+    /**
+     * @var ?REARegistration
+     */
+    private $reaRegistration;
+
+    /**
+     * @var Address
+     */
+    private $address;
+
+    /**
+     * @var ?Contacts
+     */
+    private $contacts;
+
+
+    public function setName(string $name): self
+    {
+        return $this->setCompanyName($companyName);
+    }
 
     public function setCompanyName(string $companyName): self
     {
@@ -55,9 +75,27 @@ class Supplier extends AbstractEntity
         return $this;
     }
 
-    public function setTaxRegime(\Condividendo\FatturaPA\Entities\TaxRegime $taxRegime): self
+    public function setTaxRegime(\Condividendo\FatturaPA\Enums\TaxRegime $taxRegime): self
     {
         $this->taxRegime = $taxRegime;
+        return $this;
+    }
+
+    public function setREARegistration(REARegistration $reaRegistration): self
+    {
+        $this->reaRegistration = $reaRegistration;
+        return $this;
+    }
+
+    public function setAddress(Address $address): self
+    {
+        $this->address = $address;
+        return $this;
+    }
+
+    public function setContacts(Contacts $contacts): self
+    {
+        $this->contacts = $contacts;
         return $this;
     }
 
@@ -68,10 +106,17 @@ class Supplier extends AbstractEntity
     {
         $tag = SupplierTag::make()
                 ->setVatNumber($this->vatCountryId, $this->vatNumber)
-                ->setTaxRegime($this->taxRegime ?: \Condividendo\FatturaPA\Entities\TaxRegime::RF01())
-                ->setCompanyName($this->companyName);
+                ->setTaxRegime($this->taxRegime ?: \Condividendo\FatturaPA\Enums\TaxRegime::RF01())
+                ->setCompanyName($this->companyName)
+                ->setAddress($this->address);
         if($this->fiscalCode){
             $tag->setFiscalCode($this->fiscalCode);
+        }
+        if($this->reaRegistration){
+            $tag->setREARegistration($this->reaRegistration->getTag());
+        }
+        if($this->contacts){
+            $tag->setContacts($this->contacts);
         }
         return $tag;
     }

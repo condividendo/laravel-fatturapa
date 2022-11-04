@@ -26,12 +26,12 @@ class REARegistration extends AbstractEntity
     private $capital;
 
     /**
-     * @var ?ShareHolders
+     * @var ?\Condividendo\FatturaPA\Enums\ShareHolders
      */
     private $shareHolders;
 
     /**
-     * @var LiquidationStatus
+     * @var \Condividendo\FatturaPA\Enums\LiquidationStatus
      */
     private $liquidationStatus;
 

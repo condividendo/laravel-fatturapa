@@ -41,7 +41,7 @@ class Item extends AbstractEntity
     private $taxRate;
 
 
-    public function setLineNumber(int $lineNumber): self
+    public function setNumber(int $lineNumber): self
     {
         $this->lineNumber = $lineNumber;
         return $this;

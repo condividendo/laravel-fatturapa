@@ -95,7 +95,7 @@ class Body extends AbstractTag
         return $this;
     }
 
-    public function setPaymentDataData(PaymentData $paymentData): self
+    public function setPaymentData(PaymentData $paymentData): self
     {
         $this->paymentData = $paymentData;
         return $this;

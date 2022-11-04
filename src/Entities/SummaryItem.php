@@ -90,7 +90,7 @@ class SummaryItem extends AbstractEntity
         $tag = SummaryItemTag::make()
                 ->setTaxRate($this->taxRate)
                 ->setTaxableAmount($this->taxableAmount)
-                ->setTaxAmount($taxAmount)
+                ->setTaxAmount($this->taxAmount)
                 ->setVatCollectionMode($this->vatCollectionMode ?: \Condividendo\FatturaPA\Enums\VatCollectionMode::I());
         if($this->nature){
             assert(!empty($this->regulatoryReference), "Regulatory Reference must be set if Nature is provided");

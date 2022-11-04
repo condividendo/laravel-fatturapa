@@ -27,9 +27,9 @@ class PaymentData extends AbstractTag
         return $this;
     }
 
-    public function setPaymentCondition(PaymentCondition $paymentCondition): self
+    public function setPaymentCondition(\Condividendo\FatturaPA\Enums\PaymentCondition $paymentCondition): self
     {
-        $this->paymentCondition = $paymentCondition;
+        $this->paymentCondition = PaymentCondition::make()->setPaymentCondition($paymentCondition);
         return $this;
     }
 

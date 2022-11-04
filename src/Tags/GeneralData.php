@@ -16,7 +16,7 @@ class GeneralData extends AbstractTag
     private $generalDocumentData;
 
 
-    public function setType(string $type): self
+    public function setType(\Condividendo\FatturaPA\Enums\Type $type): self
     {
         $this->generalDocumentData->setType($type);
         return $this;

@@ -48,9 +48,19 @@ class Customer extends AbstractEntity
     private $vatNumber;
 
     /**
-     * @var ?\Condividendo\FatturaPA\Enum\TaxRegime
+     * @var ?\Condividendo\FatturaPA\Enums\TaxRegime
      */
     private $taxRegime;
+
+    /**
+     * @var Address
+     */
+    private $address;
+
+    /**
+     * @var ?Contacts
+     */
+    private $contacts;
 
 
     public function setCompanyName(string $companyName): self
@@ -90,18 +100,36 @@ class Customer extends AbstractEntity
         return $this;
     }
 
-    public function setTaxRegime(\Condividendo\FatturaPA\Entities\TaxRegime $taxRegime): self
+    public function setTaxRegime(\Condividendo\FatturaPA\Enums\TaxRegime $taxRegime): self
     {
         $this->taxRegime = $taxRegime;
         return $this;
     }
+
+    public function setAddress(Address $address): self
+    {
+        $this->address = $address;
+        return $this;
+    }
+
+    public function setContacts(Contacts $contacts): self
+    {
+        $this->contacts = $contacts;
+        return $this;
+    }
+
 
     /**
      * @return CustomerTag
      */
     public function getTag()
     {
-        $tag = CustomerTag::make();
+        $tag = CustomerTag::make()
+                ->setAddress($this->address->getTag())
+                ->setTaxRegime(
+                    TaxRegimeTag::make()
+                    ->setTaxRegime($this->taxRegime ?: \Condividendo\FatturaPA\Enums\TaxRegime::RF01())
+                );
         if($this->companyName){
             $tag->setCompanyName($this->companyName);
         }
@@ -117,13 +145,12 @@ class Customer extends AbstractEntity
         if($this->fiscalCode){
             $tag->setFiscalCode($this->fiscalCode);
         }
-        if($this->vatNumber){
+        if($this->vatCountryId && $this->vatNumber){
             $tag->setVatNumber($this->vatCountryId,$this->vatNumber);
         }
-        $tag->setTaxRegime(
-            TaxRegimeTag::make()
-            ->setTaxRegime($this->taxRegime ?: \Condividendo\FatturaPA\Entities\TaxRegime::RF01())
-        );
+        if($this->contacts){
+            $tag->setContacts($this->contacts);
+        }
         return $tag;
     }
 }

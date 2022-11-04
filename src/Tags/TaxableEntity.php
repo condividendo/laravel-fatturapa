@@ -88,9 +88,9 @@ class TaxableEntity extends AbstractTag
         return $this;
     }
 
-    public function setTaxRegime(TaxRegime $taxRegime): self
+    public function setTaxRegime(\Condividendo\FatturaPA\Enums\TaxRegime $taxRegime): self
     {
-        $this->taxRegime = $taxRegime;
+        $this->taxRegime = TaxRegime::make()->setTaxRegime($taxRegime);
         return $this;
     }
 
