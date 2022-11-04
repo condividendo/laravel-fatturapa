@@ -2,7 +2,6 @@
 
 namespace Condividendo\FatturaPA\Entities;
 
-use Address;
 use Condividendo\FatturaPA\Contracts\Tag;
 use Condividendo\FatturaPA\Tags\Customer as CustomerTag;
 use Condividendo\FatturaPA\Tags\TaxRegime as TaxRegimeTag;
@@ -57,11 +56,6 @@ class Customer extends AbstractEntity
      */
     private $address;
 
-    /**
-     * @var ?Contacts
-     */
-    private $contacts;
-
 
     public function setCompanyName(string $companyName): self
     {
@@ -112,12 +106,6 @@ class Customer extends AbstractEntity
         return $this;
     }
 
-    public function setContacts(Contacts $contacts): self
-    {
-        $this->contacts = $contacts;
-        return $this;
-    }
-
 
     /**
      * @return CustomerTag
@@ -126,10 +114,7 @@ class Customer extends AbstractEntity
     {
         $tag = CustomerTag::make()
                 ->setAddress($this->address->getTag())
-                ->setTaxRegime(
-                    TaxRegimeTag::make()
-                    ->setTaxRegime($this->taxRegime ?: \Condividendo\FatturaPA\Enums\TaxRegime::RF01())
-                );
+                ->setTaxRegime($this->taxRegime ?: \Condividendo\FatturaPA\Enums\TaxRegime::RF01());
         if($this->companyName){
             $tag->setCompanyName($this->companyName);
         }
@@ -147,9 +132,6 @@ class Customer extends AbstractEntity
         }
         if($this->vatCountryId && $this->vatNumber){
             $tag->setVatNumber($this->vatCountryId,$this->vatNumber);
-        }
-        if($this->contacts){
-            $tag->setContacts($this->contacts);
         }
         return $tag;
     }

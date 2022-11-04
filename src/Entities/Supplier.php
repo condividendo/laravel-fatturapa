@@ -53,7 +53,7 @@ class Supplier extends AbstractEntity
 
     public function setName(string $name): self
     {
-        return $this->setCompanyName($companyName);
+        return $this->setCompanyName($name);
     }
 
     public function setCompanyName(string $companyName): self
@@ -64,7 +64,7 @@ class Supplier extends AbstractEntity
 
     public function setVatNumber(string $countryId, string $vatNumber): self
     {
-        $this->vatCountryId = $vatCountryId;
+        $this->vatCountryId = $countryId;
         $this->vatNumber = $vatNumber;
         return $this;
     }

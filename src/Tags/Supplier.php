@@ -33,6 +33,11 @@ class Supplier extends AbstractTag
 
     public function setName(string $name): self
     {
+        return $this->setCompanyName($name);
+    }
+
+    public function setCompanyName(string $name): self
+    {
         $this->taxableEntity->setCompanyName($name);
         return $this;
     }

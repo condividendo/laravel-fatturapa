@@ -26,21 +26,21 @@ class PaymentDetail extends AbstractTag
     private $amount;
 
 
-    public function setPaymentMethod(PaymentMethod $paymentMethod): self
+    public function setPaymentMethod(\Condividendo\FatturaPA\Enums\PaymentMethod $paymentMethod): self
     {
-        $this->paymentMethod = $paymentMethod;
+        $this->paymentMethod = PaymentMethod::make()->setPaymentMethod($paymentMethod);
         return $this;
     }
 
-    public function setPaymentExpirationDate(PaymentExpirationDate $date): self
+    public function setPaymentExpirationDate(string $date): self
     {
-        $this->paymentExpirationDate = $date;
+        $this->paymentExpirationDate = PaymentExpirationDate::make()->setPaymentExpirationDate($date);
         return $this;
     }
 
-    public function setPaymentAmount(PaymentAmount $amount): self
+    public function setPaymentAmount(float $amount): self
     {
-        $this->amount = $amount;
+        $this->amount = PaymentAmount::make()->setAmount($amount);
         return $this;
     }
 

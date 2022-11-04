@@ -59,7 +59,7 @@ class Item extends AbstractEntity
         return $this;
     }
 
-    public function setUnitPrice(float $unitPrice): self
+    public function setPrice(float $unitPrice): self
     {
         $this->unitPrice = $unitPrice;
         return $this;

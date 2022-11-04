@@ -3,6 +3,7 @@
 namespace Condividendo\FatturaPA;
 
 use Condividendo\FatturaPA\Entities\Body;
+use Condividendo\FatturaPA\Entities\Supplier;
 use Condividendo\FatturaPA\Enums\TransmissionFormat;
 use Condividendo\FatturaPA\Tags\Body as BodyTag;
 use Condividendo\FatturaPA\Tags\CodeId as CodeIdTag;
@@ -57,12 +58,12 @@ class FatturaPABuilder
     private $recipientPec;
 
     /**
-     * @var SupplierTag
+     * @var Supplier
      */
     private $supplier;
 
     /**
-     * @var CustomerTag
+     * @var Customer
      */
     private $customer;
 
@@ -114,13 +115,13 @@ class FatturaPABuilder
     }
 
 
-    public function setSupplier(SupplierTag $supplier): self
+    public function setSupplier(Supplier $supplier): self
     {
         $this->supplier = $supplier;
         return $this;
     }
 
-    public function setCustomer(CustomerTag $customer): self
+    public function setCustomer(Customer $customer): self
     {
         $this->customer = $customer;
         return $this;
@@ -161,8 +162,8 @@ class FatturaPABuilder
     private function makeHeader(): HeaderTag
     {
         return HeaderTag::make()->setTransmissionData($this->makeTransmissionData())
-            ->setSupplier($this->supplier)
-            ->setCustomer($this->customer);
+            ->setSupplier($this->supplier->getTag())
+            ->setCustomer($this->customer->getTag());
     }
 
     /**
