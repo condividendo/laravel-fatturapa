@@ -108,7 +108,7 @@ class Supplier extends AbstractEntity
                 ->setVatNumber($this->vatCountryId, $this->vatNumber)
                 ->setTaxRegime($this->taxRegime ?: \Condividendo\FatturaPA\Enums\TaxRegime::RF01())
                 ->setCompanyName($this->companyName)
-                ->setAddress($this->address);
+                ->setAddress($this->address->getTag());
         if($this->fiscalCode){
             $tag->setFiscalCode($this->fiscalCode);
         }
@@ -116,7 +116,7 @@ class Supplier extends AbstractEntity
             $tag->setREARegistration($this->reaRegistration->getTag());
         }
         if($this->contacts){
-            $tag->setContacts($this->contacts);
+            $tag->setContacts($this->contacts->getTag());
         }
         return $tag;
     }

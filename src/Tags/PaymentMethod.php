@@ -15,7 +15,7 @@ class PaymentMethod extends AbstractTag
      */
     private $method;
 
-    public function setMethod(\Condividendo\FatturaPA\Enums\PaymentMethod $method): self
+    public function setPaymentMethod(\Condividendo\FatturaPA\Enums\PaymentMethod $method): self
     {
         $this->method = $method;
         return $this;

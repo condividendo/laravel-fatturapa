@@ -4,6 +4,7 @@ namespace Condividendo\FatturaPA;
 
 use Condividendo\FatturaPA\Entities\Body;
 use Condividendo\FatturaPA\Entities\Supplier;
+use Condividendo\FatturaPA\Entities\Customer;
 use Condividendo\FatturaPA\Enums\TransmissionFormat;
 use Condividendo\FatturaPA\Tags\Body as BodyTag;
 use Condividendo\FatturaPA\Tags\CodeId as CodeIdTag;

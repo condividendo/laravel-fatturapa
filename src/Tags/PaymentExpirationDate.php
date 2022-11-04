@@ -15,7 +15,7 @@ class PaymentExpirationDate extends AbstractTag
      */
     private $date;
 
-    public function setDate(string $date): self
+    public function setPaymentExpirationDate(string $date): self
     {
         $this->date = $date;
         return $this;
