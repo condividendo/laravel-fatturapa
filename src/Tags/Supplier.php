@@ -48,6 +48,12 @@ class Supplier extends AbstractTag
         return $this;
     }
 
+    public function setFiscalCode(string $code): self
+    {
+        $this->taxableEntity->setFiscalCode($code);
+        return $this;
+    }
+
     public function setTaxRegime(\Condividendo\FatturaPA\Enums\TaxRegime $taxRegime): self
     {
         $this->taxableEntity->setTaxRegime($taxRegime);
