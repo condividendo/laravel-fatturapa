@@ -39,6 +39,21 @@ class Body extends AbstractEntity
      */
     private $number;
 
+    /**
+     * @var PaymentData
+     */
+    private $paymentData;
+
+    /**
+     * @var Item[]
+     */
+    private $items;
+
+    /**
+     * @var SummaryItem[]
+     */
+    private $summaryItems;
+
 
     public function setType(\Condividendo\FatturaPA\Enums\Type $type): self
     {
@@ -115,6 +130,6 @@ class Body extends AbstractEntity
                 ->setNumber($this->number)
                 ->setItems($this->items)
                 ->setSummaryItems($this->summaryItems)
-                ->setPaymentDataData($this->paymentData);
+                ->setPaymentData($this->paymentData);
     }
 }

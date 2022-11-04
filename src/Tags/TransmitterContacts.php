@@ -21,16 +21,16 @@ class TransmitterContacts extends AbstractTag
     protected $phone;
 
 
-    public function setEmail(Email $email): self
+    public function setEmail(string $email): self
     {
-        $this->email = $email;
+        $this->email = Email::make()->setEmail($email);
         return $this;
     }
 
 
-    public function setPhone(Phone $phone): self
+    public function setPhone(string $phone): self
     {
-        $this->phone = $phone;
+        $this->phone = Phone::make()->setPhone($phone);
         return $this;
     }
 

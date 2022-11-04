@@ -16,9 +16,9 @@ class Contacts extends TransmitterContacts
     private $fax;
 
 
-    public function setFax(Fax $fax): self
+    public function setFax(string $fax): self
     {
-        $this->fax = $fax;
+        $this->fax = Fax::make()->setFax($fax);
         return $this;
     }
 

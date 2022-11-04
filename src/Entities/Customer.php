@@ -48,7 +48,7 @@ class Customer extends AbstractEntity
     private $vatNumber;
 
     /**
-     * @var ?\Condividendo\FatturaPA\Entities\TaxRegime
+     * @var ?\Condividendo\FatturaPA\Enum\TaxRegime
      */
     private $taxRegime;
 
@@ -61,7 +61,7 @@ class Customer extends AbstractEntity
 
     public function setVatNumber(string $countryId, string $vatNumber): self
     {
-        $this->vatCountryId = $vatCountryId;
+        $this->vatCountryId = $countryId;
         $this->vatNumber = $vatNumber;
         return $this;
     }
