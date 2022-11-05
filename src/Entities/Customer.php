@@ -115,23 +115,23 @@ class Customer extends AbstractEntity
         $tag = CustomerTag::make()
                 ->setAddress($this->address->getTag())
                 ->setTaxRegime($this->taxRegime ?: \Condividendo\FatturaPA\Enums\TaxRegime::RF01());
-        if($this->companyName){
+        if ($this->companyName) {
             $tag->setCompanyName($this->companyName);
         }
-        if($this->firstName){
+        if ($this->firstName) {
             $tag->setFirstName($this->firstName);
         }
-        if($this->lastName){
+        if ($this->lastName) {
             $tag->setLastName($this->lastName);
         }
-        if($this->title){
+        if ($this->title) {
             $tag->setTitle($this->title);
         }
-        if($this->fiscalCode){
+        if ($this->fiscalCode) {
             $tag->setFiscalCode($this->fiscalCode);
         }
-        if($this->vatCountryId && $this->vatNumber){
-            $tag->setVatNumber($this->vatCountryId,$this->vatNumber);
+        if ($this->vatCountryId && $this->vatNumber) {
+            $tag->setVatNumber($this->vatCountryId, $this->vatNumber);
         }
         return $tag;
     }

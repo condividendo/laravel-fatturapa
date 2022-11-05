@@ -17,7 +17,7 @@ class Capital extends AbstractTag
 
     public function setCapital(float $capital): self
     {
-        $this->capital = sprintf("%.2f",$capital);
+        $this->capital = sprintf("%.2f", $capital);
         return $this;
     }
 

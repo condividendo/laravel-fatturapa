@@ -90,5 +90,4 @@ class Item extends AbstractEntity
                 ->setUnitPrice($this->unitPrice)
                 ->setTotalAmount($this->totalPrice);
     }
-    
 }

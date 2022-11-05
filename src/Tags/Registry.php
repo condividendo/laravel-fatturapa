@@ -70,7 +70,7 @@ class Registry extends AbstractTag
                 $e->appendChild($this->title->toDOMElement($dom));
             }
             $e->appendChild($this->firstName->toDOMElement($dom));
-            $e->appendChild($this->lastName->toDOMElement($dom));            
+            $e->appendChild($this->lastName->toDOMElement($dom));
         }
 
         return $e;

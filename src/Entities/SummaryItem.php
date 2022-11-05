@@ -92,12 +92,11 @@ class SummaryItem extends AbstractEntity
                 ->setTaxableAmount($this->taxableAmount)
                 ->setTaxAmount($this->taxAmount)
                 ->setVatCollectionMode($this->vatCollectionMode ?: \Condividendo\FatturaPA\Enums\VatCollectionMode::I());
-        if($this->nature){
+        if ($this->nature) {
             assert(!empty($this->regulatoryReference), "Regulatory Reference must be set if Nature is provided");
             $tag->setNature($this->nature);
             $tag->setRegulatoryReference($this->regulatoryReference);
         }
         return $tag;
     }
-    
 }

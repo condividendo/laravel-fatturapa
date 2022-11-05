@@ -108,7 +108,6 @@ class Body extends AbstractEntity
         $this->summaryItems = $items;
         return $this;
     }
-    
 
     public function setPaymentDataData(PaymentData $paymentData): self
     {
@@ -123,10 +122,10 @@ class Body extends AbstractEntity
     {
         $items = [];
         $summaryItems = [];
-        foreach($this->items as $item){
+        foreach ($this->items as $item) {
             $items[] = $item->getTag();
         }
-        foreach($this->summaryItems as $item){
+        foreach ($this->summaryItems as $item) {
             $summaryItems[] = $item->getTag();
         }
         return BodyTag::make()

@@ -17,7 +17,7 @@ class Quantity extends AbstractTag
 
     public function setQuantity(int $qty): self
     {
-        $this->quantity = sprintf("%.2f",$qty);
+        $this->quantity = sprintf("%.2f", $qty);
         return $this;
     }
 

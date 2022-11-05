@@ -14,7 +14,7 @@ class Supplier extends AbstractEntity
      * @var string
      */
     private $companyName;
-    
+
     /**
      * @var ?string
      */
@@ -109,16 +109,15 @@ class Supplier extends AbstractEntity
                 ->setTaxRegime($this->taxRegime ?: \Condividendo\FatturaPA\Enums\TaxRegime::RF01())
                 ->setCompanyName($this->companyName)
                 ->setAddress($this->address->getTag());
-        if($this->fiscalCode){
+        if ($this->fiscalCode) {
             $tag->setFiscalCode($this->fiscalCode);
         }
-        if($this->reaRegistration){
+        if ($this->reaRegistration) {
             $tag->setREARegistration($this->reaRegistration->getTag());
         }
-        if($this->contacts){
+        if ($this->contacts) {
             $tag->setContacts($this->contacts->getTag());
         }
         return $tag;
     }
-    
 }

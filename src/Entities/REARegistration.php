@@ -79,10 +79,10 @@ class REARegistration extends AbstractEntity
                 ->setREANumber($this->reaNumber)
                 ->setOfficeCode($this->officeCode)
                 ->setLiquidationStatus($this->liquidationStatus ?: \Condividendo\FatturaPA\Enums\LiquidationStatus::LN());
-        if($this->capital){
+        if ($this->capital) {
             $tag->setCapital($this->capital);
         }
-        if($this->shareHolders){
+        if ($this->shareHolders) {
             $tag->setShareHolders($this->shareHolders);
         }
         return $tag;

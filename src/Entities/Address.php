@@ -75,13 +75,11 @@ class Address extends AbstractEntity
         return $this;
     }
 
-
     public function setCountry(string $country): self
     {
         $this->country = $country;
         return $this;
     }
-
 
     /**
      * @return AddressTag
@@ -92,7 +90,7 @@ class Address extends AbstractEntity
                 ->setStreet($this->street)
                 ->setStreetNumber($this->streetNumber)
                 ->setCity($this->city)
-                ->setPostalCode( (strtoupper(substr($this->country,0,2))=="IT") ? $this->zip : "00000")
+                ->setPostalCode((strtoupper(substr($this->country, 0, 2)) == "IT") ? $this->zip : "00000")
                 ->setProvince($this->provinceOrState)
                 ->setCountry($this->country);
     }

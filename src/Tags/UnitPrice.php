@@ -17,7 +17,7 @@ class UnitPrice extends AbstractTag
 
     public function setUnitPrice(float $unitPrice): self
     {
-        $this->unitPrice = sprintf("%.2f",$unitPrice);
+        $this->unitPrice = sprintf("%.2f", $unitPrice);
         return $this;
     }
 

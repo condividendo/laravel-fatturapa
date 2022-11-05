@@ -20,7 +20,7 @@ class VatTax extends AbstractTag
      */
     public function setRate(float $ratio): self
     {
-        $this->percentage = sprintf("%.2f",max(0, min(100, 100 * $ratio)));
+        $this->percentage = sprintf("%.2f", max(0, min(100, 100 * $ratio)));
         return $this;
     }
 

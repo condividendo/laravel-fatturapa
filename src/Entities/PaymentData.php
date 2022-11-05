@@ -48,7 +48,6 @@ class PaymentData extends AbstractEntity
         $this->amount = $amount;
         return $this;
     }
-    
 
     public function setPaymentCondition(\Condividendo\FatturaPA\Enums\PaymentCondition $paymentCondition): self
     {

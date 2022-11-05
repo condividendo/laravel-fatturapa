@@ -50,16 +50,15 @@ class Contacts extends AbstractEntity
     public function getTag()
     {
         $tag = ContactsTag::make();
-        if($this->email){
+        if ($this->email) {
             $tag->setEmail($this->email);
         }
-        if($this->phone){
+        if ($this->phone) {
             $tag->setPhone($this->phone);
         }
-        if($this->email){
+        if ($this->email) {
             $tag->setFax($this->fax);
         }
         return $tag;
     }
-
 }

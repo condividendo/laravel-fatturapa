@@ -10,5 +10,5 @@ use BenSampo\Enum\Enum;
  */
 final class RegulatoryReference extends Enum
 {
-    const N3_3 = 'Non Imponibile cessioni verso San Marino e Citta del Vaticano Art. 71 Dpr 633/72';  
+    const N3_3 = 'Non Imponibile cessioni verso San Marino e Citta del Vaticano Art. 71 Dpr 633/72';
 }
