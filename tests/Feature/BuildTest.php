@@ -41,8 +41,7 @@ class BuildTest extends TestCase
                             ->setShareHolders(\Condividendo\FatturaPA\Enums\ShareHolder::SM())
                             ->setCapital(11111)
                             ->setLiquidationStatus(\Condividendo\FatturaPA\Enums\LiquidationStatus::LN())
-                    )
-            )
+                    ))
             ->setCustomer(
                 \Condividendo\FatturaPA\Entities\Customer::make()
                     ->setFirstName('Mario')
@@ -56,8 +55,7 @@ class BuildTest extends TestCase
                             ->setCity('Milano')
                             ->setProvince('MI')
                             ->setCountry('IT')
-                    )
-            )
+                    ))
             ->addBody(
                 \Condividendo\FatturaPA\Entities\Body::make()
                     ->setType(\Condividendo\FatturaPA\Enums\Type::TD01())
@@ -80,8 +78,7 @@ class BuildTest extends TestCase
                             ->setTaxRate(0.22)
                             ->setTaxAmount(2.2)
                             ->setVatCollectionMode(\Condividendo\FatturaPA\Enums\VatCollectionMode::I())
-                    ])
-            )
+                    ]))
             ->toXML()
             ->asXML();
 
