@@ -31,17 +31,19 @@ class BuildTest extends TestCase
                             ->setStreet('Via Italia')
                             ->setStreetNumber('123')
                             ->setPostalCode('123456')
-                            ->setCity('Milano')
+                           ->setCity('Milano')
                             ->setProvince('MI')
                             ->setCountry('IT')
                     )
-                    ->setREARegistration(\Condividendo\FatturaPA\Entities\REARegistration::make()
+                    ->setREARegistration(
+                        \Condividendo\FatturaPA\Entities\REARegistration::make()
                             ->setREANumber("12123")
                             ->setOfficeCode("MI")
                             ->setShareHolders(\Condividendo\FatturaPA\Enums\ShareHolder::SM())
                             ->setCapital(11111)
                             ->setLiquidationStatus(\Condividendo\FatturaPA\Enums\LiquidationStatus::LN())
-                    ))
+                    )
+            )
             ->setCustomer(
                 \Condividendo\FatturaPA\Entities\Customer::make()
                     ->setFirstName('Mario')
@@ -55,7 +57,8 @@ class BuildTest extends TestCase
                             ->setCity('Milano')
                             ->setProvince('MI')
                             ->setCountry('IT')
-                    ))
+                    )
+            )
             ->addBody(
                 \Condividendo\FatturaPA\Entities\Body::make()
                     ->setType(\Condividendo\FatturaPA\Enums\Type::TD01())
@@ -78,7 +81,8 @@ class BuildTest extends TestCase
                             ->setTaxRate(0.22)
                             ->setTaxAmount(2.2)
                             ->setVatCollectionMode(\Condividendo\FatturaPA\Enums\VatCollectionMode::I())
-                    ]))
+                    ])
+            )
             ->toXML()
             ->asXML();
 
