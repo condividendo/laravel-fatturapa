@@ -213,7 +213,7 @@ class FatturaPABuilder
 
     private function makeRecipientCode(): RecipientCodeTag
     {
-        assert(!empty($this->recipientCode) || !empty($this->recipientPec), "Either Recipient Pec, Recipient Code or Recipient Country ID must be non empty and have a valid value");
+        assert($this->recipientCode || $this->recipientPec, "Either Recipient Pec, Code or Country must be set");
         return RecipientCodeTag::make()
             ->setCode($this->recipientPec ? "0000000" : $this->recipientCode);
     }

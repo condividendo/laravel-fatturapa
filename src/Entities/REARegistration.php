@@ -2,6 +2,8 @@
 
 namespace Condividendo\FatturaPA\Entities;
 
+use \Condividendo\FatturaPA\Enums\LiquidationStatus;
+use \Condividendo\FatturaPA\Enums\ShareHolder;
 use Condividendo\FatturaPA\Contracts\Tag;
 use Condividendo\FatturaPA\Tags\REARegistration as REARegistrationTag;
 use Condividendo\FatturaPA\Traits\Makeable;
@@ -26,12 +28,12 @@ class REARegistration extends AbstractEntity
     private $capital;
 
     /**
-     * @var ?\Condividendo\FatturaPA\Enums\ShareHolder
+     * @var ?ShareHolder
      */
     private $shareHolders;
 
     /**
-     * @var ?\Condividendo\FatturaPA\Enums\LiquidationStatus
+     * @var ?LiquidationStatus
      */
     private $liquidationStatus;
 
@@ -57,14 +59,14 @@ class REARegistration extends AbstractEntity
     }
 
 
-    public function setShareHolders(\Condividendo\FatturaPA\Enums\ShareHolder $shareHolders): self
+    public function setShareHolders(ShareHolder $shareHolders): self
     {
         $this->shareHolders = $shareHolders;
         return $this;
     }
 
 
-    public function setLiquidationStatus(\Condividendo\FatturaPA\Enums\LiquidationStatus $liquidationStatus): self
+    public function setLiquidationStatus(LiquidationStatus $liquidationStatus): self
     {
         $this->liquidationStatus = $liquidationStatus;
         return $this;
@@ -78,7 +80,7 @@ class REARegistration extends AbstractEntity
         $tag = REARegistrationTag::make()
                 ->setREANumber($this->reaNumber)
                 ->setOfficeCode($this->officeCode)
-                ->setLiquidationStatus($this->liquidationStatus ?: \Condividendo\FatturaPA\Enums\LiquidationStatus::LN());
+                ->setLiquidationStatus($this->liquidationStatus ?: LiquidationStatus::LN());
         if ($this->capital) {
             $tag->setCapital($this->capital);
         }

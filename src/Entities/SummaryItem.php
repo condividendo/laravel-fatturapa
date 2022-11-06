@@ -2,6 +2,9 @@
 
 namespace Condividendo\FatturaPA\Entities;
 
+use \Condividendo\FatturaPA\Enums\VatCollectionMode;
+use \Condividendo\FatturaPA\Enums\Nature;
+use \Condividendo\FatturaPA\Enums\RegulatoryReference;
 use Condividendo\FatturaPA\Contracts\Tag;
 use Condividendo\FatturaPA\Tags\SummaryItem as SummaryItemTag;
 use Condividendo\FatturaPA\Traits\Makeable;
@@ -26,17 +29,17 @@ class SummaryItem extends AbstractEntity
     private $taxAmount;
 
     /**
-     * @var ?\Condividendo\FatturaPA\Enums\VatCollectionMode
+     * @var ?VatCollectionMode
      */
     private $vatCollectionMode;
 
     /**
-     * @var ?\Condividendo\FatturaPA\Enums\Nature
+     * @var ?Nature
      */
     private $nature;
 
     /**
-     * @var ?\Condividendo\FatturaPA\Enums\RegulatoryReference
+     * @var ?RegulatoryReference
      */
     private $regulatoryReference;
 
@@ -62,21 +65,21 @@ class SummaryItem extends AbstractEntity
     }
 
 
-    public function setNature(\Condividendo\FatturaPA\Enums\Nature $nature): self
+    public function setNature(Nature $nature): self
     {
         $this->nature = $nature;
         return $this;
     }
 
 
-    public function setRegulatoryReference(\Condividendo\FatturaPA\Enums\RegulatoryReference $ref): self
+    public function setRegulatoryReference(RegulatoryReference $ref): self
     {
         $this->regulatoryReference = $ref;
         return $this;
     }
 
 
-    public function setVatCollectionMode(\Condividendo\FatturaPA\Enums\VatCollectionMode $collectionMode): self
+    public function setVatCollectionMode(VatCollectionMode $collectionMode): self
     {
         $this->vatCollectionMode = $collectionMode;
         return $this;
@@ -91,7 +94,7 @@ class SummaryItem extends AbstractEntity
                 ->setTaxRate($this->taxRate)
                 ->setTaxableAmount($this->taxableAmount)
                 ->setTaxAmount($this->taxAmount)
-                ->setVatCollectionMode($this->vatCollectionMode ?: \Condividendo\FatturaPA\Enums\VatCollectionMode::I());
+                ->setVatCollectionMode($this->vatCollectionMode ?: VatCollectionMode::I());
         if ($this->nature) {
             assert(!empty($this->regulatoryReference), "Regulatory Reference must be set if Nature is provided");
             $tag->setNature($this->nature);
