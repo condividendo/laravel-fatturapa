@@ -2,8 +2,8 @@
 
 namespace Condividendo\FatturaPA\Entities;
 
-use \Condividendo\FatturaPA\Enums\LiquidationStatus;
-use \Condividendo\FatturaPA\Enums\ShareHolder;
+use Condividendo\FatturaPA\Enums\LiquidationStatus;
+use Condividendo\FatturaPA\Enums\ShareHolder;
 use Condividendo\FatturaPA\Contracts\Tag;
 use Condividendo\FatturaPA\Tags\REARegistration as REARegistrationTag;
 use Condividendo\FatturaPA\Traits\Makeable;

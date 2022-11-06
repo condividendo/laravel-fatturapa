@@ -2,9 +2,9 @@
 
 namespace Condividendo\FatturaPA\Entities;
 
-use \Condividendo\FatturaPA\Enums\VatCollectionMode;
-use \Condividendo\FatturaPA\Enums\Nature;
-use \Condividendo\FatturaPA\Enums\RegulatoryReference;
+use Condividendo\FatturaPA\Enums\VatCollectionMode;
+use Condividendo\FatturaPA\Enums\Nature;
+use Condividendo\FatturaPA\Enums\RegulatoryReference;
 use Condividendo\FatturaPA\Contracts\Tag;
 use Condividendo\FatturaPA\Tags\SummaryItem as SummaryItemTag;
 use Condividendo\FatturaPA\Traits\Makeable;
