@@ -6,6 +6,8 @@ use Condividendo\FatturaPA\Entities\Body;
 use Condividendo\FatturaPA\Enums\TransmissionFormat;
 use Condividendo\FatturaPA\FatturaPA;
 use Condividendo\FatturaPA\Tests\TestCase;
+use DOMDocument;
+use SimpleXMLElement;
 
 class BuildTest extends TestCase
 {
@@ -97,7 +99,7 @@ class BuildTest extends TestCase
                     )
             )
             ->toXML();
-        
+
         /** @var SimpleXMLElement $xmlEl */
         $xmlEl = simplexml_import_dom($xmlDoc);
         /** @var string $xml */
