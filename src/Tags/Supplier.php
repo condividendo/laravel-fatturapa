@@ -31,7 +31,8 @@ class Supplier extends AbstractTag
     private $contacts;
 
 
-    function __construct() {
+    public function __construct() 
+    {
         $this->taxableEntity = TaxableEntity::make();
     }
 

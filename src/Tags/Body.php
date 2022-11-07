@@ -25,7 +25,8 @@ class Body extends AbstractTag
      */
     private $paymentData;
 
-    function __construct() {
+    public function __construct() 
+    {
         $this->generalData = GeneralData::make();
         $this->goodsServicesData = GoodsServicesData::make();
     }

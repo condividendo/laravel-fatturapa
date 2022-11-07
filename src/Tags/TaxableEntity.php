@@ -108,7 +108,7 @@ class TaxableEntity extends AbstractTag
             $e->appendChild($this->fiscalCode->toDOMElement($dom));
         }
         $e->appendChild($this->registry->toDOMElement($dom));
-        if($this->taxRegime){
+        if ($this->taxRegime) {
             $e->appendChild($this->taxRegime->toDOMElement($dom));
         }
 

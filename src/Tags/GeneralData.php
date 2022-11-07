@@ -15,7 +15,8 @@ class GeneralData extends AbstractTag
      */
     private $generalDocumentData;
 
-    function __construct() {
+    public function __construct() 
+    {
         $this->generalDocumentData = GeneralDocumentData::make();
     }
 
