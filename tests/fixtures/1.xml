@@ -36,6 +36,9 @@
                 <SocioUnico>SM</SocioUnico>
                 <StatoLiquidazione>LN</StatoLiquidazione>
             </IscrizioneREA>
+            <Contatti>
+                <Email>fiscale@condividendo.eu</Email>
+            </Contatti>
         </CedentePrestatore>
         <CessionarioCommittente>
             <DatiAnagrafici>

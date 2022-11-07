@@ -25,6 +25,10 @@ class Body extends AbstractTag
      */
     private $paymentData;
 
+    function __construct() {
+        $this->generalData = GeneralData::make();
+        $this->goodsServicesData = GoodsServicesData::make();
+    }
 
     public function setType(\Condividendo\FatturaPA\Enums\Type $type): self
     {

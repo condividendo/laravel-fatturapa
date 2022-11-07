@@ -92,8 +92,8 @@ class Address extends AbstractTag
 
         $e->appendChild($this->street->toDOMElement($dom));
         $e->appendChild($this->streetNumber->toDOMElement($dom));
-        $e->appendChild($this->city->toDOMElement($dom));
         $e->appendChild($this->zip->toDOMElement($dom));
+        $e->appendChild($this->city->toDOMElement($dom));
         $e->appendChild($this->provinceOrState->toDOMElement($dom));
         $e->appendChild($this->country->toDOMElement($dom));
 

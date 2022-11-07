@@ -113,8 +113,10 @@ class Customer extends AbstractEntity
     public function getTag()
     {
         $tag = CustomerTag::make()
-                ->setAddress($this->address->getTag())
-                ->setTaxRegime($this->taxRegime ?: \Condividendo\FatturaPA\Enums\TaxRegime::RF01());
+                ->setAddress($this->address->getTag());
+        if($this->taxRegime){
+            $tag->setTaxRegime($this->taxRegime);
+        }
         if ($this->companyName) {
             $tag->setCompanyName($this->companyName);
         }

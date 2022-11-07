@@ -21,7 +21,7 @@ class Item extends AbstractEntity
     private $description;
 
     /**
-     * @var int
+     * @var float
      */
     private $quantity;
 
@@ -53,7 +53,7 @@ class Item extends AbstractEntity
         return $this;
     }
 
-    public function setQuantity(int $quantity): self
+    public function setQuantity(float $quantity): self
     {
         $this->quantity = $quantity;
         return $this;

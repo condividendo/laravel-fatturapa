@@ -56,7 +56,7 @@ class Contacts extends AbstractEntity
         if ($this->phone) {
             $tag->setPhone($this->phone);
         }
-        if ($this->email) {
+        if ($this->fax) {
             $tag->setFax($this->fax);
         }
         return $tag;

@@ -96,7 +96,7 @@ class Body extends AbstractEntity
      */
     public function setItems(array $items): self
     {
-        $this->$items = $items;
+        $this->items = $items;
         return $this;
     }
 
@@ -109,7 +109,7 @@ class Body extends AbstractEntity
         return $this;
     }
 
-    public function setPaymentDataData(PaymentData $paymentData): self
+    public function setPaymentData(PaymentData $paymentData): self
     {
         $this->paymentData = $paymentData;
         return $this;

@@ -26,14 +26,14 @@ class TaxableEntity extends AbstractTag
     private $registry;
 
     /**
-     * @var TaxRegime
+     * @var ?TaxRegime
      */
     private $taxRegime;
 
 
     public function __construct()
     {
-        $this->taxRegime->setTaxRegime(\Condividendo\FatturaPA\Enums\TaxRegime::RF01());
+        $this->registry = Registry::make();
     }
 
 
@@ -108,7 +108,9 @@ class TaxableEntity extends AbstractTag
             $e->appendChild($this->fiscalCode->toDOMElement($dom));
         }
         $e->appendChild($this->registry->toDOMElement($dom));
-        $e->appendChild($this->taxRegime->toDOMElement($dom));
+        if($this->taxRegime){
+            $e->appendChild($this->taxRegime->toDOMElement($dom));
+        }
 
         return $e;
     }

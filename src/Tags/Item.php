@@ -53,7 +53,7 @@ class Item extends AbstractTag
         return $this;
     }
 
-    public function setQuantity(int $quantity): self
+    public function setQuantity(float $quantity): self
     {
         $this->quantity = Quantity::make()->setQuantity($quantity);
         return $this;

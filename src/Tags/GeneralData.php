@@ -15,6 +15,9 @@ class GeneralData extends AbstractTag
      */
     private $generalDocumentData;
 
+    function __construct() {
+        $this->generalDocumentData = GeneralDocumentData::make();
+    }
 
     public function setType(\Condividendo\FatturaPA\Enums\Type $type): self
     {

@@ -24,14 +24,14 @@ class BuildTest extends TestCase
             ->setRecipientCode('ABC1234')
             ->setSupplier(
                 \Condividendo\FatturaPA\Entities\Supplier::make()
-                    ->setName('Condividendo italia srl')
+                    ->setName('Condividendo Italia srl')
                     ->setVatNumber('IT', '12345640962')
                     ->setAddress(
                         \Condividendo\FatturaPA\Entities\Address::make()
                             ->setStreet('Via Italia')
                             ->setStreetNumber('123')
                             ->setPostalCode('123456')
-                           ->setCity('Milano')
+                            ->setCity('Milano')
                             ->setProvince('MI')
                             ->setCountry('IT')
                     )
@@ -42,6 +42,11 @@ class BuildTest extends TestCase
                             ->setShareHolders(\Condividendo\FatturaPA\Enums\ShareHolder::SM())
                             ->setCapital(11111)
                             ->setLiquidationStatus(\Condividendo\FatturaPA\Enums\LiquidationStatus::LN())
+                    )
+                    ->setTaxRegime(\Condividendo\FatturaPA\Enums\TaxRegime::RF01())
+                    ->setContacts(
+                        \Condividendo\FatturaPA\Entities\Contacts::make()
+                        ->setEmail("fiscale@condividendo.eu")
                     )
             )
             ->setCustomer(
@@ -74,6 +79,7 @@ class BuildTest extends TestCase
                             ->setPrice(10.0)
                             ->setTotalAmount(10.0)
                             ->setTaxRate(0.22)
+                            ->setQuantity(1.0)
                     ])
                     ->setSummaryItems([
                         \Condividendo\FatturaPA\Entities\SummaryItem::make()
@@ -82,6 +88,13 @@ class BuildTest extends TestCase
                             ->setTaxAmount(2.2)
                             ->setVatCollectionMode(\Condividendo\FatturaPA\Enums\VatCollectionMode::I())
                     ])
+                    ->setPaymentData(
+                        \Condividendo\FatturaPA\Entities\PaymentData::make()
+                            ->setPaymentMethod(\Condividendo\FatturaPA\Enums\PaymentMethod::MP21())
+                            ->setPaymentAmount(12.2)
+                            ->setPaymentExpirationDate("2022-10-28")
+                            ->setPaymentCondition(\Condividendo\FatturaPA\Enums\PaymentCondition::TP02())
+                    )
             )
             ->toXML()
             ->asXML();
