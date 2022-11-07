@@ -135,16 +135,23 @@ class FatturaPABuilder
         return $this;
     }
 
-    public function toXML(): SimpleXMLElement
+    // public function toXML(): SimpleXMLElement
+    // {
+    //     $dom = new DOMDocument();
+
+    //     $dom->appendChild($this->makeEInvoice()->toDOMElement($dom));
+
+    //     /** @var SimpleXMLElement $xml */
+    //     $xml = simplexml_import_dom($dom);
+
+    //     return $xml;
+    // }
+
+    public function toXML(): DOMDocument
     {
         $dom = new DOMDocument();
-
         $dom->appendChild($this->makeEInvoice()->toDOMElement($dom));
-
-        /** @var SimpleXMLElement $xml */
-        $xml = simplexml_import_dom($dom);
-
-        return $xml;
+        return $dom;
     }
 
     private function makeEInvoice(): EInvoice

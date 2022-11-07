@@ -16,8 +16,8 @@ class BuildTest extends TestCase
      */
     public function test_build()
     {
-        /** @var string $xml */
-        $xml = FatturaPA::build()
+        /** @var DOMDocument $xmlDoc */
+        $xmlDoc = FatturaPA::build()
             ->setSenderId('IT', '0123456789')
             ->setTransmissionSequence('1')
             ->setTransmissionFormat(TransmissionFormat::FPR12())
@@ -96,9 +96,16 @@ class BuildTest extends TestCase
                             ->setPaymentCondition(\Condividendo\FatturaPA\Enums\PaymentCondition::TP02())
                     )
             )
-            ->toXML()
-            ->asXML();
+            ->toXML();
+        
+        /** @var SimpleXMLElement $xmlEl */
+        $xmlEl = simplexml_import_dom($xmlDoc);
+        /** @var string $xml */
+        $xml = $xmlEl->asXML();
 
         $this->assertXmlStringEqualsXmlFile(__DIR__ . '/../fixtures/1.xml', $xml);
+
+        $ok = $xmlDoc->schemaValidate(__DIR__ . "/../fixtures/Schema_del_file_xml_FatturaPA_versione_1.2_cleanup.xsd");
+        assert($ok, "XML not compliant to invoice schema!");
     }
 }
