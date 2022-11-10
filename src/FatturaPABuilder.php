@@ -3,18 +3,16 @@
 namespace Condividendo\FatturaPA;
 
 use Condividendo\FatturaPA\Entities\Body;
-use Condividendo\FatturaPA\Entities\Supplier;
 use Condividendo\FatturaPA\Entities\Customer;
+use Condividendo\FatturaPA\Entities\Supplier;
 use Condividendo\FatturaPA\Enums\TransmissionFormat;
 use Condividendo\FatturaPA\Tags\Body as BodyTag;
 use Condividendo\FatturaPA\Tags\CodeId as CodeIdTag;
 use Condividendo\FatturaPA\Tags\CountryId as CountryIdTag;
-use Condividendo\FatturaPA\Tags\Customer as CustomerTag;
 use Condividendo\FatturaPA\Tags\EInvoice;
 use Condividendo\FatturaPA\Tags\Header as HeaderTag;
 use Condividendo\FatturaPA\Tags\RecipientCode as RecipientCodeTag;
 use Condividendo\FatturaPA\Tags\RecipientPec as RecipientPecTag;
-use Condividendo\FatturaPA\Tags\Supplier as SupplierTag;
 use Condividendo\FatturaPA\Tags\TransmissionData as TransmissionDataTag;
 use Condividendo\FatturaPA\Tags\TransmissionSequence as TransmissionSequenceTag;
 use Condividendo\FatturaPA\Tags\TransmitterId as TransmitterIdTag;
@@ -97,7 +95,7 @@ class FatturaPABuilder
     public function setRecipientCountryId(string $countryId): self
     {
         $this->recipientCountryId = $countryId;
-        if (in_array(strtoupper($this->recipientCountryId), ["SM","VA"])) {
+        if (in_array(strtoupper($this->recipientCountryId), ["SM", "VA"])) {
             $this->recipientCode = "XXXXXXX"; // <== recipient code for San Marino and Vatican suppliers
         }
         return $this;
@@ -135,23 +133,19 @@ class FatturaPABuilder
         return $this;
     }
 
-    // public function toXML(): SimpleXMLElement
-    // {
-    //     $dom = new DOMDocument();
-
-    //     $dom->appendChild($this->makeEInvoice()->toDOMElement($dom));
-
-    //     /** @var SimpleXMLElement $xml */
-    //     $xml = simplexml_import_dom($dom);
-
-    //     return $xml;
-    // }
-
-    public function toXML(): DOMDocument
+    public function toDOM(): DOMDocument
     {
         $dom = new DOMDocument();
         $dom->appendChild($this->makeEInvoice()->toDOMElement($dom));
         return $dom;
+    }
+
+    public function toXML(): SimpleXMLElement
+    {
+        /** @var SimpleXMLElement $xml */
+        $xml = simplexml_import_dom($this->toDOM());
+
+        return $xml;
     }
 
     private function makeEInvoice(): EInvoice
@@ -205,13 +199,6 @@ class FatturaPABuilder
             ->setCodeId($this->makeSenderIdCode());
     }
 
-    /*
-    private function makeTransmissionFormat(): TransmissionFormatTag
-    {
-        return TransmissionFormatTag::make()->setFormat($this->transmissionFormat);
-    }
-    */
-
     private function makeTransmissionSequence(): TransmissionSequenceTag
     {
         return TransmissionSequenceTag::make()
@@ -239,211 +226,4 @@ class FatturaPABuilder
     {
         return CodeIdTag::make()->setId($this->senderIdCode);
     }
-
-    /*
-    private function makeSupplier(): SupplierTag
-    {
-        return SupplierTag::make()
-                ->setTaxableEntity($this->makeSupplierTaxableEntity())
-                ->setAddress($this->makeSupplierAddress())
-                ->setREARegistration($this->makeSupplierREARegistration())
-                ->setContacts($this->makeSupplierContacts());
-    }
-
-    private function makeCustomer(): CustomerTag
-    {
-        return CustomerTag::make()
-                ->setTaxableEntity($this->makeCustomerTaxableEntity())
-                ->setAddress($this->makeCustomerAddress());
-    }
-    private function makeCustomerAddress(): AddressTag
-    {
-        return AddressTag::make()
-                ->setStreet($this->makeCustomerStreet())
-                ->setStreetNumber($this->makeCustomerStreetNumber())
-                ->setCity($this->makeCustomerCity())
-                ->setPostalCode($this->makeCustomerZip())
-                ->setProvinceOrState($this->makeCustomerProvinceOrState())
-                ->setCountyr($this->makeCustomerCountry());
-    }
-
-    private function makeSupplierAddress(): AddressTag
-    {
-        return AddressTag::make()
-                ->setStreet($this->makeSupplierStreet())
-                ->setStreetNumber($this->makeSupplierStreetNumber())
-                ->setCity($this->makeSupplierCity())
-                ->setPostalCode($this->makeSupplierZip())
-                ->setProvinceOrState($this->makeSupplierProvinceOrState())
-                ->setCountry($this->makeSupplierCountry());
-    }
-    private function makeCustomerTaxableEntity(): TaxableEntityTag
-    {
-        return TaxableEntityTag::make()
-                ->setVat($this->makeCustomerVatNumber())
-                ->setFiscalCode($this->makeCustomerFiscalCode())
-                ->setRegistry($this->makeCustomerRegistry());
-    }
-
-    private function makeSupplierTaxableEntity(): TaxableEntityTag
-    {
-        return TaxableEntityTag::make()
-                ->setVatTag($this->makeSupplierVatNumber())
-                ->setFiscalCode($this->makeSupplierFiscalCode())
-                ->setRegistry($this->makeSupplierRegistry());
-    }
-
-
-    private function makeSupplierREARegistration(): REARegistrationTag
-    {
-        return REARegistrationTag::make()
-                ->setOfficeCode($this->makeSupplierREAOffice())
-                ->setREANumberTag($this->makeSupplierREANumber())
-                ->setCapital($this->makeSupplierREACapital())
-                ->setShareHolders($this->makeSupplierREAShareHolders())
-                ->setLiquidationStatus($this->makeSupplierREALiquidationStatus());
-    }
-
-    private function makeSupplierContacts(): ContactsTag
-    {
-        return ContactsTag::make()
-                ->setEmail($this->makeSupplierEmail())
-                ->setPhone($this->makeSupplierPhone())
-                ->setFax($this->makeSupplierFax());
-    }
-
-    private function makeCustomerVatNumber() : ?VatNumberTag
-    {
-        return $this->customerVatNumber ?
-                VatNumberTag::make()
-                    ->setCountryId($this->makeCustomerCountryId())
-                    ->setCodeId($this->makeCustomerVatCode())
-                : null;
-    }
-
-    private function makeSupplierVatNumber() : VatNumberTag
-    {
-        return VatNumberTag::make()
-                    ->setCountryId($this->makeSupplierCountryId())
-                    ->setCodeId($this->makeSupplierVatCode());
-    }
-
-    private function makeSupplierCountryId() : CountryIdTag
-    {
-        return CountryIdTag::make()
-                    ->setId($this->supplierCountryId);
-    }
-
-    private function makeSupplierVatCode() : CodeIdTag
-    {
-        return CodeIdTag::make()
-                    ->setCode($this->supplierVatNumber);
-    }
-
-    private function makeCustomerCountryId() : CountryIdTag
-    {
-        return CountryIdTag::make()
-                    ->setId($this->customerCountryId);
-    }
-
-    private function makeCustomerVatCode() : CodeIdTag
-    {
-        return CodeIdTag::make()
-                    ->setCode($this->customerVatNumber);
-    }
-
-    private function makeCustomerFiscalCode() : ?FiscalCodeTag
-    {
-        return $this->customerFiscalCode ? FiscalCodeTag::make()
-                                            ->setCode($this->customerFiscalCode)
-                                            : null;
-    }
-
-    private function makeSupplierFiscalCode() : ?FiscalCodeTag
-    {
-        return $this->supplierFiscalCode ? FiscalCodeTag::make()
-                                            ->setCode($this->supplierFiscalCode)
-                                            : null;
-    }
-
-    private function makeSupplierRegistry() : RegistryTag
-    {
-        return RegistryTag::make()
-                    ->setCompanyName($this->makeSupplierCompanyName());
-    }
-
-    private function makeCustomerRegistry() : RegistryTag
-    {
-        return RegistryTag::make()
-                    ->setCompanyName($this->makeCustomerCompanyName())
-                    ->setFirstName($this->makeCustomerFirstName())
-                    ->setLastName($this->makeCustomerLastName())
-                    ->setTitle($this->makeCustomerTitle());
-    }
-
-    private function makeSupplierCompanyName() : CompanyNameTag
-    {
-        return CompanyNameTag::make()
-                    ->setName($this->supplierCompanyName);
-    }
-
-    private function makeCustomerCompanyName() : ?CompanyNameTag
-    {
-        return $this->customerCompanyName ? CompanyNameTag::make()
-                                            ->setName($this->customerCompanyName)
-                                            : null;
-    }
-
-    private function makeCustomerFirstName() : ?FirstNameTag
-    {
-        return $this->customerFirstName ?
-                FirstNameTag::make()->setName($this->customerFirstName)
-                : null;
-    }
-
-    private function makeCustomerLastName() : ?LastNameTag
-    {
-        return $this->customerLastName ?
-                LastNameTag::make()->setName($this->customerLastName)
-                : null;
-    }
-
-    private function makeCustomerTitle() : ?TitleTag
-    {
-        return $this->customerTitle ?
-                TitleTag::make()->setName($this->customerTitle)
-                : null;
-    }
-
-
-    private function makeSupplierREAOffice() : OfficeCodeTag
-    {
-        return OfficeCodeTag::make()
-                ->setCode($this->supplierREAOffice);
-    }
-
-    private function makeSupplierREANumber() : REANumberTag
-    {
-        return REANumberTag::make()
-                ->setNumber($this->supplierREANumber);
-    }
-
-    private function makeSupplierREACapital() : ?CapitalTag
-    {
-        return CapitalTag::make()
-                ->setCapital($this->supplierREACapital);
-    }
-
-    private function makeSupplierREAShareHolders() : ?ShareHoldersTag
-    {
-        return ShareHoldersTag::make()
-                ->setShareHolders($this->supplierREAShareHolders);
-    }
-
-    private function makeSupplierREALiquidationStatus() : LiquidationStatusTag
-    {
-        return LiquidationStatusTag::make()
-                ->setStatus($this->supplierREALiquidationStatus);
-    }
-    */
 }

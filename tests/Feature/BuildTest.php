@@ -2,34 +2,60 @@
 
 namespace Condividendo\FatturaPA\Tests\Feature;
 
+use Condividendo\FatturaPA\Entities\Address;
 use Condividendo\FatturaPA\Entities\Body;
+use Condividendo\FatturaPA\Entities\Contacts;
+use Condividendo\FatturaPA\Entities\Customer;
+use Condividendo\FatturaPA\Entities\Item;
+use Condividendo\FatturaPA\Entities\PaymentData;
+use Condividendo\FatturaPA\Entities\REARegistration;
+use Condividendo\FatturaPA\Entities\SummaryItem;
+use Condividendo\FatturaPA\Entities\Supplier;
+use Condividendo\FatturaPA\Enums\LiquidationStatus;
+use Condividendo\FatturaPA\Enums\PaymentCondition;
+use Condividendo\FatturaPA\Enums\PaymentMethod;
+use Condividendo\FatturaPA\Enums\ShareHolder;
+use Condividendo\FatturaPA\Enums\TaxRegime;
 use Condividendo\FatturaPA\Enums\TransmissionFormat;
+use Condividendo\FatturaPA\Enums\Type;
+use Condividendo\FatturaPA\Enums\VatCollectionMode;
 use Condividendo\FatturaPA\FatturaPA;
+use Condividendo\FatturaPA\FatturaPABuilder;
 use Condividendo\FatturaPA\Tests\TestCase;
-use DOMDocument;
-use SimpleXMLElement;
 
 class BuildTest extends TestCase
 {
-    /**
-     * A basic test example.
-     *
-     * @return void
-     */
-    public function test_build()
+    public function test_xml(): void
     {
-        /** @var DOMDocument $xmlDoc */
-        $xmlDoc = FatturaPA::build()
+        /** @var string $xml */
+        $xml = $this->build()->toXML()->asXML();
+
+        $this->assertXmlStringEqualsXmlFile(__DIR__ . '/../fixtures/1.xml', $xml);
+    }
+
+    public function test_schema(): void
+    {
+        $dom = $this->build()->toDOM();
+
+        $this->assertTrue(
+            $dom->schemaValidate(__DIR__ . "/../fixtures/Schema_del_file_xml_FatturaPA_versione_1.2_cleanup.xsd"),
+            "XML not compliant to invoice schema!"
+        );
+    }
+
+    private function build(): FatturaPABuilder
+    {
+        return FatturaPA::build()
             ->setSenderId('IT', '0123456789')
             ->setTransmissionSequence('1')
             ->setTransmissionFormat(TransmissionFormat::FPR12())
             ->setRecipientCode('ABC1234')
             ->setSupplier(
-                \Condividendo\FatturaPA\Entities\Supplier::make()
+                Supplier::make()
                     ->setName('Condividendo Italia srl')
                     ->setVatNumber('IT', '12345640962')
                     ->setAddress(
-                        \Condividendo\FatturaPA\Entities\Address::make()
+                        Address::make()
                             ->setStreet('Via Italia')
                             ->setStreetNumber('123')
                             ->setPostalCode('123456')
@@ -38,26 +64,26 @@ class BuildTest extends TestCase
                             ->setCountry('IT')
                     )
                     ->setREARegistration(
-                        \Condividendo\FatturaPA\Entities\REARegistration::make()
+                        REARegistration::make()
                             ->setREANumber("12123")
                             ->setOfficeCode("MI")
-                            ->setShareHolders(\Condividendo\FatturaPA\Enums\ShareHolder::SM())
+                            ->setShareHolders(ShareHolder::SM())
                             ->setCapital(11111)
-                            ->setLiquidationStatus(\Condividendo\FatturaPA\Enums\LiquidationStatus::LN())
+                            ->setLiquidationStatus(LiquidationStatus::LN())
                     )
-                    ->setTaxRegime(\Condividendo\FatturaPA\Enums\TaxRegime::RF01())
+                    ->setTaxRegime(TaxRegime::RF01())
                     ->setContacts(
-                        \Condividendo\FatturaPA\Entities\Contacts::make()
-                        ->setEmail("fiscale@condividendo.eu")
+                        Contacts::make()
+                            ->setEmail("fiscale@condividendo.eu")
                     )
             )
             ->setCustomer(
-                \Condividendo\FatturaPA\Entities\Customer::make()
+                Customer::make()
                     ->setFirstName('Mario')
                     ->setLastName('Rossi')
                     ->setFiscalCode('RSSMRA73L09Z103F')
                     ->setAddress(
-                        \Condividendo\FatturaPA\Entities\Address::make()
+                        Address::make()
                             ->setStreet('Via Italia')
                             ->setStreetNumber('123')
                             ->setPostalCode('123456')
@@ -67,15 +93,15 @@ class BuildTest extends TestCase
                     )
             )
             ->addBody(
-                \Condividendo\FatturaPA\Entities\Body::make()
-                    ->setType(\Condividendo\FatturaPA\Enums\Type::TD01())
+                Body::make()
+                    ->setType(Type::TD01())
                     ->setCurrency('EUR')
                     ->setDate('2022-01-23')
                     ->setNumber('1')
                     ->setDocumentAmount(12.20)
                     ->setDocumentDescription('Causale esempio')
                     ->setItems([
-                        \Condividendo\FatturaPA\Entities\Item::make()
+                        Item::make()
                             ->setNumber(1)
                             ->setDescription('Product description')
                             ->setPrice(10.0)
@@ -84,30 +110,19 @@ class BuildTest extends TestCase
                             ->setQuantity(1.0)
                     ])
                     ->setSummaryItems([
-                        \Condividendo\FatturaPA\Entities\SummaryItem::make()
+                        SummaryItem::make()
                             ->setTaxableAmount(10.0)
                             ->setTaxRate(0.22)
                             ->setTaxAmount(2.2)
-                            ->setVatCollectionMode(\Condividendo\FatturaPA\Enums\VatCollectionMode::I())
+                            ->setVatCollectionMode(VatCollectionMode::I())
                     ])
                     ->setPaymentData(
-                        \Condividendo\FatturaPA\Entities\PaymentData::make()
-                            ->setPaymentMethod(\Condividendo\FatturaPA\Enums\PaymentMethod::MP21())
+                        PaymentData::make()
+                            ->setPaymentMethod(PaymentMethod::MP21())
                             ->setPaymentAmount(12.2)
                             ->setPaymentExpirationDate("2022-10-28")
-                            ->setPaymentCondition(\Condividendo\FatturaPA\Enums\PaymentCondition::TP02())
+                            ->setPaymentCondition(PaymentCondition::TP02())
                     )
-            )
-            ->toXML();
-
-        /** @var SimpleXMLElement $xmlEl */
-        $xmlEl = simplexml_import_dom($xmlDoc);
-        /** @var string $xml */
-        $xml = $xmlEl->asXML();
-
-        $this->assertXmlStringEqualsXmlFile(__DIR__ . '/../fixtures/1.xml', $xml);
-
-        $ok = $xmlDoc->schemaValidate(__DIR__ . "/../fixtures/Schema_del_file_xml_FatturaPA_versione_1.2_cleanup.xsd");
-        assert($ok, "XML not compliant to invoice schema!");
+            );
     }
 }
