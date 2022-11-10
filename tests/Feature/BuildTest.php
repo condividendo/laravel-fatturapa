@@ -38,7 +38,7 @@ class BuildTest extends TestCase
         $dom = $this->build()->toDOM();
 
         $this->assertTrue(
-            $dom->schemaValidate(__DIR__ . "/../fixtures/Schema_del_file_xml_FatturaPA_versione_1.2_cleanup.xsd"),
+            $dom->schemaValidate(__DIR__ . "/../fixtures/Schema_VFPR12.xsd"),
             "XML not compliant to invoice schema!"
         );
     }
@@ -58,7 +58,7 @@ class BuildTest extends TestCase
                         Address::make()
                             ->setStreet('Via Italia')
                             ->setStreetNumber('123')
-                            ->setPostalCode('123456')
+                            ->setPostalCode('12345')
                             ->setCity('Milano')
                             ->setProvince('MI')
                             ->setCountry('IT')
@@ -86,7 +86,7 @@ class BuildTest extends TestCase
                         Address::make()
                             ->setStreet('Via Italia')
                             ->setStreetNumber('123')
-                            ->setPostalCode('123456')
+                            ->setPostalCode('12345')
                             ->setCity('Milano')
                             ->setProvince('MI')
                             ->setCountry('IT')

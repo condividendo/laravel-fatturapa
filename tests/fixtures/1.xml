@@ -6,8 +6,8 @@
                 <IdPaese>IT</IdPaese>
                 <IdCodice>0123456789</IdCodice>
             </IdTrasmittente>
-            <FormatoTrasmissione>FPR12</FormatoTrasmissione>
             <ProgressivoInvio>1</ProgressivoInvio>
+            <FormatoTrasmissione>FPR12</FormatoTrasmissione>
             <CodiceDestinatario>ABC1234</CodiceDestinatario>
         </DatiTrasmissione>
         <CedentePrestatore>
@@ -24,7 +24,7 @@
             <Sede>
                 <Indirizzo>Via Italia</Indirizzo>
                 <NumeroCivico>123</NumeroCivico>
-                <CAP>123456</CAP>
+                <CAP>12345</CAP>
                 <Comune>Milano</Comune>
                 <Provincia>MI</Provincia>
                 <Nazione>IT</Nazione>
@@ -51,7 +51,7 @@
             <Sede>
                 <Indirizzo>Via Italia</Indirizzo>
                 <NumeroCivico>123</NumeroCivico>
-                <CAP>123456</CAP>
+                <CAP>12345</CAP>
                 <Comune>Milano</Comune>
                 <Provincia>MI</Provincia>
                 <Nazione>IT</Nazione>

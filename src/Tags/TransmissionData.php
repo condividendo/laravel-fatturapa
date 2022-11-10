@@ -74,8 +74,8 @@ class TransmissionData extends AbstractTag
         $e = $dom->createElement('DatiTrasmissione');
 
         $e->appendChild($this->transmitterId->toDOMElement($dom));
-        $e->appendChild($this->transmissionFormat->toDOMElement($dom));
         $e->appendChild($this->transmissionSequence->toDOMElement($dom));
+        $e->appendChild($this->transmissionFormat->toDOMElement($dom));
         $e->appendChild($this->recipientCode->toDOMElement($dom));
         if ($this->recipientPec) {
             $e->appendChild($this->recipientPec->toDOMElement($dom));
