@@ -2,6 +2,8 @@
 
 namespace Condividendo\FatturaPA\Tags;
 
+use Brick\Math\BigNumber;
+use Condividendo\FatturaPA\Enums\ShareHolder;
 use Condividendo\FatturaPA\Traits\Makeable;
 use DOMDocument;
 use DOMElement;
@@ -50,14 +52,14 @@ class REARegistration extends AbstractTag
     }
 
 
-    public function setCapital(float $capital): self
+    public function setCapital(BigNumber $capital): self
     {
         $this->capital = Capital::make()->setCapital($capital);
         return $this;
     }
 
 
-    public function setShareHolders(\Condividendo\FatturaPA\Enums\ShareHolder $shareHolders): self
+    public function setShareHolders(ShareHolder $shareHolders): self
     {
         $this->shareHolders = ShareHolders::make()->setShareHolders($shareHolders);
         return $this;

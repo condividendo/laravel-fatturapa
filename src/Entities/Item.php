@@ -2,7 +2,7 @@
 
 namespace Condividendo\FatturaPA\Entities;
 
-use Condividendo\FatturaPA\Contracts\Tag;
+use Brick\Math\BigDecimal;
 use Condividendo\FatturaPA\Tags\Item as ItemTag;
 use Condividendo\FatturaPA\Traits\Makeable;
 
@@ -21,22 +21,22 @@ class Item extends AbstractEntity
     private $description;
 
     /**
-     * @var float
+     * @var BigDecimal
      */
     private $quantity;
 
     /**
-     * @var float
+     * @var BigDecimal
      */
     private $unitPrice;
 
     /**
-     * @var float
+     * @var BigDecimal
      */
     private $totalPrice;
 
     /**
-     * @var float
+     * @var BigDecimal
      */
     private $taxRate;
 
@@ -53,25 +53,25 @@ class Item extends AbstractEntity
         return $this;
     }
 
-    public function setQuantity(float $quantity): self
+    public function setQuantity(BigDecimal $quantity): self
     {
         $this->quantity = $quantity;
         return $this;
     }
 
-    public function setPrice(float $unitPrice): self
+    public function setPrice(BigDecimal $unitPrice): self
     {
         $this->unitPrice = $unitPrice;
         return $this;
     }
 
-    public function setTotalAmount(float $totalPrice): self
+    public function setTotalAmount(BigDecimal $totalPrice): self
     {
         $this->totalPrice = $totalPrice;
         return $this;
     }
 
-    public function setTaxRate(float $rate): self
+    public function setTaxRate(BigDecimal $rate): self
     {
         $this->taxRate = $rate;
         return $this;
@@ -83,11 +83,11 @@ class Item extends AbstractEntity
     public function getTag()
     {
         return ItemTag::make()
-                ->setLineNumber($this->lineNumber)
-                ->setQuantity($this->quantity)
-                ->setDescription($this->description)
-                ->setTaxRate($this->taxRate)
-                ->setUnitPrice($this->unitPrice)
-                ->setTotalAmount($this->totalPrice);
+            ->setLineNumber($this->lineNumber)
+            ->setQuantity($this->quantity)
+            ->setDescription($this->description)
+            ->setTaxRate($this->taxRate)
+            ->setUnitPrice($this->unitPrice)
+            ->setTotalAmount($this->totalPrice);
     }
 }

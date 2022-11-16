@@ -2,6 +2,7 @@
 
 namespace Condividendo\FatturaPA\Tags;
 
+use Brick\Math\BigDecimal;
 use Condividendo\FatturaPA\Traits\Makeable;
 use DOMDocument;
 use DOMElement;
@@ -11,16 +12,16 @@ class VatTax extends AbstractTag
     use Makeable;
 
     /**
-     * @var string
+     * @var BigDecimal
      */
     private $percentage;
 
     /**
-     * @param float $ratio Percentage as a ratio between [0,1]
+     * @param BigDecimal $ratio Percentage as a ratio between [0,1]
      */
-    public function setRate(float $ratio): self
+    public function setRate(BigDecimal $ratio): self
     {
-        $this->percentage = sprintf("%.2f", max(0, min(100, 100 * $ratio)));
+        $this->percentage = $ratio;
         return $this;
     }
 
@@ -29,6 +30,6 @@ class VatTax extends AbstractTag
      */
     public function toDOMElement(DOMDocument $dom): DOMElement
     {
-        return $dom->createElement('AliquotaIVA', $this->percentage);
+        return $dom->createElement('AliquotaIVA', $this->percentage->multipliedBy(100));
     }
 }

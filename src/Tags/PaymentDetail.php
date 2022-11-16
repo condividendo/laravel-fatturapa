@@ -2,6 +2,7 @@
 
 namespace Condividendo\FatturaPA\Tags;
 
+use Brick\Math\BigDecimal;
 use Condividendo\FatturaPA\Traits\Makeable;
 use DOMDocument;
 use DOMElement;
@@ -38,7 +39,7 @@ class PaymentDetail extends AbstractTag
         return $this;
     }
 
-    public function setPaymentAmount(float $amount): self
+    public function setPaymentAmount(BigDecimal $amount): self
     {
         $this->amount = PaymentAmount::make()->setAmount($amount);
         return $this;

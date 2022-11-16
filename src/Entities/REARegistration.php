@@ -2,9 +2,9 @@
 
 namespace Condividendo\FatturaPA\Entities;
 
+use Brick\Math\BigDecimal;
 use Condividendo\FatturaPA\Enums\LiquidationStatus;
 use Condividendo\FatturaPA\Enums\ShareHolder;
-use Condividendo\FatturaPA\Contracts\Tag;
 use Condividendo\FatturaPA\Tags\REARegistration as REARegistrationTag;
 use Condividendo\FatturaPA\Traits\Makeable;
 
@@ -23,7 +23,7 @@ class REARegistration extends AbstractEntity
     private $reaNumber;
 
     /**
-     * @var ?float
+     * @var ?BigDecimal
      */
     private $capital;
 
@@ -52,7 +52,7 @@ class REARegistration extends AbstractEntity
     }
 
 
-    public function setCapital(float $capital): self
+    public function setCapital(BigDecimal $capital): self
     {
         $this->capital = $capital;
         return $this;
@@ -78,9 +78,9 @@ class REARegistration extends AbstractEntity
     public function getTag()
     {
         $tag = REARegistrationTag::make()
-                ->setREANumber($this->reaNumber)
-                ->setOfficeCode($this->officeCode)
-                ->setLiquidationStatus($this->liquidationStatus ?: LiquidationStatus::LN());
+            ->setREANumber($this->reaNumber)
+            ->setOfficeCode($this->officeCode)
+            ->setLiquidationStatus($this->liquidationStatus ?: LiquidationStatus::LN());
         if ($this->capital) {
             $tag->setCapital($this->capital);
         }

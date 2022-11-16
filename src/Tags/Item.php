@@ -2,6 +2,7 @@
 
 namespace Condividendo\FatturaPA\Tags;
 
+use Brick\Math\BigDecimal;
 use Condividendo\FatturaPA\Traits\Makeable;
 use DOMDocument;
 use DOMElement;
@@ -53,25 +54,25 @@ class Item extends AbstractTag
         return $this;
     }
 
-    public function setQuantity(float $quantity): self
+    public function setQuantity(BigDecimal $quantity): self
     {
         $this->quantity = Quantity::make()->setQuantity($quantity);
         return $this;
     }
 
-    public function setUnitPrice(float $unitPrice): self
+    public function setUnitPrice(BigDecimal $unitPrice): self
     {
         $this->unitPrice = UnitPrice::make()->setUnitPrice($unitPrice);
         return $this;
     }
 
-    public function setTotalAmount(float $totalPrice): self
+    public function setTotalAmount(BigDecimal $totalPrice): self
     {
         $this->totalPrice = TotalPrice::make()->setTotalPrice($totalPrice);
         return $this;
     }
 
-    public function setTaxRate(float $rate): self
+    public function setTaxRate(BigDecimal $rate): self
     {
         $this->vatTax = VatTax::make()->setRate($rate);
         return $this;

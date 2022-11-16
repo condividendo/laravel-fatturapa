@@ -2,6 +2,8 @@
 
 namespace Condividendo\FatturaPA\Tags;
 
+use Brick\Math\BigDecimal;
+use Condividendo\FatturaPA\Enums\Type;
 use Condividendo\FatturaPA\Traits\Makeable;
 use DOMDocument;
 use DOMElement;
@@ -20,7 +22,7 @@ class GeneralData extends AbstractTag
         $this->generalDocumentData = GeneralDocumentData::make();
     }
 
-    public function setType(\Condividendo\FatturaPA\Enums\Type $type): self
+    public function setType(Type $type): self
     {
         $this->generalDocumentData->setType($type);
         return $this;
@@ -38,7 +40,7 @@ class GeneralData extends AbstractTag
         return $this;
     }
 
-    public function setDocumentAmount(float $amount): self
+    public function setDocumentAmount(BigDecimal $amount): self
     {
         $this->generalDocumentData->setDocumentAmount($amount);
         return $this;

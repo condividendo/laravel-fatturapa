@@ -2,6 +2,7 @@
 
 namespace Condividendo\FatturaPA\Tags;
 
+use Brick\Math\BigNumber;
 use Condividendo\FatturaPA\Traits\Makeable;
 use DOMDocument;
 use DOMElement;
@@ -11,13 +12,13 @@ class Capital extends AbstractTag
     use Makeable;
 
     /**
-     * @var string
+     * @var BigNumber
      */
     private $capital;
 
-    public function setCapital(float $capital): self
+    public function setCapital(BigNumber $capital): self
     {
-        $this->capital = sprintf("%.2f", $capital);
+        $this->capital = $capital;
         return $this;
     }
 

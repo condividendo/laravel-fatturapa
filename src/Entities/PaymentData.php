@@ -2,7 +2,9 @@
 
 namespace Condividendo\FatturaPA\Entities;
 
-use Condividendo\FatturaPA\Contracts\Tag;
+use Brick\Math\BigDecimal;
+use Condividendo\FatturaPA\Enums\PaymentCondition;
+use Condividendo\FatturaPA\Enums\PaymentMethod;
 use Condividendo\FatturaPA\Tags\PaymentData as PaymentDataTag;
 use Condividendo\FatturaPA\Traits\Makeable;
 
@@ -11,12 +13,12 @@ class PaymentData extends AbstractEntity
     use Makeable;
 
     /**
-     * @var \Condividendo\FatturaPA\Enums\PaymentCondition
+     * @var PaymentCondition
      */
     private $paymentCondition;
 
     /**
-     * @var \Condividendo\FatturaPA\Enums\PaymentMethod
+     * @var PaymentMethod
      */
     private $paymentMethod;
 
@@ -26,12 +28,12 @@ class PaymentData extends AbstractEntity
     private $paymentExpirationDate;
 
     /**
-     * @var float
+     * @var BigDecimal
      */
     private $amount;
 
 
-    public function setPaymentMethod(\Condividendo\FatturaPA\Enums\PaymentMethod $paymentMethod): self
+    public function setPaymentMethod(PaymentMethod $paymentMethod): self
     {
         $this->paymentMethod = $paymentMethod;
         return $this;
@@ -43,13 +45,13 @@ class PaymentData extends AbstractEntity
         return $this;
     }
 
-    public function setPaymentAmount(float $amount): self
+    public function setPaymentAmount(BigDecimal $amount): self
     {
         $this->amount = $amount;
         return $this;
     }
 
-    public function setPaymentCondition(\Condividendo\FatturaPA\Enums\PaymentCondition $paymentCondition): self
+    public function setPaymentCondition(PaymentCondition $paymentCondition): self
     {
         $this->paymentCondition = $paymentCondition;
         return $this;
@@ -61,12 +63,12 @@ class PaymentData extends AbstractEntity
     public function getTag()
     {
         return PaymentDataTag::make()
-                ->setPaymentCondition($this->paymentCondition)
-                ->setPaymentDetail(
-                    \Condividendo\FatturaPA\Tags\PaymentDetail::make()
+            ->setPaymentCondition($this->paymentCondition)
+            ->setPaymentDetail(
+                \Condividendo\FatturaPA\Tags\PaymentDetail::make()
                     ->setPaymentMethod($this->paymentMethod)
                     ->setPaymentExpirationDate($this->paymentExpirationDate)
                     ->setPaymentAmount($this->amount)
-                );
+            );
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Condividendo\FatturaPA\Tags;
 
+use Brick\Math\BigDecimal;
 use Condividendo\FatturaPA\Traits\Makeable;
 use DOMDocument;
 use DOMElement;
@@ -11,13 +12,13 @@ class UnitPrice extends AbstractTag
     use Makeable;
 
     /**
-     * @var string
+     * @var BigDecimal
      */
     private $unitPrice;
 
-    public function setUnitPrice(float $unitPrice): self
+    public function setUnitPrice(BigDecimal $unitPrice): self
     {
-        $this->unitPrice = sprintf("%.2f", $unitPrice);
+        $this->unitPrice = $unitPrice;
         return $this;
     }
 

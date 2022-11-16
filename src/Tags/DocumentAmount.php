@@ -2,6 +2,7 @@
 
 namespace Condividendo\FatturaPA\Tags;
 
+use Brick\Math\BigDecimal;
 use Condividendo\FatturaPA\Traits\Makeable;
 use DOMDocument;
 use DOMElement;
@@ -11,13 +12,13 @@ class DocumentAmount extends AbstractTag
     use Makeable;
 
     /**
-     * @var string
+     * @var BigDecimal
      */
     private $amount;
 
-    public function setDocumentAmount(float $amount): self
+    public function setDocumentAmount(BigDecimal $amount): self
     {
-        $this->amount = sprintf("%.2f", $amount);
+        $this->amount = $amount;
         return $this;
     }
 

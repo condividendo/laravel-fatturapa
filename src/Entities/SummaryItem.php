@@ -2,10 +2,10 @@
 
 namespace Condividendo\FatturaPA\Entities;
 
-use Condividendo\FatturaPA\Enums\VatCollectionMode;
+use Brick\Math\BigDecimal;
 use Condividendo\FatturaPA\Enums\Nature;
 use Condividendo\FatturaPA\Enums\RegulatoryReference;
-use Condividendo\FatturaPA\Contracts\Tag;
+use Condividendo\FatturaPA\Enums\VatCollectionMode;
 use Condividendo\FatturaPA\Tags\SummaryItem as SummaryItemTag;
 use Condividendo\FatturaPA\Traits\Makeable;
 
@@ -14,17 +14,17 @@ class SummaryItem extends AbstractEntity
     use Makeable;
 
     /**
-     * @var float
+     * @var BigDecimal
      */
     private $taxRate;
 
     /**
-     * @var float
+     * @var BigDecimal
      */
     private $taxableAmount;
 
     /**
-     * @var float
+     * @var BigDecimal
      */
     private $taxAmount;
 
@@ -44,21 +44,21 @@ class SummaryItem extends AbstractEntity
     private $regulatoryReference;
 
 
-    public function setTaxRate(float $rate): self
+    public function setTaxRate(BigDecimal $rate): self
     {
         $this->taxRate = $rate;
         return $this;
     }
 
 
-    public function setTaxableAmount(float $amount): self
+    public function setTaxableAmount(BigDecimal $amount): self
     {
         $this->taxableAmount = $amount;
         return $this;
     }
 
 
-    public function setTaxAmount(float $amount): self
+    public function setTaxAmount(BigDecimal $amount): self
     {
         $this->taxAmount = $amount;
         return $this;

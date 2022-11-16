@@ -2,6 +2,8 @@
 
 namespace Condividendo\FatturaPA\Entities;
 
+use Brick\Math\BigDecimal;
+use Condividendo\FatturaPA\Enums\Type;
 use Condividendo\FatturaPA\Tags\Body as BodyTag;
 use Condividendo\FatturaPA\Traits\Makeable;
 
@@ -10,7 +12,7 @@ class Body extends AbstractEntity
     use Makeable;
 
     /**
-     * @var \Condividendo\FatturaPA\Enums\Type
+     * @var Type
      */
     private $type;
 
@@ -25,7 +27,7 @@ class Body extends AbstractEntity
     private $date;
 
     /**
-     * @var float
+     * @var BigDecimal
      */
     private $amount;
 
@@ -55,7 +57,7 @@ class Body extends AbstractEntity
     private $summaryItems;
 
 
-    public function setType(\Condividendo\FatturaPA\Enums\Type $type): self
+    public function setType(Type $type): self
     {
         $this->type = $type;
         return $this;
@@ -73,7 +75,7 @@ class Body extends AbstractEntity
         return $this;
     }
 
-    public function setDocumentAmount(float $amount): self
+    public function setDocumentAmount(BigDecimal $amount): self
     {
         $this->amount = $amount;
         return $this;
@@ -129,14 +131,14 @@ class Body extends AbstractEntity
             $summaryItems[] = $item->getTag();
         }
         return BodyTag::make()
-                ->setType($this->type)
-                ->setCurrency($this->currency)
-                ->setDocumentAmount($this->amount)
-                ->setDocumentDescription($this->description)
-                ->setDate($this->date)
-                ->setNumber($this->number)
-                ->setItems($items)
-                ->setSummaryItems($summaryItems)
-                ->setPaymentData($this->paymentData->getTag());
+            ->setType($this->type)
+            ->setCurrency($this->currency)
+            ->setDocumentAmount($this->amount)
+            ->setDocumentDescription($this->description)
+            ->setDate($this->date)
+            ->setNumber($this->number)
+            ->setItems($items)
+            ->setSummaryItems($summaryItems)
+            ->setPaymentData($this->paymentData->getTag());
     }
 }
