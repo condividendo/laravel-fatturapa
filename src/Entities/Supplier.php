@@ -106,7 +106,7 @@ class Supplier extends AbstractEntity
     {
         $tag = SupplierTag::make()
                 ->setVatNumber($this->vatCountryId, $this->vatNumber)
-                ->setTaxRegime($this->taxRegime ?: \Condividendo\FatturaPA\Enums\TaxRegime::RF01())
+                ->setTaxRegime($this->taxRegime)
                 ->setCompanyName($this->companyName)
                 ->setAddress($this->address->getTag());
         if ($this->fiscalCode) {

@@ -80,7 +80,7 @@ class REARegistration extends AbstractEntity
         $tag = REARegistrationTag::make()
             ->setREANumber($this->reaNumber)
             ->setOfficeCode($this->officeCode)
-            ->setLiquidationStatus($this->liquidationStatus ?: LiquidationStatus::LN());
+            ->setLiquidationStatus($this->liquidationStatus);
         if ($this->capital) {
             $tag->setCapital($this->capital);
         }

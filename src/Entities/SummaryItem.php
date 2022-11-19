@@ -29,7 +29,7 @@ class SummaryItem extends AbstractEntity
     private $taxAmount;
 
     /**
-     * @var ?VatCollectionMode
+     * @var VatCollectionMode
      */
     private $vatCollectionMode;
 
@@ -94,7 +94,7 @@ class SummaryItem extends AbstractEntity
                 ->setTaxRate($this->taxRate)
                 ->setTaxableAmount($this->taxableAmount)
                 ->setTaxAmount($this->taxAmount)
-                ->setVatCollectionMode($this->vatCollectionMode ?: VatCollectionMode::I());
+                ->setVatCollectionMode($this->vatCollectionMode);
         if ($this->nature) {
             assert(!empty($this->regulatoryReference), "Regulatory Reference must be set if Nature is provided");
             $tag->setNature($this->nature);
