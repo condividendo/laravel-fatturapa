@@ -33,7 +33,7 @@ class REARegistration extends AbstractEntity
     private $shareHolders;
 
     /**
-     * @var ?LiquidationStatus
+     * @var LiquidationStatus
      */
     private $liquidationStatus;
 

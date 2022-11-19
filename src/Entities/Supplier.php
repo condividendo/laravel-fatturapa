@@ -31,7 +31,7 @@ class Supplier extends AbstractEntity
     private $vatNumber;
 
     /**
-     * @var ?\Condividendo\FatturaPA\Enums\TaxRegime
+     * @var \Condividendo\FatturaPA\Enums\TaxRegime
      */
     private $taxRegime;
 
