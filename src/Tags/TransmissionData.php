@@ -31,6 +31,11 @@ class TransmissionData extends AbstractTag
     private $recipientCode;
 
     /**
+     * @var ?TransmitterContacts
+     */
+    private $transmitterContacts;
+
+    /**
      * @var ?RecipientPec
      */
     private $recipientPec;
@@ -60,6 +65,12 @@ class TransmissionData extends AbstractTag
         return $this;
     }
 
+    public function setTransmitterContacts(?TransmitterContacts $transmitterContacts): self
+    {
+        $this->transmitterContacts = $transmitterContacts;
+        return $this;
+    }
+
     public function setRecipientPec(?RecipientPec $recipientPec): self
     {
         $this->recipientPec = $recipientPec;
@@ -77,6 +88,9 @@ class TransmissionData extends AbstractTag
         $e->appendChild($this->transmissionSequence->toDOMElement($dom));
         $e->appendChild($this->transmissionFormat->toDOMElement($dom));
         $e->appendChild($this->recipientCode->toDOMElement($dom));
+        if ($this->transmitterContacts) {
+            $e->appendChild($this->transmitterContacts->toDOMElement($dom));
+        }
         if ($this->recipientPec) {
             $e->appendChild($this->recipientPec->toDOMElement($dom));
         }

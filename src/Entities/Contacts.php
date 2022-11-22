@@ -5,44 +5,16 @@ namespace Condividendo\FatturaPA\Entities;
 use Condividendo\FatturaPA\Contracts\Tag;
 use Condividendo\FatturaPA\Tags\Contacts as ContactsTag;
 use Condividendo\FatturaPA\Traits\Makeable;
+use Condividendo\FatturaPA\Traits\HasEmail;
+use Condividendo\FatturaPA\Traits\HasPhone;
+use Condividendo\FatturaPA\Traits\HasFax;
 
 class Contacts extends AbstractEntity
 {
     use Makeable;
-
-    /**
-     * @var string
-     */
-    private $fax;
-
-    /**
-     * @var string
-     */
-    protected $email;
-
-    /**
-     * @var string
-     */
-    protected $phone;
-
-
-    public function setEmail(string $email): self
-    {
-        $this->email = $email;
-        return $this;
-    }
-
-    public function setPhone(string $phone): self
-    {
-        $this->phone = $phone;
-        return $this;
-    }
-
-    public function setFax(string $fax): self
-    {
-        $this->fax = $fax;
-        return $this;
-    }
+    use HasEmail;
+    use HasPhone;
+    use HasFax;
 
     /**
      * @return ContactsTag

@@ -16,6 +16,7 @@ use Condividendo\FatturaPA\Tags\RecipientPec as RecipientPecTag;
 use Condividendo\FatturaPA\Tags\TransmissionData as TransmissionDataTag;
 use Condividendo\FatturaPA\Tags\TransmissionSequence as TransmissionSequenceTag;
 use Condividendo\FatturaPA\Tags\TransmitterId as TransmitterIdTag;
+use Condividendo\FatturaPA\Tags\TransmitterContacts as TransmitterContactsTag;
 use DOMDocument;
 use SimpleXMLElement;
 
@@ -35,6 +36,16 @@ class FatturaPABuilder
      * @var string
      */
     private $senderIdCode;
+
+    /**
+     * @var ?string
+     */
+    private $senderEmail;
+
+    /**
+     * @var ?string
+     */
+    private $senderPhone;
 
     /**
      * @var string
@@ -83,6 +94,18 @@ class FatturaPABuilder
     {
         $this->senderIdCountry = $country;
         $this->senderIdCode = $code;
+        return $this;
+    }
+
+    public function setSenderEmail(string $email): self
+    {
+        $this->senderEmail = $email;
+        return $this;
+    }
+
+    public function setSenderPhone(string $phone): self
+    {
+        $this->senderPhone = $phone;
         return $this;
     }
 
@@ -189,6 +212,7 @@ class FatturaPABuilder
             ->setTransmissionSequence($this->makeTransmissionSequence())
             ->setTransmissionFormat($this->transmissionFormat)
             ->setRecipientCode($this->makeRecipientCode())
+            ->setTransmitterContacts($this->makeTransmitterContacts())
             ->setRecipientPec($this->makeRecipientPec());
     }
 
@@ -203,6 +227,20 @@ class FatturaPABuilder
     {
         return TransmissionSequenceTag::make()
             ->setSequence($this->transmissionSequence);
+    }
+
+    private function makeTransmitterContacts(): ?TransmitterContactsTag
+    {
+        if ($this->senderEmail || $this->senderPhone) {
+            $tag = TransmitterContactsTag::make();
+            if ($this->senderEmail) {
+                $tag->setEmail($this->email);
+            }
+            if ($this->senderPhone) {
+                $tag->setPhone($this->phone);
+            }
+        }
+        return $tag ?? null;
     }
 
     private function makeRecipientCode(): RecipientCodeTag
