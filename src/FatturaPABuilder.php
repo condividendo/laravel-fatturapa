@@ -234,10 +234,10 @@ class FatturaPABuilder
         if ($this->senderEmail || $this->senderPhone) {
             $tag = TransmitterContactsTag::make();
             if ($this->senderEmail) {
-                $tag->setEmail($this->email);
+                $tag->setEmail($this->senderEmail);
             }
             if ($this->senderPhone) {
-                $tag->setPhone($this->phone);
+                $tag->setPhone($this->senderPhone);
             }
         }
         return $tag ?? null;

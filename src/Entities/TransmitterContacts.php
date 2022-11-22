@@ -19,7 +19,7 @@ class TransmitterContacts extends AbstractEntity
      */
     public function getTag()
     {
-        $tag = ContactsTag::make();
+        $tag = TransmitterContactsTag::make();
         if ($this->email) {
             $tag->setEmail($this->email);
         }
