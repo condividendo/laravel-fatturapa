@@ -24,14 +24,14 @@ use Condividendo\FatturaPA\FatturaPA;
 use Condividendo\FatturaPA\FatturaPABuilder;
 use Condividendo\FatturaPA\Tests\TestCase;
 
-class BuildTest extends TestCase
+class Build4Test extends TestCase
 {
     public function test_xml(): void
     {
         /** @var string $xml */
         $xml = $this->build()->toXML()->asXML();
 
-        $this->assertXmlStringEqualsXmlFile(__DIR__ . '/../fixtures/1.xml', $xml);
+        $this->assertXmlStringEqualsXmlFile(__DIR__ . '/../fixtures/4.xml', $xml);
     }
 
     public function test_schema(): void
@@ -51,18 +51,19 @@ class BuildTest extends TestCase
             ->setTransmissionSequence('1')
             ->setTransmissionFormat(TransmissionFormat::FPR12())
             ->setRecipientCode('ABC1234')
+            ->setRecipientCountryId("SM")
             ->setSupplier(
                 Supplier::make()
-                    ->setName('Condividendo Italia srl')
-                    ->setVatNumber('IT', '12345640962')
+                    ->setName('Esempio azienda S. Marino srl')
+                    ->setVatNumber('SM', '012345')
                     ->setAddress(
                         Address::make()
-                            ->setStreet('Via Italia')
-                            ->setStreetNumber('123')
-                            ->setPostalCode('12345')
-                            ->setCity('Milano')
-                            ->setProvince('MI')
-                            ->setCountry('IT')
+                            ->setStreet('Via Test')
+                            ->setStreetNumber('1')
+                            ->setPostalCode('1')
+                            ->setCity('San Marino')
+                            ->setProvince('SM')
+                            ->setCountry('SM')
                     )
                     ->setREARegistration(
                         REARegistration::make()
@@ -75,7 +76,7 @@ class BuildTest extends TestCase
                     ->setTaxRegime(TaxRegime::RF01())
                     ->setContacts(
                         Contacts::make()
-                            ->setEmail("fiscale@condividendo.eu")
+                            ->setEmail("fiscale@esempio.eu")
                     )
             )
             ->setCustomer(
@@ -113,9 +114,10 @@ class BuildTest extends TestCase
                     ->setSummaryItems([
                         SummaryItem::make()
                             ->setTaxableAmount(BigDecimal::of('10.00'))
-                            ->setTaxRate(BigDecimal::of('0.22'))
-                            ->setTaxAmount(BigDecimal::of('2.20'))
-                            ->setVatCollectionMode(VatCollectionMode::I())
+                            ->setTaxRate(BigDecimal::of('0.00'))
+                            ->setTaxAmount(BigDecimal::of('0.00'))
+                            ->setNature(\Condividendo\FatturaPA\Enums\Nature::N3_3())
+                            ->setRegulatoryReference(\Condividendo\FatturaPA\Enums\RegulatoryReference::N3_3())
                     ])
                     ->setPaymentData(
                         PaymentData::make()

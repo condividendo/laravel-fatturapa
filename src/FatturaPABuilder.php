@@ -115,18 +115,24 @@ class FatturaPABuilder
         return $this;
     }
 
+    protected function setRecipientCodeWhenForeignRecipient()
+    {
+        if ($this->recipientCountryId && in_array(strtoupper($this->recipientCountryId), ["SM", "VA"])) {
+            $this->recipientCode = "XXXXXXX"; // <== recipient code for San Marino and Vatican suppliers
+        }
+    }
+
     public function setRecipientCountryId(string $countryId): self
     {
         $this->recipientCountryId = $countryId;
-        if (in_array(strtoupper($this->recipientCountryId), ["SM", "VA"])) {
-            $this->recipientCode = "XXXXXXX"; // <== recipient code for San Marino and Vatican suppliers
-        }
+        $this->setRecipientCodeWhenForeignRecipient();
         return $this;
     }
 
     public function setRecipientCode(string $code): self
     {
         $this->recipientCode = $code;
+        $this->setRecipientCodeWhenForeignRecipient();
         return $this;
     }
 
