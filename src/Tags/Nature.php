@@ -2,11 +2,12 @@
 
 namespace Condividendo\FatturaPA\Tags;
 
+use Condividendo\FatturaPA\Enums\Nature as NatureEnum;
 use Condividendo\FatturaPA\Traits\Makeable;
 use DOMDocument;
 use DOMElement;
 
-class Nature extends AbstractTag
+class Nature extends Tag
 {
     use Makeable;
 
@@ -15,9 +16,10 @@ class Nature extends AbstractTag
      */
     private $nature;
 
-    public function setNature(\Condividendo\FatturaPA\Enums\Nature $nature): self
+    public function setNature(NatureEnum $nature): self
     {
         $this->nature = $nature;
+
         return $this;
     }
 

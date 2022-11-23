@@ -2,30 +2,29 @@
 
 namespace Condividendo\FatturaPA\Entities;
 
-use Condividendo\FatturaPA\Contracts\Tag;
 use Condividendo\FatturaPA\Tags\TransmitterContacts as TransmitterContactsTag;
-use Condividendo\FatturaPA\Traits\Makeable;
 use Condividendo\FatturaPA\Traits\HasEmail;
 use Condividendo\FatturaPA\Traits\HasPhone;
+use Condividendo\FatturaPA\Traits\Makeable;
 
-class TransmitterContacts extends AbstractEntity
+class TransmitterContacts extends Entity
 {
     use Makeable;
     use HasEmail;
     use HasPhone;
 
-    /**
-     * @return TransmitterContactsTag
-     */
-    public function getTag()
+    public function getTag(): TransmitterContactsTag
     {
         $tag = TransmitterContactsTag::make();
+
         if ($this->email) {
             $tag->setEmail($this->email);
         }
+
         if ($this->phone) {
             $tag->setPhone($this->phone);
         }
+
         return $tag;
     }
 }

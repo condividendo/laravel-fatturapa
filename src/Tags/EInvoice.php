@@ -2,11 +2,12 @@
 
 namespace Condividendo\FatturaPA\Tags;
 
+use Condividendo\FatturaPA\Enums\TransmissionFormat;
 use Condividendo\FatturaPA\Traits\Makeable;
 use DOMDocument;
 use DOMElement;
 
-class EInvoice extends AbstractTag
+class EInvoice extends Tag
 {
     use Makeable;
 
@@ -16,30 +17,33 @@ class EInvoice extends AbstractTag
     private $format;
 
     /**
-     * @var Header
+     * @var \Condividendo\FatturaPA\Tags\Header
      */
     private $header;
 
     /**
-     * @var Body[]
+     * @var array<\Condividendo\FatturaPA\Tags\Body>
      */
     private $bodies = [];
 
-    public function setTransmissionFormat(\Condividendo\FatturaPA\Enums\TransmissionFormat $format): self
+    public function setTransmissionFormat(TransmissionFormat $format): self
     {
         $this->format = $format;
+
         return $this;
     }
 
     public function setHeader(Header $header): self
     {
         $this->header = $header;
+
         return $this;
     }
 
     public function addBody(Body $body): self
     {
         $this->bodies[] = $body;
+
         return $this;
     }
 

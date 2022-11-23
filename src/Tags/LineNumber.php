@@ -6,7 +6,7 @@ use Condividendo\FatturaPA\Traits\Makeable;
 use DOMDocument;
 use DOMElement;
 
-class LineNumber extends AbstractTag
+class LineNumber extends Tag
 {
     use Makeable;
 
@@ -18,6 +18,7 @@ class LineNumber extends AbstractTag
     public function setNumber(int $number): self
     {
         $this->number = "$number";
+
         return $this;
     }
 

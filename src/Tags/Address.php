@@ -6,82 +6,81 @@ use Condividendo\FatturaPA\Traits\Makeable;
 use DOMDocument;
 use DOMElement;
 
-class Address extends AbstractTag
+class Address extends Tag
 {
     use Makeable;
 
     /**
-     * @var Street
+     * @var \Condividendo\FatturaPA\Tags\Street
      */
     private $street;
 
     /**
-     * @var StreetNumber
+     * @var \Condividendo\FatturaPA\Tags\StreetNumber
      */
     private $streetNumber;
 
     /**
-     * @var City
+     * @var \Condividendo\FatturaPA\Tags\City
      */
     private $city;
 
     /**
-     * @var Zip
+     * @var \Condividendo\FatturaPA\Tags\Zip
      */
     private $zip;
 
     /**
-     * @var ProvinceOrState
+     * @var \Condividendo\FatturaPA\Tags\ProvinceOrState
      */
     private $provinceOrState;
 
     /**
-     * @var Country
+     * @var \Condividendo\FatturaPA\Tags\Country
      */
     private $country;
-
 
     public function setStreet(string $street): self
     {
         $this->street = Street::make()->setStreet($street);
+
         return $this;
     }
-
 
     public function setStreetNumber(string $streetNumber): self
     {
         $this->streetNumber = StreetNumber::make()->setStreetNumber($streetNumber);
+
         return $this;
     }
-
 
     public function setCity(string $city): self
     {
         $this->city = City::make()->setCity($city);
+
         return $this;
     }
-
 
     public function setPostalCode(string $zip): self
     {
         $this->zip = Zip::make()->setZip($zip);
+
         return $this;
     }
-
 
     public function setProvince(string $province): self
     {
         $this->provinceOrState = ProvinceOrState::make()->setProvinceOrState($province);
+
         return $this;
     }
-
 
     public function setCountry(string $country): self
     {
         $this->country = Country::make()->setCountry($country);
+
         return $this;
     }
-
 
     /**
      * @noinspection PhpUnhandledExceptionInspection

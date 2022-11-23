@@ -11,6 +11,7 @@
     "require-dev": {
         "orchestra/testbench": "^3.8",
         "phpstan/phpstan": "1.4.*",
+        "slevomat/coding-standard": "^8.6",
         "squizlabs/php_codesniffer": "^3.7"
     },
     "autoload": {
@@ -34,6 +35,9 @@
         }
     },
     "config": {
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
     }
 }

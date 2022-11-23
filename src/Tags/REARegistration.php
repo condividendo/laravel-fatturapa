@@ -3,72 +3,73 @@
 namespace Condividendo\FatturaPA\Tags;
 
 use Brick\Math\BigNumber;
+use Condividendo\FatturaPA\Enums\LiquidationStatus as LiquidationStatusEnum;
 use Condividendo\FatturaPA\Enums\ShareHolder;
 use Condividendo\FatturaPA\Traits\Makeable;
 use DOMDocument;
 use DOMElement;
 
-class REARegistration extends AbstractTag
+class REARegistration extends Tag
 {
     use Makeable;
 
     /**
-     * @var OfficeCode
+     * @var \Condividendo\FatturaPA\Tags\OfficeCode
      */
     private $officeCode;
 
     /**
-     * @var REANumber
+     * @var \Condividendo\FatturaPA\Tags\REANumber
      */
     private $reaNumber;
 
     /**
-     * @var ?Capital
+     * @var ?\Condividendo\FatturaPA\Tags\Capital
      */
     private $capital;
 
     /**
-     * @var ?ShareHolders
+     * @var ?\Condividendo\FatturaPA\Tags\ShareHolders
      */
     private $shareHolders;
 
     /**
-     * @var LiquidationStatus
+     * @var \Condividendo\FatturaPA\Tags\LiquidationStatus
      */
     private $liquidationStatus;
-
 
     public function setOfficeCode(string $officeCode): self
     {
         $this->officeCode = OfficeCode::make()->setOfficeCode($officeCode);
+
         return $this;
     }
-
 
     public function setREANumber(string $reaNumber): self
     {
         $this->reaNumber = REANumber::make()->setREANumber($reaNumber);
+
         return $this;
     }
-
 
     public function setCapital(BigNumber $capital): self
     {
         $this->capital = Capital::make()->setCapital($capital);
+
         return $this;
     }
-
 
     public function setShareHolders(ShareHolder $shareHolders): self
     {
         $this->shareHolders = ShareHolders::make()->setShareHolders($shareHolders);
+
         return $this;
     }
 
-
-    public function setLiquidationStatus(\Condividendo\FatturaPA\Enums\LiquidationStatus $liquidationStatus): self
+    public function setLiquidationStatus(LiquidationStatusEnum $liquidationStatus): self
     {
         $this->liquidationStatus = LiquidationStatus::make()->setLiquidationStatus($liquidationStatus);
+
         return $this;
     }
 
@@ -81,14 +82,16 @@ class REARegistration extends AbstractTag
 
         $e->appendChild($this->officeCode->toDOMElement($dom));
         $e->appendChild($this->reaNumber->toDOMElement($dom));
+
         if ($this->capital) {
             $e->appendChild($this->capital->toDOMElement($dom));
         }
+
         if ($this->shareHolders) {
             $e->appendChild($this->shareHolders->toDOMElement($dom));
         }
-        $e->appendChild($this->liquidationStatus->toDOMElement($dom));
 
+        $e->appendChild($this->liquidationStatus->toDOMElement($dom));
 
         return $e;
     }

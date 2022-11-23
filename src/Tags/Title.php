@@ -6,7 +6,7 @@ use Condividendo\FatturaPA\Traits\Makeable;
 use DOMDocument;
 use DOMElement;
 
-class Title extends AbstractTag
+class Title extends Tag
 {
     use Makeable;
 
@@ -18,6 +18,7 @@ class Title extends AbstractTag
     public function setTitle(string $title): self
     {
         $this->title = $title;
+
         return $this;
     }
 

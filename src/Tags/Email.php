@@ -6,7 +6,7 @@ use Condividendo\FatturaPA\Traits\Makeable;
 use DOMDocument;
 use DOMElement;
 
-class Email extends AbstractTag
+class Email extends Tag
 {
     use Makeable;
 
@@ -18,6 +18,7 @@ class Email extends AbstractTag
     public function setEmail(string $email): self
     {
         $this->email = $email;
+
         return $this;
     }
 

@@ -2,6 +2,7 @@
 
 namespace Condividendo\FatturaPA\Tags;
 
+use Condividendo\FatturaPA\Enums\TransmissionFormat as TransmissionFormatEnum;
 use Condividendo\FatturaPA\Traits\Makeable;
 use DOMDocument;
 use DOMElement;
@@ -9,7 +10,7 @@ use DOMElement;
 /**
  * FormatoTrasmissione
  */
-class TransmissionFormat extends AbstractTag
+class TransmissionFormat extends Tag
 {
     use Makeable;
 
@@ -18,9 +19,10 @@ class TransmissionFormat extends AbstractTag
      */
     private $format;
 
-    public function setFormat(\Condividendo\FatturaPA\Enums\TransmissionFormat $format): self
+    public function setFormat(TransmissionFormatEnum $format): self
     {
         $this->format = $format;
+
         return $this;
     }
 

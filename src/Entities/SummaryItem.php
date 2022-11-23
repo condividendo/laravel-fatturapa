@@ -8,100 +8,104 @@ use Condividendo\FatturaPA\Enums\RegulatoryReference;
 use Condividendo\FatturaPA\Enums\VatCollectionMode;
 use Condividendo\FatturaPA\Tags\SummaryItem as SummaryItemTag;
 use Condividendo\FatturaPA\Traits\Makeable;
+use RuntimeException;
 
-class SummaryItem extends AbstractEntity
+class SummaryItem extends Entity
 {
     use Makeable;
 
     /**
-     * @var BigDecimal
+     * @var \Brick\Math\BigDecimal
      */
     private $taxRate;
 
     /**
-     * @var BigDecimal
+     * @var \Brick\Math\BigDecimal
      */
     private $taxableAmount;
 
     /**
-     * @var BigDecimal
+     * @var \Brick\Math\BigDecimal
      */
     private $taxAmount;
 
     /**
-     * @var ?VatCollectionMode
+     * @var ?\Condividendo\FatturaPA\Enums\VatCollectionMode
      */
     private $vatCollectionMode;
 
     /**
-     * @var ?Nature
+     * @var ?\Condividendo\FatturaPA\Enums\Nature
      */
     private $nature;
 
     /**
-     * @var ?RegulatoryReference
+     * @var ?\Condividendo\FatturaPA\Enums\RegulatoryReference
      */
     private $regulatoryReference;
-
 
     public function setTaxRate(BigDecimal $rate): self
     {
         $this->taxRate = $rate;
+
         return $this;
     }
-
 
     public function setTaxableAmount(BigDecimal $amount): self
     {
         $this->taxableAmount = $amount;
+
         return $this;
     }
-
 
     public function setTaxAmount(BigDecimal $amount): self
     {
         $this->taxAmount = $amount;
+
         return $this;
     }
-
 
     public function setNature(Nature $nature): self
     {
         $this->nature = $nature;
+
         return $this;
     }
-
 
     public function setRegulatoryReference(RegulatoryReference $ref): self
     {
         $this->regulatoryReference = $ref;
+
         return $this;
     }
-
 
     public function setVatCollectionMode(VatCollectionMode $collectionMode): self
     {
         $this->vatCollectionMode = $collectionMode;
+
         return $this;
     }
 
-    /**
-     * @return SummaryItemTag
-     */
-    public function getTag()
+    public function getTag(): SummaryItemTag
     {
         $tag = SummaryItemTag::make()
-                ->setTaxRate($this->taxRate)
-                ->setTaxableAmount($this->taxableAmount)
-                ->setTaxAmount($this->taxAmount);
+            ->setTaxRate($this->taxRate)
+            ->setTaxableAmount($this->taxableAmount)
+            ->setTaxAmount($this->taxAmount);
+
         if ($this->vatCollectionMode) {
             $tag->setVatCollectionMode($this->vatCollectionMode);
         }
+
         if ($this->nature) {
-            assert(!empty($this->regulatoryReference), "Regulatory Reference must be set if Nature is provided");
+            if (!$this->regulatoryReference) {
+                throw new RuntimeException("Regulatory Reference must be set if Nature is provided");
+            }
+
             $tag->setNature($this->nature);
             $tag->setRegulatoryReference($this->regulatoryReference);
         }
+
         return $tag;
     }
 }

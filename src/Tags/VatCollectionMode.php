@@ -2,11 +2,12 @@
 
 namespace Condividendo\FatturaPA\Tags;
 
+use Condividendo\FatturaPA\Enums\VatCollectionMode as VatCollectionModeEnum;
 use Condividendo\FatturaPA\Traits\Makeable;
 use DOMDocument;
 use DOMElement;
 
-class VatCollectionMode extends AbstractTag
+class VatCollectionMode extends Tag
 {
     use Makeable;
 
@@ -15,9 +16,10 @@ class VatCollectionMode extends AbstractTag
      */
     private $collectionMode;
 
-    public function setVatCollectionMode(\Condividendo\FatturaPA\Enums\VatCollectionMode $collectionMode): self
+    public function setVatCollectionMode(VatCollectionModeEnum $collectionMode): self
     {
         $this->collectionMode = $collectionMode;
+
         return $this;
     }
 

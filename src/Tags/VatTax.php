@@ -7,21 +7,22 @@ use Condividendo\FatturaPA\Traits\Makeable;
 use DOMDocument;
 use DOMElement;
 
-class VatTax extends AbstractTag
+class VatTax extends Tag
 {
     use Makeable;
 
     /**
-     * @var BigDecimal
+     * @var \Brick\Math\BigDecimal
      */
     private $percentage;
 
     /**
-     * @param BigDecimal $ratio Percentage as a ratio between [0,1]
+     * @param \Brick\Math\BigDecimal $ratio Percentage as a ratio between [0,1]
      */
     public function setRate(BigDecimal $ratio): self
     {
         $this->percentage = $ratio;
+
         return $this;
     }
 

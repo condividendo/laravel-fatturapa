@@ -7,18 +7,19 @@ use Condividendo\FatturaPA\Traits\Makeable;
 use DOMDocument;
 use DOMElement;
 
-class DocumentAmount extends AbstractTag
+class DocumentAmount extends Tag
 {
     use Makeable;
 
     /**
-     * @var BigDecimal
+     * @var \Brick\Math\BigDecimal
      */
     private $amount;
 
     public function setDocumentAmount(BigDecimal $amount): self
     {
         $this->amount = $amount;
+
         return $this;
     }
 

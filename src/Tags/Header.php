@@ -6,43 +6,43 @@ use Condividendo\FatturaPA\Traits\Makeable;
 use DOMDocument;
 use DOMElement;
 
-class Header extends AbstractTag
+class Header extends Tag
 {
     use Makeable;
 
     /**
-     * @var TransmissionData
+     * @var \Condividendo\FatturaPA\Tags\TransmissionData
      */
     private $transmissionData;
 
     /**
-     * @var Supplier
+     * @var \Condividendo\FatturaPA\Tags\Supplier
      */
     private $supplier;
 
     /**
-     * @var Customer
+     * @var \Condividendo\FatturaPA\Tags\Customer
      */
     private $customer;
-
 
     public function setTransmissionData(TransmissionData $data): self
     {
         $this->transmissionData = $data;
+
         return $this;
     }
-
 
     public function setSupplier(Supplier $supplier): self
     {
         $this->supplier = $supplier;
+
         return $this;
     }
-
 
     public function setCustomer(Customer $customer): self
     {
         $this->customer = $customer;
+
         return $this;
     }
 

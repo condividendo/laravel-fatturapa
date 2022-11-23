@@ -2,11 +2,12 @@
 
 namespace Condividendo\FatturaPA\Tags;
 
+use Condividendo\FatturaPA\Enums\LiquidationStatus as LiquidationStatusEnum;
 use Condividendo\FatturaPA\Traits\Makeable;
 use DOMDocument;
 use DOMElement;
 
-class LiquidationStatus extends AbstractTag
+class LiquidationStatus extends Tag
 {
     use Makeable;
 
@@ -15,9 +16,10 @@ class LiquidationStatus extends AbstractTag
      */
     private $status;
 
-    public function setLiquidationStatus(\Condividendo\FatturaPA\Enums\LiquidationStatus $status): self
+    public function setLiquidationStatus(LiquidationStatusEnum $status): self
     {
         $this->status = $status;
+
         return $this;
     }
 

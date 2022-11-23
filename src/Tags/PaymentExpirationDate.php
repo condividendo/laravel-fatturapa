@@ -6,7 +6,7 @@ use Condividendo\FatturaPA\Traits\Makeable;
 use DOMDocument;
 use DOMElement;
 
-class PaymentExpirationDate extends AbstractTag
+class PaymentExpirationDate extends Tag
 {
     use Makeable;
 
@@ -18,6 +18,7 @@ class PaymentExpirationDate extends AbstractTag
     public function setPaymentExpirationDate(string $date): self
     {
         $this->date = $date;
+
         return $this;
     }
 

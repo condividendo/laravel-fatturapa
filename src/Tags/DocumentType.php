@@ -2,11 +2,12 @@
 
 namespace Condividendo\FatturaPA\Tags;
 
+use Condividendo\FatturaPA\Enums\Type;
 use Condividendo\FatturaPA\Traits\Makeable;
 use DOMDocument;
 use DOMElement;
 
-class DocumentType extends AbstractTag
+class DocumentType extends Tag
 {
     use Makeable;
 
@@ -15,9 +16,10 @@ class DocumentType extends AbstractTag
      */
     private $type;
 
-    public function setType(\Condividendo\FatturaPA\Enums\Type $type): self
+    public function setType(Type $type): self
     {
         $this->type = $type;
+
         return $this;
     }
 

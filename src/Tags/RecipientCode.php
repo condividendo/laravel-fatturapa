@@ -6,7 +6,7 @@ use Condividendo\FatturaPA\Traits\Makeable;
 use DOMDocument;
 use DOMElement;
 
-class RecipientCode extends AbstractTag
+class RecipientCode extends Tag
 {
     use Makeable;
 
@@ -18,6 +18,7 @@ class RecipientCode extends AbstractTag
     public function setCode(string $code): self
     {
         $this->code = $code;
+
         return $this;
     }
 

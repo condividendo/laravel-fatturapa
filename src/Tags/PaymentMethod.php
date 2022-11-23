@@ -2,11 +2,12 @@
 
 namespace Condividendo\FatturaPA\Tags;
 
+use Condividendo\FatturaPA\Enums\PaymentMethod as PaymentMethodEnum;
 use Condividendo\FatturaPA\Traits\Makeable;
 use DOMDocument;
 use DOMElement;
 
-class PaymentMethod extends AbstractTag
+class PaymentMethod extends Tag
 {
     use Makeable;
 
@@ -15,9 +16,10 @@ class PaymentMethod extends AbstractTag
      */
     private $method;
 
-    public function setPaymentMethod(\Condividendo\FatturaPA\Enums\PaymentMethod $method): self
+    public function setPaymentMethod(PaymentMethodEnum $method): self
     {
         $this->method = $method;
+
         return $this;
     }
 

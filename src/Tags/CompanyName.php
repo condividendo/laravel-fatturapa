@@ -6,7 +6,7 @@ use Condividendo\FatturaPA\Traits\Makeable;
 use DOMDocument;
 use DOMElement;
 
-class CompanyName extends AbstractTag
+class CompanyName extends Tag
 {
     use Makeable;
 
@@ -18,6 +18,7 @@ class CompanyName extends AbstractTag
     public function setName(string $name): self
     {
         $this->name = $name;
+
         return $this;
     }
 

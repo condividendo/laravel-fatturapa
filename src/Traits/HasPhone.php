@@ -10,12 +10,12 @@ trait HasPhone
     protected $phone;
 
     /**
-     * @return self
      * @noinspection PhpMissingReturnTypeInspection
      */
-    public function setPhone(string $phone)
+    public function setPhone(string $phone): self
     {
         $this->phone = $phone;
+
         return $this;
     }
 }

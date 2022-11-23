@@ -6,7 +6,7 @@ use Condividendo\FatturaPA\Traits\Makeable;
 use DOMDocument;
 use DOMElement;
 
-class Street extends AbstractTag
+class Street extends Tag
 {
     use Makeable;
 
@@ -18,6 +18,7 @@ class Street extends AbstractTag
     public function setStreet(string $street): self
     {
         $this->street = $street;
+
         return $this;
     }
 

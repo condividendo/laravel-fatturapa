@@ -6,7 +6,7 @@ use Condividendo\FatturaPA\Traits\Makeable;
 use DOMDocument;
 use DOMElement;
 
-class ShareHolders extends AbstractTag
+class ShareHolders extends Tag
 {
     use Makeable;
 
@@ -18,6 +18,7 @@ class ShareHolders extends AbstractTag
     public function setShareHolders(string $shareHolders): self
     {
         $this->shareHolders = $shareHolders;
+
         return $this;
     }
 

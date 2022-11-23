@@ -6,7 +6,7 @@ use Condividendo\FatturaPA\Traits\Makeable;
 use DOMDocument;
 use DOMElement;
 
-class DocumentNumber extends AbstractTag
+class DocumentNumber extends Tag
 {
     use Makeable;
 
@@ -18,6 +18,7 @@ class DocumentNumber extends AbstractTag
     public function setDocumentNumber(string $number): self
     {
         $this->number = $number;
+
         return $this;
     }
 

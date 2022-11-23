@@ -13,13 +13,14 @@ use Condividendo\FatturaPA\Entities\REARegistration;
 use Condividendo\FatturaPA\Entities\SummaryItem;
 use Condividendo\FatturaPA\Entities\Supplier;
 use Condividendo\FatturaPA\Enums\LiquidationStatus;
+use Condividendo\FatturaPA\Enums\Nature;
 use Condividendo\FatturaPA\Enums\PaymentCondition;
 use Condividendo\FatturaPA\Enums\PaymentMethod;
+use Condividendo\FatturaPA\Enums\RegulatoryReference;
 use Condividendo\FatturaPA\Enums\ShareHolder;
 use Condividendo\FatturaPA\Enums\TaxRegime;
 use Condividendo\FatturaPA\Enums\TransmissionFormat;
 use Condividendo\FatturaPA\Enums\Type;
-use Condividendo\FatturaPA\Enums\VatCollectionMode;
 use Condividendo\FatturaPA\FatturaPA;
 use Condividendo\FatturaPA\FatturaPABuilder;
 use Condividendo\FatturaPA\Tests\TestCase;
@@ -28,8 +29,8 @@ class Build4Test extends TestCase
 {
     public function test_xml(): void
     {
-        /** @var string $xml */
         $xml = $this->build()->toXML()->asXML();
+        assert(is_string($xml));
 
         $this->assertXmlStringEqualsXmlFile(__DIR__ . '/../fixtures/4.xml', $xml);
     }
@@ -109,15 +110,15 @@ class Build4Test extends TestCase
                             ->setPrice(BigDecimal::of('10.00'))
                             ->setTotalAmount(BigDecimal::of('10.00'))
                             ->setTaxRate(BigDecimal::of('0.22'))
-                            ->setQuantity(BigDecimal::of('1.00'))
+                            ->setQuantity(BigDecimal::of('1.00')),
                     ])
                     ->setSummaryItems([
                         SummaryItem::make()
                             ->setTaxableAmount(BigDecimal::of('10.00'))
                             ->setTaxRate(BigDecimal::of('0.00'))
                             ->setTaxAmount(BigDecimal::of('0.00'))
-                            ->setNature(\Condividendo\FatturaPA\Enums\Nature::N3_3())
-                            ->setRegulatoryReference(\Condividendo\FatturaPA\Enums\RegulatoryReference::N3_3())
+                            ->setNature(Nature::N3_3())
+                            ->setRegulatoryReference(RegulatoryReference::N3_3()),
                     ])
                     ->setPaymentData(
                         PaymentData::make()

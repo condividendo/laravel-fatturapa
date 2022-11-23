@@ -6,7 +6,7 @@ use Condividendo\FatturaPA\Traits\Makeable;
 use DOMDocument;
 use DOMElement;
 
-class FiscalCode extends AbstractTag
+class FiscalCode extends Tag
 {
     use Makeable;
 
@@ -18,6 +18,7 @@ class FiscalCode extends AbstractTag
     public function setFiscalCode(string $code): self
     {
         $this->code = $code;
+
         return $this;
     }
 

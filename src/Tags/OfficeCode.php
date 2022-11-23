@@ -6,7 +6,7 @@ use Condividendo\FatturaPA\Traits\Makeable;
 use DOMDocument;
 use DOMElement;
 
-class OfficeCode extends AbstractTag
+class OfficeCode extends Tag
 {
     use Makeable;
 
@@ -18,6 +18,7 @@ class OfficeCode extends AbstractTag
     public function setOfficeCode(string $code): self
     {
         $this->code = $code;
+
         return $this;
     }
 

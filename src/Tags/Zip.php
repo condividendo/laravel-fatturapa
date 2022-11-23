@@ -6,7 +6,7 @@ use Condividendo\FatturaPA\Traits\Makeable;
 use DOMDocument;
 use DOMElement;
 
-class Zip extends AbstractTag
+class Zip extends Tag
 {
     use Makeable;
 
@@ -18,6 +18,7 @@ class Zip extends AbstractTag
     public function setZip(string $zip): self
     {
         $this->zip = $zip;
+
         return $this;
     }
 

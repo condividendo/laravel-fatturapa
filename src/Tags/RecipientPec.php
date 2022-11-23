@@ -6,7 +6,7 @@ use Condividendo\FatturaPA\Traits\Makeable;
 use DOMDocument;
 use DOMElement;
 
-class RecipientPec extends AbstractTag
+class RecipientPec extends Tag
 {
     use Makeable;
 
@@ -18,6 +18,7 @@ class RecipientPec extends AbstractTag
     public function setPec(string $pec): self
     {
         $this->pec = $pec;
+
         return $this;
     }
 

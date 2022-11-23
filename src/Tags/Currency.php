@@ -6,7 +6,7 @@ use Condividendo\FatturaPA\Traits\Makeable;
 use DOMDocument;
 use DOMElement;
 
-class Currency extends AbstractTag
+class Currency extends Tag
 {
     use Makeable;
 
@@ -18,6 +18,7 @@ class Currency extends AbstractTag
     public function setCurrency(string $currency): self
     {
         $this->currency = $currency;
+
         return $this;
     }
 

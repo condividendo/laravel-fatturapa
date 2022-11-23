@@ -6,7 +6,7 @@ use Condividendo\FatturaPA\Traits\Makeable;
 use DOMDocument;
 use DOMElement;
 
-class Fax extends AbstractTag
+class Fax extends Tag
 {
     use Makeable;
 
@@ -18,6 +18,7 @@ class Fax extends AbstractTag
     public function setFax(string $fax): self
     {
         $this->fax = $fax;
+
         return $this;
     }
 

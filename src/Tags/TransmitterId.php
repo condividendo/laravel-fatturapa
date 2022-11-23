@@ -6,29 +6,31 @@ use Condividendo\FatturaPA\Traits\Makeable;
 use DOMDocument;
 use DOMElement;
 
-class TransmitterId extends AbstractTag
+class TransmitterId extends Tag
 {
     use Makeable;
 
     /**
-     * @var CountryId
+     * @var \Condividendo\FatturaPA\Tags\CountryId
      */
     private $countryId;
 
     /**
-     * @var CodeId
+     * @var \Condividendo\FatturaPA\Tags\CodeId
      */
     private $codeId;
 
     public function setCountryId(CountryId $id): self
     {
         $this->countryId = $id;
+
         return $this;
     }
 
     public function setCodeId(CodeId $id): self
     {
         $this->codeId = $id;
+
         return $this;
     }
 

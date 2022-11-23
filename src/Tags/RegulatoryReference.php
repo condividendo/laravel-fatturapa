@@ -2,11 +2,12 @@
 
 namespace Condividendo\FatturaPA\Tags;
 
+use Condividendo\FatturaPA\Enums\RegulatoryReference as RegulatoryReferenceEnum;
 use Condividendo\FatturaPA\Traits\Makeable;
 use DOMDocument;
 use DOMElement;
 
-class RegulatoryReference extends AbstractTag
+class RegulatoryReference extends Tag
 {
     use Makeable;
 
@@ -15,9 +16,10 @@ class RegulatoryReference extends AbstractTag
      */
     private $regulatoryReference;
 
-    public function setRegulatoryReference(\Condividendo\FatturaPA\Enums\RegulatoryReference $regulatoryReference): self
+    public function setRegulatoryReference(RegulatoryReferenceEnum $regulatoryReference): self
     {
         $this->regulatoryReference = $regulatoryReference;
+
         return $this;
     }
 

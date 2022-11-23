@@ -2,11 +2,12 @@
 
 namespace Condividendo\FatturaPA\Tags;
 
+use Condividendo\FatturaPA\Enums\TaxRegime as TaxRegimeEnum;
 use Condividendo\FatturaPA\Traits\Makeable;
 use DOMDocument;
 use DOMElement;
 
-class TaxRegime extends AbstractTag
+class TaxRegime extends Tag
 {
     use Makeable;
 
@@ -15,9 +16,10 @@ class TaxRegime extends AbstractTag
      */
     private $taxRegime;
 
-    public function setTaxRegime(\Condividendo\FatturaPA\Enums\TaxRegime $taxRegime): self
+    public function setTaxRegime(TaxRegimeEnum $taxRegime): self
     {
         $this->taxRegime = $taxRegime->value;
+
         return $this;
     }
 

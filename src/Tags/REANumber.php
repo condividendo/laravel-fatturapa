@@ -6,7 +6,7 @@ use Condividendo\FatturaPA\Traits\Makeable;
 use DOMDocument;
 use DOMElement;
 
-class REANumber extends AbstractTag
+class REANumber extends Tag
 {
     use Makeable;
 
@@ -18,6 +18,7 @@ class REANumber extends AbstractTag
     public function setREANumber(string $number): self
     {
         $this->number = $number;
+
         return $this;
     }
 

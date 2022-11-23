@@ -7,18 +7,19 @@ use Condividendo\FatturaPA\Traits\Makeable;
 use DOMDocument;
 use DOMElement;
 
-class Capital extends AbstractTag
+class Capital extends Tag
 {
     use Makeable;
 
     /**
-     * @var BigNumber
+     * @var \Brick\Math\BigNumber
      */
     private $capital;
 
     public function setCapital(BigNumber $capital): self
     {
         $this->capital = $capital;
+
         return $this;
     }
 

@@ -7,18 +7,19 @@ use Condividendo\FatturaPA\Traits\Makeable;
 use DOMDocument;
 use DOMElement;
 
-class UnitPrice extends AbstractTag
+class UnitPrice extends Tag
 {
     use Makeable;
 
     /**
-     * @var BigDecimal
+     * @var \Brick\Math\BigDecimal
      */
     private $unitPrice;
 
     public function setUnitPrice(BigDecimal $unitPrice): self
     {
         $this->unitPrice = $unitPrice;
+
         return $this;
     }
 

@@ -2,11 +2,12 @@
 
 namespace Condividendo\FatturaPA\Tags;
 
+use Condividendo\FatturaPA\Enums\PaymentCondition as PaymentConditionEnum;
 use Condividendo\FatturaPA\Traits\Makeable;
 use DOMDocument;
 use DOMElement;
 
-class PaymentCondition extends AbstractTag
+class PaymentCondition extends Tag
 {
     use Makeable;
 
@@ -15,9 +16,10 @@ class PaymentCondition extends AbstractTag
      */
     private $paymentCondition;
 
-    public function setPaymentCondition(\Condividendo\FatturaPA\Enums\PaymentCondition $paymentCondition): self
+    public function setPaymentCondition(PaymentConditionEnum $paymentCondition): self
     {
         $this->paymentCondition = $paymentCondition;
+
         return $this;
     }
 

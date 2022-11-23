@@ -28,8 +28,8 @@ class Build1Test extends TestCase
 {
     public function test_xml(): void
     {
-        /** @var string $xml */
         $xml = $this->build()->toXML()->asXML();
+        assert(is_string($xml));
 
         $this->assertXmlStringEqualsXmlFile(__DIR__ . '/../fixtures/1.xml', $xml);
     }
@@ -108,14 +108,14 @@ class Build1Test extends TestCase
                             ->setPrice(BigDecimal::of('10.00'))
                             ->setTotalAmount(BigDecimal::of('10.00'))
                             ->setTaxRate(BigDecimal::of('0.22'))
-                            ->setQuantity(BigDecimal::of('1.00'))
+                            ->setQuantity(BigDecimal::of('1.00')),
                     ])
                     ->setSummaryItems([
                         SummaryItem::make()
                             ->setTaxableAmount(BigDecimal::of('10.00'))
                             ->setTaxRate(BigDecimal::of('0.22'))
                             ->setTaxAmount(BigDecimal::of('2.20'))
-                            ->setVatCollectionMode(VatCollectionMode::I())
+                            ->setVatCollectionMode(VatCollectionMode::I()),
                     ])
                     ->setPaymentData(
                         PaymentData::make()

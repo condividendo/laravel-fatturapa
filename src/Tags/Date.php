@@ -6,7 +6,7 @@ use Condividendo\FatturaPA\Traits\Makeable;
 use DOMDocument;
 use DOMElement;
 
-class Date extends AbstractTag
+class Date extends Tag
 {
     use Makeable;
 
@@ -18,6 +18,7 @@ class Date extends AbstractTag
     public function setDate(string $date): self
     {
         $this->date = $date;
+
         return $this;
     }
 

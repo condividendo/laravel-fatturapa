@@ -3,14 +3,15 @@
 namespace Condividendo\FatturaPA\Tests;
 
 use Condividendo\FatturaPA\ServiceProvider;
-use Illuminate\Foundation\Application;
 use Orchestra\Testbench\TestCase as BaseTestCase;
 
 abstract class TestCase extends BaseTestCase
 {
     /**
-     * @param Application $app
-     * @return string[]
+     * @param \Illuminate\Foundation\Application $app
+     * @return array<string>
+     * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint
      */
     protected function getPackageProviders($app): array
     {

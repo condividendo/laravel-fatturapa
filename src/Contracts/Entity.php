@@ -5,7 +5,9 @@ namespace Condividendo\FatturaPA\Contracts;
 interface Entity extends Makeable
 {
     /**
-     * @return Tag
+     * @return \Condividendo\FatturaPA\Contracts\Tag
+     * @noinspection PhpMissingReturnTypeInspection
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.ReturnTypeHint
      */
     public function getTag();
 }

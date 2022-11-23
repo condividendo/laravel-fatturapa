@@ -10,12 +10,12 @@ trait HasFax
     private $fax;
 
     /**
-     * @return self
      * @noinspection PhpMissingReturnTypeInspection
      */
-    public function setFax(string $fax)
+    public function setFax(string $fax): self
     {
         $this->fax = $fax;
+
         return $this;
     }
 }

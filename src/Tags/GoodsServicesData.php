@@ -6,28 +6,29 @@ use Condividendo\FatturaPA\Traits\Makeable;
 use DOMDocument;
 use DOMElement;
 
-class GoodsServicesData extends AbstractTag
+class GoodsServicesData extends Tag
 {
     use Makeable;
 
     /**
-     * @var Item[]
+     * @var array<\Condividendo\FatturaPA\Tags\Item>
      */
     private $lineItems;
 
     /**
-     * @var SummaryItem[]
+     * @var array<\Condividendo\FatturaPA\Tags\SummaryItem>
      */
     private $summaryItems;
 
     /**
-     * @param array<int, Item> $items
+     * @param array<int, \Condividendo\FatturaPA\Tags\Item> $items
      */
     public function setItems(array $items): self
     {
         foreach ($items as $item) {
             $this->addItem($item);
         }
+
         return $this;
     }
 
@@ -35,16 +36,17 @@ class GoodsServicesData extends AbstractTag
     {
         $this->lineItems[] = $item;
         $item->setLineNumber(count($this->lineItems));
+
         return $this;
     }
 
-
     /**
-     * @param array<int, SummaryItem> $summaryItems
+     * @param array<int, \Condividendo\FatturaPA\Tags\SummaryItem> $summaryItems
      */
     public function setSummaryItems(array $summaryItems): self
     {
         $this->summaryItems = $summaryItems;
+
         return $this;
     }
 
@@ -58,6 +60,7 @@ class GoodsServicesData extends AbstractTag
         foreach ($this->lineItems as $item) {
             $e->appendChild($item->toDOMElement($dom));
         }
+
         foreach ($this->summaryItems as $item) {
             $e->appendChild($item->toDOMElement($dom));
         }

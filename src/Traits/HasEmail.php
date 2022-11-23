@@ -10,12 +10,12 @@ trait HasEmail
     protected $email;
 
     /**
-     * @return self
      * @noinspection PhpMissingReturnTypeInspection
      */
-    public function setEmail(string $email)
+    public function setEmail(string $email): self
     {
         $this->email = $email;
+
         return $this;
     }
 }

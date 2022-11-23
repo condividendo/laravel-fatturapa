@@ -6,7 +6,7 @@ use Condividendo\FatturaPA\Traits\Makeable;
 use DOMDocument;
 use DOMElement;
 
-class ProvinceOrState extends AbstractTag
+class ProvinceOrState extends Tag
 {
     use Makeable;
 
@@ -18,6 +18,7 @@ class ProvinceOrState extends AbstractTag
     public function setProvinceOrState(string $provinceOrState): self
     {
         $this->provinceOrState = $provinceOrState;
+
         return $this;
     }
 

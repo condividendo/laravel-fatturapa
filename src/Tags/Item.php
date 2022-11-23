@@ -7,74 +7,79 @@ use Condividendo\FatturaPA\Traits\Makeable;
 use DOMDocument;
 use DOMElement;
 
-class Item extends AbstractTag
+class Item extends Tag
 {
     use Makeable;
 
     /**
-     * @var LineNumber
+     * @var \Condividendo\FatturaPA\Tags\LineNumber
      */
     private $lineNumber;
 
     /**
-     * @var Description
+     * @var \Condividendo\FatturaPA\Tags\Description
      */
     private $description;
 
     /**
-     * @var Quantity
+     * @var \Condividendo\FatturaPA\Tags\Quantity
      */
     private $quantity;
 
     /**
-     * @var UnitPrice
+     * @var \Condividendo\FatturaPA\Tags\UnitPrice
      */
     private $unitPrice;
 
     /**
-     * @var TotalPrice
+     * @var \Condividendo\FatturaPA\Tags\TotalPrice
      */
     private $totalPrice;
 
     /**
-     * @var VatTax
+     * @var \Condividendo\FatturaPA\Tags\VatTax
      */
     private $vatTax;
-
 
     public function setLineNumber(int $lineNumber): self
     {
         $this->lineNumber = LineNumber::make()->setNumber($lineNumber);
+
         return $this;
     }
 
     public function setDescription(string $description): self
     {
         $this->description = Description::make()->setDescription($description);
+
         return $this;
     }
 
     public function setQuantity(BigDecimal $quantity): self
     {
         $this->quantity = Quantity::make()->setQuantity($quantity);
+
         return $this;
     }
 
     public function setUnitPrice(BigDecimal $unitPrice): self
     {
         $this->unitPrice = UnitPrice::make()->setUnitPrice($unitPrice);
+
         return $this;
     }
 
     public function setTotalAmount(BigDecimal $totalPrice): self
     {
         $this->totalPrice = TotalPrice::make()->setTotalPrice($totalPrice);
+
         return $this;
     }
 
     public function setTaxRate(BigDecimal $rate): self
     {
         $this->vatTax = VatTax::make()->setRate($rate);
+
         return $this;
     }
 

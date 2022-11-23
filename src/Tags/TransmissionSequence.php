@@ -9,7 +9,7 @@ use DOMElement;
 /**
  * ProgressivoInvio
  */
-class TransmissionSequence extends AbstractTag
+class TransmissionSequence extends Tag
 {
     use Makeable;
 
@@ -21,6 +21,7 @@ class TransmissionSequence extends AbstractTag
     public function setSequence(string $sequence): self
     {
         $this->sequence = $sequence;
+
         return $this;
     }
 
