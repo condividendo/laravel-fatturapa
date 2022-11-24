@@ -11,9 +11,9 @@ class Address extends Tag
     use Makeable;
 
     /**
-     * @var \Condividendo\FatturaPA\Tags\Street
+     * @var \Condividendo\FatturaPA\Tags\AddressLine
      */
-    private $street;
+    private $addressLine;
 
     /**
      * @var \Condividendo\FatturaPA\Tags\StreetNumber
@@ -40,9 +40,9 @@ class Address extends Tag
      */
     private $country;
 
-    public function setStreet(string $street): self
+    public function setAddressLine(string $addressLine): self
     {
-        $this->street = Street::make()->setStreet($street);
+        $this->addressLine = AddressLine::make()->setAddressLine($addressLine);
 
         return $this;
     }
@@ -89,7 +89,7 @@ class Address extends Tag
     {
         $e = $dom->createElement('Sede');
 
-        $e->appendChild($this->street->toDOMElement($dom));
+        $e->appendChild($this->addressLine->toDOMElement($dom));
         $e->appendChild($this->streetNumber->toDOMElement($dom));
         $e->appendChild($this->zip->toDOMElement($dom));
         $e->appendChild($this->city->toDOMElement($dom));

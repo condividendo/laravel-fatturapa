@@ -55,7 +55,7 @@ class Build4Test extends TestCase
                     ->setVatNumber('SM', '012345')
                     ->setAddress(
                         Address::make()
-                            ->setStreet('Via Test')
+                            ->setAddressLine('Via Test')
                             ->setStreetNumber('1')
                             ->setPostalCode('1')
                             ->setCity('San Marino')
@@ -77,7 +77,7 @@ class Build4Test extends TestCase
                     ->setFiscalCode('RSSMRA73L09Z103F')
                     ->setAddress(
                         Address::make()
-                            ->setStreet('Via Italia')
+                            ->setAddressLine('Via Italia')
                             ->setStreetNumber('123')
                             ->setPostalCode('12345')
                             ->setCity('Milano')

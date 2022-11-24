@@ -6,18 +6,18 @@ use Condividendo\FatturaPA\Traits\Makeable;
 use DOMDocument;
 use DOMElement;
 
-class Street extends Tag
+class AddressLine extends Tag
 {
     use Makeable;
 
     /**
      * @var string
      */
-    private $street;
+    private $value;
 
-    public function setStreet(string $street): self
+    public function setAddressLine(string $value): self
     {
-        $this->street = $street;
+        $this->value = $value;
 
         return $this;
     }
@@ -27,6 +27,6 @@ class Street extends Tag
      */
     public function toDOMElement(DOMDocument $dom): DOMElement
     {
-        return $dom->createElement('Indirizzo', $this->street);
+        return $dom->createElement('Indirizzo', $this->value);
     }
 }
