@@ -2,17 +2,18 @@
 
 namespace Condividendo\FatturaPA\Entities;
 
-use Brick\Math\BigDecimal;
 use Condividendo\FatturaPA\Enums\Nature;
 use Condividendo\FatturaPA\Enums\RegulatoryReference;
 use Condividendo\FatturaPA\Enums\VatCollectionMode;
 use Condividendo\FatturaPA\Tags\SummaryItem as SummaryItemTag;
 use Condividendo\FatturaPA\Traits\Makeable;
+use Condividendo\FatturaPA\Traits\UsesDecimal;
 use RuntimeException;
 
 class SummaryItem extends Entity
 {
     use Makeable;
+    use UsesDecimal;
 
     /**
      * @var \Brick\Math\BigDecimal
@@ -44,23 +45,35 @@ class SummaryItem extends Entity
      */
     private $regulatoryReference;
 
-    public function setTaxRate(BigDecimal $rate): self
+    /**
+     * @param string|\Brick\Math\BigDecimal $rate
+     * @return $this
+     */
+    public function setTaxRate($rate): self
     {
-        $this->taxRate = $rate;
+        $this->taxRate = static::makeDecimal($rate);
 
         return $this;
     }
 
-    public function setTaxableAmount(BigDecimal $amount): self
+    /**
+     * @param string|\Brick\Math\BigDecimal $amount
+     * @return $this
+     */
+    public function setTaxableAmount($amount): self
     {
-        $this->taxableAmount = $amount;
+        $this->taxableAmount = static::makeDecimal($amount);
 
         return $this;
     }
 
-    public function setTaxAmount(BigDecimal $amount): self
+    /**
+     * @param string|\Brick\Math\BigDecimal $amount
+     * @return $this
+     */
+    public function setTaxAmount($amount): self
     {
-        $this->taxAmount = $amount;
+        $this->taxAmount = static::makeDecimal($amount);
 
         return $this;
     }

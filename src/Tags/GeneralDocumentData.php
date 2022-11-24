@@ -7,6 +7,7 @@ use Condividendo\FatturaPA\Enums\Type;
 use Condividendo\FatturaPA\Traits\Makeable;
 use DOMDocument;
 use DOMElement;
+use Illuminate\Support\Carbon;
 
 class GeneralDocumentData extends Tag
 {
@@ -49,7 +50,7 @@ class GeneralDocumentData extends Tag
         return $this;
     }
 
-    public function setDate(string $date): self
+    public function setDate(Carbon $date): self
     {
         $this->date = Date::make()->setDate($date);
 

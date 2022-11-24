@@ -2,7 +2,6 @@
 
 namespace Condividendo\FatturaPA\Entities;
 
-use Brick\Math\BigDecimal;
 use Condividendo\FatturaPA\Enums\PaymentCondition;
 use Condividendo\FatturaPA\Enums\PaymentMethod;
 use Condividendo\FatturaPA\Enums\Type;
@@ -10,11 +9,15 @@ use Condividendo\FatturaPA\Tags\Body as BodyTag;
 use Condividendo\FatturaPA\Tags\PaymentData as PaymentDataTag;
 use Condividendo\FatturaPA\Tags\PaymentDetail;
 use Condividendo\FatturaPA\Traits\Makeable;
+use Condividendo\FatturaPA\Traits\UsesDate;
+use Condividendo\FatturaPA\Traits\UsesDecimal;
 use RuntimeException;
 
 class Body extends Entity
 {
     use Makeable;
+    use UsesDate;
+    use UsesDecimal;
 
     /**
      * @var \Condividendo\FatturaPA\Enums\Type
@@ -27,7 +30,7 @@ class Body extends Entity
     private $currency;
 
     /**
-     * @var string
+     * @var \Illuminate\Support\Carbon
      */
     private $date;
 
@@ -90,16 +93,24 @@ class Body extends Entity
         return $this;
     }
 
-    public function setDate(string $date): self
+    /**
+     * @param string|\Illuminate\Support\Carbon $date
+     * @return $this
+     */
+    public function setDate($date): self
     {
-        $this->date = $date;
+        $this->date = static::makeDate($date);
 
         return $this;
     }
 
-    public function setDocumentAmount(BigDecimal $amount): self
+    /**
+     * @param string|\Brick\Math\BigDecimal $amount
+     * @return $this
+     */
+    public function setDocumentAmount($amount): self
     {
-        $this->amount = $amount;
+        $this->amount = static::makeDecimal($amount);
 
         return $this;
     }
@@ -152,9 +163,13 @@ class Body extends Entity
         return $this;
     }
 
-    public function setPaymentAmount(BigDecimal $amount): self
+    /**
+     * @param string|\Brick\Math\BigDecimal $amount
+     * @return $this
+     */
+    public function setPaymentAmount($amount): self
     {
-        $this->paymentAmount = $amount;
+        $this->paymentAmount = static::makeDecimal($amount);
 
         return $this;
     }

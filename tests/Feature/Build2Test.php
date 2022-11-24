@@ -2,7 +2,6 @@
 
 namespace Condividendo\FatturaPA\Tests\Feature;
 
-use Brick\Math\BigDecimal;
 use Condividendo\FatturaPA\Entities\Address;
 use Condividendo\FatturaPA\Entities\Body;
 use Condividendo\FatturaPA\Entities\Customer;
@@ -66,7 +65,7 @@ class Build2Test extends TestCase
                     ->setREANumber("12123")
                     ->setREAOfficeCode("MI")
                     ->setREAShareHolders(ShareHolder::SM())
-                    ->setREACapital(BigDecimal::of('11111.00'))
+                    ->setREACapital('11111.00')
                     ->setREALiquidationStatus(LiquidationStatus::LN())
                     ->setTaxRegime(TaxRegime::RF01())
                     ->setContactsEmail("fiscale@condividendo.eu")
@@ -93,26 +92,26 @@ class Build2Test extends TestCase
                     ->setCurrency('EUR')
                     ->setDate('2022-01-23')
                     ->setNumber('1')
-                    ->setDocumentAmount(BigDecimal::of('12.20'))
+                    ->setDocumentAmount('12.20')
                     ->setDocumentDescription('Causale esempio')
                     ->setItems([
                         Item::make()
                             ->setNumber(1)
                             ->setDescription('Product description')
-                            ->setPrice(BigDecimal::of('10.00'))
-                            ->setTotalAmount(BigDecimal::of('10.00'))
-                            ->setTaxRate(BigDecimal::of('0.22'))
-                            ->setQuantity(BigDecimal::of('1.00')),
+                            ->setPrice('10.00')
+                            ->setTotalAmount('10.00')
+                            ->setTaxRate('0.22')
+                            ->setQuantity('1.00'),
                     ])
                     ->setSummaryItems([
                         SummaryItem::make()
-                            ->setTaxableAmount(BigDecimal::of('10.00'))
-                            ->setTaxRate(BigDecimal::of('0.22'))
-                            ->setTaxAmount(BigDecimal::of('2.20'))
+                            ->setTaxableAmount('10.00')
+                            ->setTaxRate('0.22')
+                            ->setTaxAmount('2.20')
                             ->setVatCollectionMode(VatCollectionMode::I()),
                     ])
                     ->setPaymentMethod(PaymentMethod::MP21())
-                    ->setPaymentAmount(BigDecimal::of('12.20'))
+                    ->setPaymentAmount('12.20')
                     ->setPaymentExpirationDate("2022-10-28")
                     ->setPaymentCondition(PaymentCondition::TP02())
             );

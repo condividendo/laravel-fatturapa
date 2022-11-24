@@ -5,17 +5,18 @@ namespace Condividendo\FatturaPA\Tags;
 use Condividendo\FatturaPA\Traits\Makeable;
 use DOMDocument;
 use DOMElement;
+use Illuminate\Support\Carbon;
 
 class Date extends Tag
 {
     use Makeable;
 
     /**
-     * @var string
+     * @var \Illuminate\Support\Carbon
      */
     private $date;
 
-    public function setDate(string $date): self
+    public function setDate(Carbon $date): self
     {
         $this->date = $date;
 
@@ -27,6 +28,6 @@ class Date extends Tag
      */
     public function toDOMElement(DOMDocument $dom): DOMElement
     {
-        return $dom->createElement('Data', $this->date);
+        return $dom->createElement('Data', $this->date->toDateString());
     }
 }

@@ -2,7 +2,6 @@
 
 namespace Condividendo\FatturaPA\Entities;
 
-use Brick\Math\BigDecimal;
 use Condividendo\FatturaPA\Enums\LiquidationStatus;
 use Condividendo\FatturaPA\Enums\ShareHolder;
 use Condividendo\FatturaPA\Enums\TaxRegime;
@@ -10,11 +9,13 @@ use Condividendo\FatturaPA\Tags\Contacts as ContactsTag;
 use Condividendo\FatturaPA\Tags\REARegistration as REARegistrationTag;
 use Condividendo\FatturaPA\Tags\Supplier as SupplierTag;
 use Condividendo\FatturaPA\Traits\Makeable;
+use Condividendo\FatturaPA\Traits\UsesDecimal;
 use RuntimeException;
 
 class Supplier extends Entity
 {
     use Makeable;
+    use UsesDecimal;
 
     /**
      * @var string
@@ -134,9 +135,13 @@ class Supplier extends Entity
         return $this;
     }
 
-    public function setREACapital(BigDecimal $capital): self
+    /**
+     * @param string|\Brick\Math\BigDecimal $capital
+     * @return $this
+     */
+    public function setREACapital($capital): self
     {
-        $this->reaCapital = $capital;
+        $this->reaCapital = static::makeDecimal($capital);
 
         return $this;
     }

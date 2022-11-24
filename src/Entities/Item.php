@@ -2,13 +2,14 @@
 
 namespace Condividendo\FatturaPA\Entities;
 
-use Brick\Math\BigDecimal;
 use Condividendo\FatturaPA\Tags\Item as ItemTag;
 use Condividendo\FatturaPA\Traits\Makeable;
+use Condividendo\FatturaPA\Traits\UsesDecimal;
 
 class Item extends Entity
 {
     use Makeable;
+    use UsesDecimal;
 
     /**
      * @var int
@@ -54,30 +55,46 @@ class Item extends Entity
         return $this;
     }
 
-    public function setQuantity(BigDecimal $quantity): self
+    /**
+     * @param string|\Brick\Math\BigDecimal $quantity
+     * @return $this
+     */
+    public function setQuantity($quantity): self
     {
-        $this->quantity = $quantity;
+        $this->quantity = static::makeDecimal($quantity);
 
         return $this;
     }
 
-    public function setPrice(BigDecimal $unitPrice): self
+    /**
+     * @param string|\Brick\Math\BigDecimal $unitPrice
+     * @return $this
+     */
+    public function setPrice($unitPrice): self
     {
-        $this->unitPrice = $unitPrice;
+        $this->unitPrice = static::makeDecimal($unitPrice);
 
         return $this;
     }
 
-    public function setTotalAmount(BigDecimal $totalPrice): self
+    /**
+     * @param string|\Brick\Math\BigDecimal $totalPrice
+     * @return $this
+     */
+    public function setTotalAmount($totalPrice): self
     {
-        $this->totalPrice = $totalPrice;
+        $this->totalPrice = static::makeDecimal($totalPrice);
 
         return $this;
     }
 
-    public function setTaxRate(BigDecimal $rate): self
+    /**
+     * @param string|\Brick\Math\BigDecimal $rate
+     * @return $this
+     */
+    public function setTaxRate($rate): self
     {
-        $this->taxRate = $rate;
+        $this->taxRate = static::makeDecimal($rate);
 
         return $this;
     }
