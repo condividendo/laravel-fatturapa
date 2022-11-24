@@ -15,9 +15,9 @@ class Address extends Entity
     private $addressLine;
 
     /**
-     * @var string
+     * @var ?string
      */
-    private $streetNumber;
+    private $streetNumber = null;
 
     /**
      * @var string
@@ -83,12 +83,17 @@ class Address extends Entity
 
     public function getTag(): AddressTag
     {
-        return AddressTag::make()
+        $tag = AddressTag::make()
             ->setAddressLine($this->addressLine)
-            ->setStreetNumber($this->streetNumber)
             ->setCity($this->city)
             ->setPostalCode(strtoupper(substr($this->country, 0, 2)) === "IT" ? $this->zip : "00000")
             ->setProvince($this->provinceOrState)
             ->setCountry($this->country);
+
+        if ($this->streetNumber) {
+            $tag->setStreetNumber($this->streetNumber);
+        }
+
+        return $tag;
     }
 }

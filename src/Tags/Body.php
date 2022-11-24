@@ -24,9 +24,9 @@ class Body extends Tag
     private $goodsServicesData;
 
     /**
-     * @var \Condividendo\FatturaPA\Tags\PaymentData
+     * @var ?\Condividendo\FatturaPA\Tags\PaymentData
      */
-    private $paymentData;
+    private $paymentData = null;
 
     public function __construct()
     {
@@ -126,7 +126,10 @@ class Body extends Tag
 
         $e->appendChild($this->generalData->toDOMElement($dom));
         $e->appendChild($this->goodsServicesData->toDOMElement($dom));
-        $e->appendChild($this->paymentData->toDOMElement($dom));
+
+        if ($this->paymentData) {
+            $e->appendChild($this->paymentData->toDOMElement($dom));
+        }
 
         return $e;
     }

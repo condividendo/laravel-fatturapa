@@ -22,9 +22,9 @@ class Item extends Entity
     private $description;
 
     /**
-     * @var \Brick\Math\BigDecimal
+     * @var ?\Brick\Math\BigDecimal
      */
-    private $quantity;
+    private $quantity = null;
 
     /**
      * @var \Brick\Math\BigDecimal
@@ -101,12 +101,17 @@ class Item extends Entity
 
     public function getTag(): ItemTag
     {
-        return ItemTag::make()
+        $tag = ItemTag::make()
             ->setLineNumber($this->lineNumber)
-            ->setQuantity($this->quantity)
             ->setDescription($this->description)
             ->setTaxRate($this->taxRate)
             ->setUnitPrice($this->unitPrice)
             ->setTotalAmount($this->totalPrice);
+
+        if ($this->quantity) {
+            $tag->setQuantity($this->quantity);
+        }
+
+        return $tag;
     }
 }

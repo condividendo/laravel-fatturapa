@@ -22,14 +22,14 @@ class Supplier extends Tag
     private $address;
 
     /**
-     * @var \Condividendo\FatturaPA\Tags\REARegistration
+     * @var ?\Condividendo\FatturaPA\Tags\REARegistration
      */
-    private $reaRegistration;
+    private $reaRegistration = null;
 
     /**
-     * @var \Condividendo\FatturaPA\Tags\Contacts
+     * @var ?\Condividendo\FatturaPA\Tags\Contacts
      */
-    private $contacts;
+    private $contacts = null;
 
     public function __construct()
     {
@@ -106,8 +106,14 @@ class Supplier extends Tag
 
         $e->appendChild($this->taxableEntity->toDOMElement($dom));
         $e->appendChild($this->address->toDOMElement($dom));
-        $e->appendChild($this->reaRegistration->toDOMElement($dom));
-        $e->appendChild($this->contacts->toDOMElement($dom));
+
+        if ($this->reaRegistration) {
+            $e->appendChild($this->reaRegistration->toDOMElement($dom));
+        }
+
+        if ($this->contacts) {
+            $e->appendChild($this->contacts->toDOMElement($dom));
+        }
 
         return $e;
     }

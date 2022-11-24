@@ -34,14 +34,14 @@ class GeneralDocumentData extends Tag
     private $number;
 
     /**
-     * @var \Condividendo\FatturaPA\Tags\DocumentAmount
+     * @var ?\Condividendo\FatturaPA\Tags\DocumentAmount
      */
-    private $amount;
+    private $amount = null;
 
     /**
-     * @var \Condividendo\FatturaPA\Tags\DocumentDescription
+     * @var ?\Condividendo\FatturaPA\Tags\DocumentDescription
      */
-    private $description;
+    private $description = null;
 
     public function setType(Type $type): self
     {
@@ -96,8 +96,14 @@ class GeneralDocumentData extends Tag
         $e->appendChild($this->currency->toDOMElement($dom));
         $e->appendChild($this->date->toDOMElement($dom));
         $e->appendChild($this->number->toDOMElement($dom));
-        $e->appendChild($this->amount->toDOMElement($dom));
-        $e->appendChild($this->description->toDOMElement($dom));
+
+        if ($this->amount) {
+            $e->appendChild($this->amount->toDOMElement($dom));
+        }
+
+        if ($this->description) {
+            $e->appendChild($this->description->toDOMElement($dom));
+        }
 
         return $e;
     }

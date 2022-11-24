@@ -16,9 +16,9 @@ class Address extends Tag
     private $addressLine;
 
     /**
-     * @var \Condividendo\FatturaPA\Tags\StreetNumber
+     * @var ?\Condividendo\FatturaPA\Tags\StreetNumber
      */
-    private $streetNumber;
+    private $streetNumber = null;
 
     /**
      * @var \Condividendo\FatturaPA\Tags\City
@@ -90,7 +90,11 @@ class Address extends Tag
         $e = $dom->createElement('Sede');
 
         $e->appendChild($this->addressLine->toDOMElement($dom));
-        $e->appendChild($this->streetNumber->toDOMElement($dom));
+
+        if ($this->streetNumber) {
+            $e->appendChild($this->streetNumber->toDOMElement($dom));
+        }
+
         $e->appendChild($this->zip->toDOMElement($dom));
         $e->appendChild($this->city->toDOMElement($dom));
         $e->appendChild($this->provinceOrState->toDOMElement($dom));

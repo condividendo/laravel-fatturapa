@@ -22,9 +22,9 @@ class Item extends Tag
     private $description;
 
     /**
-     * @var \Condividendo\FatturaPA\Tags\Quantity
+     * @var ?\Condividendo\FatturaPA\Tags\Quantity
      */
-    private $quantity;
+    private $quantity = null;
 
     /**
      * @var \Condividendo\FatturaPA\Tags\UnitPrice
@@ -92,7 +92,11 @@ class Item extends Tag
 
         $e->appendChild($this->lineNumber->toDOMElement($dom));
         $e->appendChild($this->description->toDOMElement($dom));
-        $e->appendChild($this->quantity->toDOMElement($dom));
+
+        if ($this->quantity) {
+            $e->appendChild($this->quantity->toDOMElement($dom));
+        }
+
         $e->appendChild($this->unitPrice->toDOMElement($dom));
         $e->appendChild($this->totalPrice->toDOMElement($dom));
         $e->appendChild($this->vatTax->toDOMElement($dom));

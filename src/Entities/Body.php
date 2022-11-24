@@ -35,14 +35,14 @@ class Body extends Entity
     private $date;
 
     /**
-     * @var \Brick\Math\BigDecimal
+     * @var ?\Brick\Math\BigDecimal
      */
-    private $amount;
+    private $amount = null;
 
     /**
-     * @var string
+     * @var ?string
      */
-    private $description;
+    private $description = null;
 
     /**
      * @var string
@@ -197,12 +197,18 @@ class Body extends Entity
         $body = BodyTag::make()
             ->setType($this->type)
             ->setCurrency($this->currency)
-            ->setDocumentAmount($this->amount)
-            ->setDocumentDescription($this->description)
             ->setDate($this->date)
             ->setNumber($this->number)
             ->setItems($items)
             ->setSummaryItems($summaryItems);
+
+        if ($this->amount) {
+            $body->setDocumentAmount($this->amount);
+        }
+
+        if ($this->description) {
+            $body->setDocumentDescription($this->description);
+        }
 
         $paymentData = $this->getPaymentDataTag();
 
