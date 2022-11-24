@@ -8,7 +8,6 @@ use Condividendo\FatturaPA\Entities\Body;
 use Condividendo\FatturaPA\Entities\Contacts;
 use Condividendo\FatturaPA\Entities\Customer;
 use Condividendo\FatturaPA\Entities\Item;
-use Condividendo\FatturaPA\Entities\REARegistration;
 use Condividendo\FatturaPA\Entities\SummaryItem;
 use Condividendo\FatturaPA\Entities\Supplier;
 use Condividendo\FatturaPA\Enums\LiquidationStatus;
@@ -65,14 +64,11 @@ class Build4Test extends TestCase
                             ->setProvince('SM')
                             ->setCountry('SM')
                     )
-                    ->setREARegistration(
-                        REARegistration::make()
-                            ->setREANumber("12123")
-                            ->setOfficeCode("MI")
-                            ->setShareHolders(ShareHolder::SM())
-                            ->setCapital(BigDecimal::of('11111.00'))
-                            ->setLiquidationStatus(LiquidationStatus::LN())
-                    )
+                    ->setREANumber("12123")
+                    ->setREAOfficeCode("MI")
+                    ->setREAShareHolders(ShareHolder::SM())
+                    ->setREACapital(BigDecimal::of('11111.00'))
+                    ->setREALiquidationStatus(LiquidationStatus::LN())
                     ->setTaxRegime(TaxRegime::RF01())
                     ->setContacts(
                         Contacts::make()

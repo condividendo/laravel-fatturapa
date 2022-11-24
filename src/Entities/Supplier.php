@@ -2,9 +2,14 @@
 
 namespace Condividendo\FatturaPA\Entities;
 
+use Brick\Math\BigDecimal;
+use Condividendo\FatturaPA\Enums\LiquidationStatus;
+use Condividendo\FatturaPA\Enums\ShareHolder;
 use Condividendo\FatturaPA\Enums\TaxRegime;
+use Condividendo\FatturaPA\Tags\REARegistration as REARegistrationTag;
 use Condividendo\FatturaPA\Tags\Supplier as SupplierTag;
 use Condividendo\FatturaPA\Traits\Makeable;
+use RuntimeException;
 
 class Supplier extends Entity
 {
@@ -36,9 +41,29 @@ class Supplier extends Entity
     private $taxRegime;
 
     /**
-     * @var ?\Condividendo\FatturaPA\Entities\REARegistration
+     * @var ?string
      */
-    private $reaRegistration;
+    private $reaOfficeCode = null;
+
+    /**
+     * @var ?string
+     */
+    private $reaNumber = null;
+
+    /**
+     * @var ?\Brick\Math\BigDecimal
+     */
+    private $reaCapital = null;
+
+    /**
+     * @var ?\Condividendo\FatturaPA\Enums\ShareHolder
+     */
+    private $reaShareHolders = null;
+
+    /**
+     * @var ?\Condividendo\FatturaPA\Enums\LiquidationStatus
+     */
+    private $reaLiquidationStatus = null;
 
     /**
      * @var \Condividendo\FatturaPA\Entities\Address
@@ -84,9 +109,37 @@ class Supplier extends Entity
         return $this;
     }
 
-    public function setREARegistration(REARegistration $reaRegistration): self
+    public function setREAOfficeCode(string $officeCode): self
     {
-        $this->reaRegistration = $reaRegistration;
+        $this->reaOfficeCode = $officeCode;
+
+        return $this;
+    }
+
+    public function setREANumber(string $reaNumber): self
+    {
+        $this->reaNumber = $reaNumber;
+
+        return $this;
+    }
+
+    public function setREACapital(BigDecimal $capital): self
+    {
+        $this->reaCapital = $capital;
+
+        return $this;
+    }
+
+    public function setREAShareHolders(ShareHolder $shareHolders): self
+    {
+        $this->reaShareHolders = $shareHolders;
+
+        return $this;
+    }
+
+    public function setREALiquidationStatus(LiquidationStatus $liquidationStatus): self
+    {
+        $this->reaLiquidationStatus = $liquidationStatus;
 
         return $this;
     }
@@ -117,12 +170,40 @@ class Supplier extends Entity
             $tag->setFiscalCode($this->fiscalCode);
         }
 
-        if ($this->reaRegistration) {
-            $tag->setREARegistration($this->reaRegistration->getTag());
+        $reaTag = $this->getREARegistrationTag();
+
+        if ($reaTag) {
+            $tag->setREARegistration($reaTag);
         }
 
         if ($this->contacts) {
             $tag->setContacts($this->contacts->getTag());
+        }
+
+        return $tag;
+    }
+
+    public function getREARegistrationTag(): ?REARegistrationTag
+    {
+        if (!$this->reaOfficeCode) {
+            return null;
+        }
+
+        if (!$this->reaNumber || !$this->reaLiquidationStatus) {
+            throw new RuntimeException("'reaNumber' and 'reaLiquidationStatus' cannot be null!");
+        }
+
+        $tag = REARegistrationTag::make()
+            ->setOfficeCode($this->reaOfficeCode)
+            ->setREANumber($this->reaNumber)
+            ->setLiquidationStatus($this->reaLiquidationStatus);
+
+        if ($this->reaCapital) {
+            $tag->setCapital($this->reaCapital);
+        }
+
+        if ($this->reaShareHolders) {
+            $tag->setShareHolders($this->reaShareHolders);
         }
 
         return $tag;
