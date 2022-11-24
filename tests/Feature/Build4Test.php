@@ -8,7 +8,6 @@ use Condividendo\FatturaPA\Entities\Body;
 use Condividendo\FatturaPA\Entities\Contacts;
 use Condividendo\FatturaPA\Entities\Customer;
 use Condividendo\FatturaPA\Entities\Item;
-use Condividendo\FatturaPA\Entities\PaymentData;
 use Condividendo\FatturaPA\Entities\REARegistration;
 use Condividendo\FatturaPA\Entities\SummaryItem;
 use Condividendo\FatturaPA\Entities\Supplier;
@@ -120,13 +119,10 @@ class Build4Test extends TestCase
                             ->setNature(Nature::N3_3())
                             ->setRegulatoryReference(RegulatoryReference::N3_3()),
                     ])
-                    ->setPaymentData(
-                        PaymentData::make()
-                            ->setPaymentMethod(PaymentMethod::MP21())
-                            ->setPaymentAmount(BigDecimal::of('12.20'))
-                            ->setPaymentExpirationDate("2022-10-28")
-                            ->setPaymentCondition(PaymentCondition::TP02())
-                    )
+                    ->setPaymentMethod(PaymentMethod::MP21())
+                    ->setPaymentAmount(BigDecimal::of('12.20'))
+                    ->setPaymentExpirationDate("2022-10-28")
+                    ->setPaymentCondition(PaymentCondition::TP02())
             );
     }
 }

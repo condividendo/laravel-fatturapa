@@ -3,9 +3,14 @@
 namespace Condividendo\FatturaPA\Entities;
 
 use Brick\Math\BigDecimal;
+use Condividendo\FatturaPA\Enums\PaymentCondition;
+use Condividendo\FatturaPA\Enums\PaymentMethod;
 use Condividendo\FatturaPA\Enums\Type;
 use Condividendo\FatturaPA\Tags\Body as BodyTag;
+use Condividendo\FatturaPA\Tags\PaymentData as PaymentDataTag;
+use Condividendo\FatturaPA\Tags\PaymentDetail;
 use Condividendo\FatturaPA\Traits\Makeable;
+use RuntimeException;
 
 class Body extends Entity
 {
@@ -42,9 +47,24 @@ class Body extends Entity
     private $number;
 
     /**
-     * @var \Condividendo\FatturaPA\Entities\PaymentData
+     * @var ?\Condividendo\FatturaPA\Enums\PaymentCondition
      */
-    private $paymentData;
+    private $paymentCondition = null;
+
+    /**
+     * @var ?\Condividendo\FatturaPA\Enums\PaymentMethod
+     */
+    private $paymentMethod = null;
+
+    /**
+     * @var ?string
+     */
+    private $paymentExpirationDate = null;
+
+    /**
+     * @var ?\Brick\Math\BigDecimal
+     */
+    private $paymentAmount = null;
 
     /**
      * @var array<\Condividendo\FatturaPA\Entities\Item>
@@ -118,9 +138,30 @@ class Body extends Entity
         return $this;
     }
 
-    public function setPaymentData(PaymentData $paymentData): self
+    public function setPaymentMethod(PaymentMethod $paymentMethod): self
     {
-        $this->paymentData = $paymentData;
+        $this->paymentMethod = $paymentMethod;
+
+        return $this;
+    }
+
+    public function setPaymentExpirationDate(string $date): self
+    {
+        $this->paymentExpirationDate = $date;
+
+        return $this;
+    }
+
+    public function setPaymentAmount(BigDecimal $amount): self
+    {
+        $this->paymentAmount = $amount;
+
+        return $this;
+    }
+
+    public function setPaymentCondition(PaymentCondition $paymentCondition): self
+    {
+        $this->paymentCondition = $paymentCondition;
 
         return $this;
     }
@@ -138,7 +179,7 @@ class Body extends Entity
             $summaryItems[] = $item->getTag();
         }
 
-        return BodyTag::make()
+        $body = BodyTag::make()
             ->setType($this->type)
             ->setCurrency($this->currency)
             ->setDocumentAmount($this->amount)
@@ -146,7 +187,37 @@ class Body extends Entity
             ->setDate($this->date)
             ->setNumber($this->number)
             ->setItems($items)
-            ->setSummaryItems($summaryItems)
-            ->setPaymentData($this->paymentData->getTag());
+            ->setSummaryItems($summaryItems);
+
+        $paymentData = $this->getPaymentDataTag();
+
+        if ($paymentData) {
+            $body->setPaymentData($paymentData);
+        }
+
+        return $body;
+    }
+
+    private function getPaymentDataTag(): ?PaymentDataTag
+    {
+        if (!$this->paymentCondition) {
+            return null;
+        }
+
+        if (!$this->paymentMethod || !$this->paymentAmount) {
+            throw new RuntimeException("'paymentMethod' and 'paymentAmount' cannot be null!");
+        }
+
+        $detail = PaymentDetail::make()
+            ->setPaymentMethod($this->paymentMethod)
+            ->setPaymentAmount($this->paymentAmount);
+
+        if ($this->paymentExpirationDate) {
+            $detail->setPaymentExpirationDate($this->paymentExpirationDate);
+        }
+
+        return PaymentDataTag::make()
+            ->setPaymentCondition($this->paymentCondition)
+            ->setPaymentDetail($detail);
     }
 }
