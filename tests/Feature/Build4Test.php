@@ -5,7 +5,6 @@ namespace Condividendo\FatturaPA\Tests\Feature;
 use Brick\Math\BigDecimal;
 use Condividendo\FatturaPA\Entities\Address;
 use Condividendo\FatturaPA\Entities\Body;
-use Condividendo\FatturaPA\Entities\Contacts;
 use Condividendo\FatturaPA\Entities\Customer;
 use Condividendo\FatturaPA\Entities\Item;
 use Condividendo\FatturaPA\Entities\SummaryItem;
@@ -70,10 +69,7 @@ class Build4Test extends TestCase
                     ->setREACapital(BigDecimal::of('11111.00'))
                     ->setREALiquidationStatus(LiquidationStatus::LN())
                     ->setTaxRegime(TaxRegime::RF01())
-                    ->setContacts(
-                        Contacts::make()
-                            ->setEmail("fiscale@esempio.eu")
-                    )
+                    ->setContactsEmail("fiscale@esempio.eu")
             )
             ->setCustomer(
                 Customer::make()

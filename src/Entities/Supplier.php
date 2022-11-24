@@ -6,6 +6,7 @@ use Brick\Math\BigDecimal;
 use Condividendo\FatturaPA\Enums\LiquidationStatus;
 use Condividendo\FatturaPA\Enums\ShareHolder;
 use Condividendo\FatturaPA\Enums\TaxRegime;
+use Condividendo\FatturaPA\Tags\Contacts as ContactsTag;
 use Condividendo\FatturaPA\Tags\REARegistration as REARegistrationTag;
 use Condividendo\FatturaPA\Tags\Supplier as SupplierTag;
 use Condividendo\FatturaPA\Traits\Makeable;
@@ -71,9 +72,19 @@ class Supplier extends Entity
     private $address;
 
     /**
-     * @var ?\Condividendo\FatturaPA\Entities\Contacts
+     * @var ?string
      */
-    private $contacts;
+    private $contactsEmail = null;
+
+    /**
+     * @var ?string
+     */
+    private $contactsFax = null;
+
+    /**
+     * @var ?string
+     */
+    private $contactsPhoneNumber = null;
 
     public function setName(string $name): self
     {
@@ -151,9 +162,23 @@ class Supplier extends Entity
         return $this;
     }
 
-    public function setContacts(Contacts $contacts): self
+    public function setContactsEmail(string $email): self
     {
-        $this->contacts = $contacts;
+        $this->contactsEmail = $email;
+
+        return $this;
+    }
+
+    public function setContactsFax(string $fax): self
+    {
+        $this->contactsFax = $fax;
+
+        return $this;
+    }
+
+    public function setContactsPhoneNumber(string $number): self
+    {
+        $this->contactsPhoneNumber = $number;
 
         return $this;
     }
@@ -176,8 +201,10 @@ class Supplier extends Entity
             $tag->setREARegistration($reaTag);
         }
 
-        if ($this->contacts) {
-            $tag->setContacts($this->contacts->getTag());
+        $contactsTag = $this->getContactsTag();
+
+        if ($contactsTag) {
+            $tag->setContacts($contactsTag);
         }
 
         return $tag;
@@ -204,6 +231,29 @@ class Supplier extends Entity
 
         if ($this->reaShareHolders) {
             $tag->setShareHolders($this->reaShareHolders);
+        }
+
+        return $tag;
+    }
+
+    public function getContactsTag(): ?ContactsTag
+    {
+        if (!$this->contactsEmail && !$this->contactsFax && !$this->contactsPhoneNumber) {
+            return null;
+        }
+
+        $tag = ContactsTag::make();
+
+        if ($this->contactsEmail) {
+            $tag->setEmail($this->contactsEmail);
+        }
+
+        if ($this->contactsFax) {
+            $tag->setFax($this->contactsFax);
+        }
+
+        if ($this->contactsPhoneNumber) {
+            $tag->setPhone($this->contactsPhoneNumber);
         }
 
         return $tag;
