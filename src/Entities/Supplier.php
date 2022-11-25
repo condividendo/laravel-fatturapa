@@ -8,12 +8,14 @@ use Condividendo\FatturaPA\Enums\TaxRegime;
 use Condividendo\FatturaPA\Tags\Contacts as ContactsTag;
 use Condividendo\FatturaPA\Tags\REARegistration as REARegistrationTag;
 use Condividendo\FatturaPA\Tags\Supplier as SupplierTag;
+use Condividendo\FatturaPA\Traits\HasVatNumber;
 use Condividendo\FatturaPA\Traits\Makeable;
 use Condividendo\FatturaPA\Traits\UsesDecimal;
 use RuntimeException;
 
 class Supplier extends Entity
 {
+    use HasVatNumber;
     use Makeable;
     use UsesDecimal;
 
@@ -99,10 +101,10 @@ class Supplier extends Entity
         return $this;
     }
 
-    public function setVatNumber(string $countryId, string $vatNumber): self
+    public function setVatNumber(string $vatNumber, ?string $countryId = null): self
     {
-        $this->vatCountryId = $countryId;
-        $this->vatNumber = $vatNumber;
+        $this->vatCountryId = static::parseVatNumberCountryId($vatNumber, $countryId);
+        $this->vatNumber = static::parseVatNumber($vatNumber, $countryId);
 
         return $this;
     }

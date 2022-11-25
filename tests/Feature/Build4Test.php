@@ -52,7 +52,7 @@ class Build4Test extends TestCase
             ->setSupplier(
                 Supplier::make()
                     ->setName('Esempio azienda S. Marino srl')
-                    ->setVatNumber('SM', '012345')
+                    ->setVatNumber('SM012345')
                     ->setAddress(
                         Address::make()
                             ->setAddressLine('Via Test')

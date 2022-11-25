@@ -25,7 +25,7 @@ $invoice = \Condividendo\FatturaPA\FatturaPA::build()
     ->setSupplier(
         \Condividendo\FatturaPA\Entities\Supplier::make()
             ->setName('Condividendo italia srl')
-            ->setVatNumber('IT', '12345640962')
+            ->setVatNumber('IT12345640962')
             ->setTaxRegime(\Condividendo\FatturaPA\Enums\TaxRegime::RF01())
             ->setAddress(
                 \Condividendo\FatturaPA\Entities\Address::make()

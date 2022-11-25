@@ -4,10 +4,12 @@ namespace Condividendo\FatturaPA\Entities;
 
 use Condividendo\FatturaPA\Enums\TaxRegime;
 use Condividendo\FatturaPA\Tags\Customer as CustomerTag;
+use Condividendo\FatturaPA\Traits\HasVatNumber;
 use Condividendo\FatturaPA\Traits\Makeable;
 
 class Customer extends Entity
 {
+    use HasVatNumber;
     use Makeable;
 
     /**
@@ -62,10 +64,10 @@ class Customer extends Entity
         return $this;
     }
 
-    public function setVatNumber(string $countryId, string $vatNumber): self
+    public function setVatNumber(string $vatNumber, ?string $countryId = null): self
     {
-        $this->vatCountryId = $countryId;
-        $this->vatNumber = $vatNumber;
+        $this->vatCountryId = static::parseVatNumberCountryId($vatNumber, $countryId);
+        $this->vatNumber = static::parseVatNumber($vatNumber, $countryId);
 
         return $this;
     }

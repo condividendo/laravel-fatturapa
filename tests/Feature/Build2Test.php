@@ -52,7 +52,7 @@ class Build2Test extends TestCase
             ->setSupplier(
                 Supplier::make()
                     ->setName('Condividendo Italia srl')
-                    ->setVatNumber('IT', '12345640962')
+                    ->setVatNumber('IT12345640962')
                     ->setAddress(
                         Address::make()
                             ->setAddressLine('Via Italia')
