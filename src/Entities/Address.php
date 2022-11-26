@@ -39,42 +39,42 @@ class Address extends Entity
      */
     private $country;
 
-    public function setAddressLine(string $addressLine): self
+    public function addressLine(string $addressLine): self
     {
         $this->addressLine = $addressLine;
 
         return $this;
     }
 
-    public function setStreetNumber(string $streetNumber): self
+    public function streetNumber(string $streetNumber): self
     {
         $this->streetNumber = $streetNumber;
 
         return $this;
     }
 
-    public function setCity(string $city): self
+    public function city(string $city): self
     {
         $this->city = $city;
 
         return $this;
     }
 
-    public function setPostalCode(string $zip): self
+    public function postalCode(string $zip): self
     {
         $this->zip = $zip;
 
         return $this;
     }
 
-    public function setProvince(string $province): self
+    public function province(string $province): self
     {
         $this->provinceOrState = $province;
 
         return $this;
     }
 
-    public function setCountry(string $country): self
+    public function country(string $country): self
     {
         $this->country = $country;
 

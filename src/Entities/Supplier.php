@@ -89,19 +89,19 @@ class Supplier extends Entity
      */
     private $contactsPhoneNumber = null;
 
-    public function setName(string $name): self
+    public function name(string $name): self
     {
-        return $this->setCompanyName($name);
+        return $this->companyName($name);
     }
 
-    public function setCompanyName(string $companyName): self
+    public function companyName(string $companyName): self
     {
         $this->companyName = $companyName;
 
         return $this;
     }
 
-    public function setVatNumber(string $vatNumber, ?string $countryId = null): self
+    public function vatNumber(string $vatNumber, ?string $countryId = null): self
     {
         $this->vatCountryId = static::parseVatNumberCountryId($vatNumber, $countryId);
         $this->vatNumber = static::parseVatNumber($vatNumber, $countryId);
@@ -109,28 +109,28 @@ class Supplier extends Entity
         return $this;
     }
 
-    public function setFiscalCode(string $fiscalCode): self
+    public function fiscalCode(string $fiscalCode): self
     {
         $this->fiscalCode = $fiscalCode;
 
         return $this;
     }
 
-    public function setTaxRegime(TaxRegime $taxRegime): self
+    public function taxRegime(TaxRegime $taxRegime): self
     {
         $this->taxRegime = $taxRegime;
 
         return $this;
     }
 
-    public function setREAOfficeCode(string $officeCode): self
+    public function REAOfficeCode(string $officeCode): self
     {
         $this->reaOfficeCode = $officeCode;
 
         return $this;
     }
 
-    public function setREANumber(string $reaNumber): self
+    public function REANumber(string $reaNumber): self
     {
         $this->reaNumber = $reaNumber;
 
@@ -141,49 +141,49 @@ class Supplier extends Entity
      * @param string|\Brick\Math\BigDecimal $capital
      * @return $this
      */
-    public function setREACapital($capital): self
+    public function REACapital($capital): self
     {
         $this->reaCapital = static::makeDecimal($capital);
 
         return $this;
     }
 
-    public function setREAShareHolders(ShareHolder $shareHolders): self
+    public function REAShareHolders(ShareHolder $shareHolders): self
     {
         $this->reaShareHolders = $shareHolders;
 
         return $this;
     }
 
-    public function setREALiquidationStatus(LiquidationStatus $liquidationStatus): self
+    public function REALiquidationStatus(LiquidationStatus $liquidationStatus): self
     {
         $this->reaLiquidationStatus = $liquidationStatus;
 
         return $this;
     }
 
-    public function setAddress(Address $address): self
+    public function address(Address $address): self
     {
         $this->address = $address;
 
         return $this;
     }
 
-    public function setContactsEmail(string $email): self
+    public function contactsEmail(string $email): self
     {
         $this->contactsEmail = $email;
 
         return $this;
     }
 
-    public function setContactsFax(string $fax): self
+    public function contactsFax(string $fax): self
     {
         $this->contactsFax = $fax;
 
         return $this;
     }
 
-    public function setContactsPhoneNumber(string $number): self
+    public function contactsPhoneNumber(string $number): self
     {
         $this->contactsPhoneNumber = $number;
 

@@ -50,7 +50,7 @@ class SummaryItem extends Entity
      * @param string|\Brick\Math\BigDecimal $rate
      * @return $this
      */
-    public function setTaxRate($rate): self
+    public function taxRate($rate): self
     {
         $this->taxRate = static::makeDecimal($rate);
 
@@ -61,7 +61,7 @@ class SummaryItem extends Entity
      * @param string|\Brick\Math\BigDecimal $amount
      * @return $this
      */
-    public function setTaxableAmount($amount): self
+    public function taxableAmount($amount): self
     {
         $this->taxableAmount = static::makeDecimal($amount);
 
@@ -72,28 +72,28 @@ class SummaryItem extends Entity
      * @param string|\Brick\Math\BigDecimal $amount
      * @return $this
      */
-    public function setTaxAmount($amount): self
+    public function taxAmount($amount): self
     {
         $this->taxAmount = static::makeDecimal($amount);
 
         return $this;
     }
 
-    public function setNature(Nature $nature): self
+    public function nature(Nature $nature): self
     {
         $this->nature = $nature;
 
         return $this;
     }
 
-    public function setRegulatoryReference(RegulatoryReference $ref): self
+    public function regulatoryReference(RegulatoryReference $ref): self
     {
         $this->regulatoryReference = $ref;
 
         return $this;
     }
 
-    public function setVatCollectionMode(VatCollectionMode $collectionMode): self
+    public function vatCollectionMode(VatCollectionMode $collectionMode): self
     {
         $this->vatCollectionMode = $collectionMode;
 

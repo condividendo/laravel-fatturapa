@@ -80,14 +80,14 @@ class Body extends Entity
      */
     private $summaryItems;
 
-    public function setType(Type $type): self
+    public function type(Type $type): self
     {
         $this->type = $type;
 
         return $this;
     }
 
-    public function setCurrency(string $currency): self
+    public function currency(string $currency): self
     {
         $this->currency = $currency;
 
@@ -98,7 +98,7 @@ class Body extends Entity
      * @param string|\Illuminate\Support\Carbon $date
      * @return $this
      */
-    public function setDate($date): self
+    public function date($date): self
     {
         $this->date = static::makeDate($date);
 
@@ -109,21 +109,21 @@ class Body extends Entity
      * @param string|\Brick\Math\BigDecimal $amount
      * @return $this
      */
-    public function setDocumentAmount($amount): self
+    public function documentAmount($amount): self
     {
         $this->amount = static::makeDecimal($amount);
 
         return $this;
     }
 
-    public function setDocumentDescription(string $description): self
+    public function documentDescription(string $description): self
     {
         $this->description = $description;
 
         return $this;
     }
 
-    public function setNumber(string $number): self
+    public function number(string $number): self
     {
         $this->number = $number;
 
@@ -133,7 +133,7 @@ class Body extends Entity
     /**
      * @param array<int, \Condividendo\FatturaPA\Entities\Item> $items
      */
-    public function setItems(array $items): self
+    public function items(array $items): self
     {
         $this->items = $items;
 
@@ -143,21 +143,21 @@ class Body extends Entity
     /**
      * @param array<int, \Condividendo\FatturaPA\Entities\SummaryItem> $items
      */
-    public function setSummaryItems(array $items): self
+    public function summaryItems(array $items): self
     {
         $this->summaryItems = $items;
 
         return $this;
     }
 
-    public function setPaymentMethod(PaymentMethod $paymentMethod): self
+    public function paymentMethod(PaymentMethod $paymentMethod): self
     {
         $this->paymentMethod = $paymentMethod;
 
         return $this;
     }
 
-    public function setPaymentExpirationDate(string $date): self
+    public function paymentExpirationDate(string $date): self
     {
         $this->paymentExpirationDate = $date;
 
@@ -168,14 +168,14 @@ class Body extends Entity
      * @param string|\Brick\Math\BigDecimal $amount
      * @return $this
      */
-    public function setPaymentAmount($amount): self
+    public function paymentAmount($amount): self
     {
         $this->paymentAmount = static::makeDecimal($amount);
 
         return $this;
     }
 
-    public function setPaymentCondition(PaymentCondition $paymentCondition): self
+    public function paymentCondition(PaymentCondition $paymentCondition): self
     {
         $this->paymentCondition = $paymentCondition;
 

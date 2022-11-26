@@ -57,14 +57,14 @@ class Customer extends Entity
      */
     private $address;
 
-    public function setCompanyName(string $companyName): self
+    public function companyName(string $companyName): self
     {
         $this->companyName = $companyName;
 
         return $this;
     }
 
-    public function setVatNumber(string $vatNumber, ?string $countryId = null): self
+    public function vatNumber(string $vatNumber, ?string $countryId = null): self
     {
         $this->vatCountryId = static::parseVatNumberCountryId($vatNumber, $countryId);
         $this->vatNumber = static::parseVatNumber($vatNumber, $countryId);
@@ -72,42 +72,42 @@ class Customer extends Entity
         return $this;
     }
 
-    public function setFiscalCode(string $fiscalCode): self
+    public function fiscalCode(string $fiscalCode): self
     {
         $this->fiscalCode = $fiscalCode;
 
         return $this;
     }
 
-    public function setTitle(string $title): self
+    public function title(string $title): self
     {
         $this->title = $title;
 
         return $this;
     }
 
-    public function setFirstName(string $firstName): self
+    public function firstName(string $firstName): self
     {
         $this->firstName = $firstName;
 
         return $this;
     }
 
-    public function setLastName(string $lastName): self
+    public function lastName(string $lastName): self
     {
         $this->lastName = $lastName;
 
         return $this;
     }
 
-    public function setTaxRegime(TaxRegime $taxRegime): self
+    public function taxRegime(TaxRegime $taxRegime): self
     {
         $this->taxRegime = $taxRegime;
 
         return $this;
     }
 
-    public function setAddress(Address $address): self
+    public function address(Address $address): self
     {
         $this->address = $address;
 

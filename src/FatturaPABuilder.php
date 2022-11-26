@@ -81,14 +81,14 @@ class FatturaPABuilder
      */
     private $bodies = [];
 
-    public function setTransmissionFormat(TransmissionFormat $format): self
+    public function transmissionFormat(TransmissionFormat $format): self
     {
         $this->transmissionFormat = $format;
 
         return $this;
     }
 
-    public function setSenderId(string $country, string $code): self
+    public function senderId(string $country, string $code): self
     {
         $this->senderIdCountry = $country;
         $this->senderIdCode = $code;
@@ -96,28 +96,28 @@ class FatturaPABuilder
         return $this;
     }
 
-    public function setSenderEmail(string $email): self
+    public function senderEmail(string $email): self
     {
         $this->senderEmail = $email;
 
         return $this;
     }
 
-    public function setSenderPhone(string $phone): self
+    public function senderPhone(string $phone): self
     {
         $this->senderPhone = $phone;
 
         return $this;
     }
 
-    public function setTransmissionSequence(string $sequence): self
+    public function transmissionSequence(string $sequence): self
     {
         $this->transmissionSequence = $sequence;
 
         return $this;
     }
 
-    public function setRecipientCodeWhenForeignRecipient(): self
+    public function recipientCodeWhenForeignRecipient(): self
     {
         if ($this->recipientCountryId && in_array(strtoupper($this->recipientCountryId), ["SM", "VA"])) {
             // recipient code for San Marino and Vatican suppliers
@@ -127,36 +127,36 @@ class FatturaPABuilder
         return $this;
     }
 
-    public function setRecipientCountryId(string $countryId): self
+    public function recipientCountryId(string $countryId): self
     {
         $this->recipientCountryId = $countryId;
 
-        return $this->setRecipientCodeWhenForeignRecipient();
+        return $this->recipientCodeWhenForeignRecipient();
     }
 
-    public function setRecipientCode(string $code): self
+    public function recipientCode(string $code): self
     {
         $this->recipientCode = $code;
-        $this->setRecipientCodeWhenForeignRecipient();
+        $this->recipientCodeWhenForeignRecipient();
 
         return $this;
     }
 
-    public function setRecipientPec(string $pec): self
+    public function recipientPec(string $pec): self
     {
         $this->recipientPec = $pec;
 
         return $this;
     }
 
-    public function setSupplier(Supplier $supplier): self
+    public function supplier(Supplier $supplier): self
     {
         $this->supplier = $supplier;
 
         return $this;
     }
 
-    public function setCustomer(Customer $customer): self
+    public function customer(Customer $customer): self
     {
         $this->customer = $customer;
 

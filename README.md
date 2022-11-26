@@ -18,54 +18,54 @@ composer require condividendo/laravel-fatturapa
 
 ```php
 $invoice = \Condividendo\FatturaPA\FatturaPA::build()
-    ->setSenderId('IT', '01879020517')
-    ->setTransmissionFormat(\Condividendo\FatturaPA\Enums\TransmissionFormat::FPR12())
-    ->setTransmissionSequence('1')
-    ->setRecipientCode('ABC1234')
-    ->setSupplier(
+    ->senderId('IT', '01879020517')
+    ->transmissionFormat(\Condividendo\FatturaPA\Enums\TransmissionFormat::FPR12())
+    ->transmissionSequence('1')
+    ->recipientCode('ABC1234')
+    ->supplier(
         \Condividendo\FatturaPA\Entities\Supplier::make()
-            ->setName('Condividendo italia srl')
-            ->setVatNumber('IT12345640962')
-            ->setTaxRegime(\Condividendo\FatturaPA\Enums\TaxRegime::RF01())
-            ->setAddress(
+            ->name('Condividendo italia srl')
+            ->vatNumber('IT12345640962')
+            ->taxRegime(\Condividendo\FatturaPA\Enums\TaxRegime::RF01())
+            ->address(
                 \Condividendo\FatturaPA\Entities\Address::make()
-                    ->setAddressLine('Via Italia, 123')
-                    ->setPostalCode('123456')
-                    ->setCity('Milano')
-                    ->setProvince('MI')
-                    ->setCountry('IT')
+                    ->addressLine('Via Italia, 123')
+                    ->postalCode('123456')
+                    ->city('Milano')
+                    ->province('MI')
+                    ->country('IT')
             )
     )
-    ->setCustomer(
+    ->customer(
         \Condividendo\FatturaPA\Entities\Customer::make()
-            ->setFirstName('Mario')
-            ->setLastName('Rossi')
-            ->setFiscalCode('RSSMRA73L09Z103F')
-            ->setAddress(
+            ->firstName('Mario')
+            ->lastName('Rossi')
+            ->fiscalCode('RSSMRA73L09Z103F')
+            ->address(
                 \Condividendo\FatturaPA\Entities\Address::make()
-                    ->setAddressLine('Via Italia, 123')
-                    ->setPostalCode('123456')
-                    ->setCity('Milano')
-                    ->setProvince('MI')
-                    ->setCountry('IT')
+                    ->addressLine('Via Italia, 123')
+                    ->postalCode('123456')
+                    ->city('Milano')
+                    ->province('MI')
+                    ->country('IT')
             )
     )
     ->addBody(
         \Condividendo\FatturaPA\Entities\Body::make()
-            ->setType(\Condividendo\FatturaPA\Enums\Type::TD01())
-            ->setCurrency('EUR')
-            ->setNumber('1')
-            ->setItems([
+            ->type(\Condividendo\FatturaPA\Enums\Type::TD01())
+            ->currency('EUR')
+            ->number('1')
+            ->items([
                 \Condividendo\FatturaPA\Entities\Item::make()
-                    ->setNumber(1)
-                    ->setDescription('Product description')
-                    ->setPrice('10.00')
-                    ->setTaxRate('0.22')
+                    ->number(1)
+                    ->description('Product description')
+                    ->price('10.00')
+                    ->taxRate('0.22')
             ])
-            ->setSummaryItems([
+            ->summaryItems([
                 \Condividendo\FatturaPA\Entities\SummaryItem::make()
-                    ->setTaxableAmount('10.00')
-                    ->setTaxRate('0.22')
+                    ->taxableAmount('10.00')
+                    ->taxRate('0.22')
             ])
     );
     

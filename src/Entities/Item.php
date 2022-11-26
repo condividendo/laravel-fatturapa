@@ -42,14 +42,14 @@ class Item extends Entity
      */
     private $taxRate;
 
-    public function setNumber(int $lineNumber): self
+    public function number(int $lineNumber): self
     {
         $this->lineNumber = $lineNumber;
 
         return $this;
     }
 
-    public function setDescription(string $description): self
+    public function description(string $description): self
     {
         $this->description = $description;
 
@@ -60,7 +60,7 @@ class Item extends Entity
      * @param string|\Brick\Math\BigDecimal $quantity
      * @return $this
      */
-    public function setQuantity($quantity): self
+    public function quantity($quantity): self
     {
         $this->quantity = static::makeDecimal($quantity);
 
@@ -71,7 +71,7 @@ class Item extends Entity
      * @param string|\Brick\Math\BigDecimal $unitPrice
      * @return $this
      */
-    public function setPrice($unitPrice): self
+    public function price($unitPrice): self
     {
         $this->unitPrice = static::makeDecimal($unitPrice);
 
@@ -82,7 +82,7 @@ class Item extends Entity
      * @param string|\Brick\Math\BigDecimal $totalPrice
      * @return $this
      */
-    public function setTotalAmount($totalPrice): self
+    public function totalAmount($totalPrice): self
     {
         $this->totalPrice = static::makeDecimal($totalPrice);
 
@@ -93,7 +93,7 @@ class Item extends Entity
      * @param string|\Brick\Math\BigDecimal $rate
      * @return $this
      */
-    public function setTaxRate($rate): self
+    public function taxRate($rate): self
     {
         $this->taxRate = static::makeDecimal($rate);
 
