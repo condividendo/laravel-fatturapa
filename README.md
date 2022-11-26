@@ -54,7 +54,6 @@ $invoice = \Condividendo\FatturaPA\FatturaPA::build()
         \Condividendo\FatturaPA\Entities\Body::make()
             ->setType(\Condividendo\FatturaPA\Enums\Type::TD01())
             ->setCurrency('EUR')
-            ->setDate('2022-01-23')
             ->setNumber('1')
             ->setItems([
                 \Condividendo\FatturaPA\Entities\Item::make()

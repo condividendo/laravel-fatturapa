@@ -11,6 +11,7 @@ use Condividendo\FatturaPA\Tags\PaymentDetail;
 use Condividendo\FatturaPA\Traits\Makeable;
 use Condividendo\FatturaPA\Traits\UsesDate;
 use Condividendo\FatturaPA\Traits\UsesDecimal;
+use Illuminate\Support\Carbon;
 use RuntimeException;
 
 class Body extends Entity
@@ -30,9 +31,9 @@ class Body extends Entity
     private $currency;
 
     /**
-     * @var \Illuminate\Support\Carbon
+     * @var ?\Illuminate\Support\Carbon
      */
-    private $date;
+    private $date = null;
 
     /**
      * @var ?\Brick\Math\BigDecimal
@@ -197,7 +198,7 @@ class Body extends Entity
         $body = BodyTag::make()
             ->setType($this->type)
             ->setCurrency($this->currency)
-            ->setDate($this->date)
+            ->setDate($this->date ?: Carbon::today())
             ->setNumber($this->number)
             ->setItems($items)
             ->setSummaryItems($summaryItems);
