@@ -6,6 +6,7 @@
 This package allows you to generate the XML of Italian eInvoice (aka [FatturaPA](https://www.fatturapa.gov.it/)).
 
 Useful links:
+
 - [FatturaPA documentation](https://www.fatturapa.gov.it/it/norme-e-regole/documentazione-fattura-elettronica/formato-fatturapa/)
 
 ## Installation
@@ -30,7 +31,7 @@ $invoice = \Condividendo\FatturaPA\FatturaPA::build()
             ->address(
                 \Condividendo\FatturaPA\Entities\Address::make()
                     ->addressLine('Via Italia, 123')
-                    ->postalCode('123456')
+                    ->postalCode('12345')
                     ->city('Milano')
                     ->province('MI')
                     ->country('IT')
@@ -44,7 +45,7 @@ $invoice = \Condividendo\FatturaPA\FatturaPA::build()
             ->address(
                 \Condividendo\FatturaPA\Entities\Address::make()
                     ->addressLine('Via Italia, 123')
-                    ->postalCode('123456')
+                    ->postalCode('12345')
                     ->city('Milano')
                     ->province('MI')
                     ->country('IT')
