@@ -51,7 +51,7 @@ class Build4Test extends TestCase
             ->recipientCountryId("SM")
             ->supplier(
                 Supplier::make()
-                    ->name('Esempio azienda S. Marino srl')
+                    ->companyName('Esempio azienda S. Marino srl')
                     ->vatNumber('SM012345')
                     ->address(
                         Address::make()

@@ -49,7 +49,7 @@ class Build1Test extends TestCase
             ->recipientCode('ABC1234')
             ->supplier(
                 Supplier::make()
-                    ->name('Condividendo Italia srl')
+                    ->companyName('Condividendo Italia srl')
                     ->vatNumber('IT12345640962')
                     ->address(
                         Address::make()

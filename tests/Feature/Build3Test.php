@@ -49,7 +49,7 @@ class Build3Test extends TestCase
             ->recipientPec('pec@condividendo.eu')
             ->supplier(
                 Supplier::make()
-                    ->name('Condividendo Italia srl')
+                    ->companyName('Condividendo Italia srl')
                     ->vatNumber('IT12345640962')
                     ->address(
                         Address::make()

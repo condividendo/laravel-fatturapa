@@ -89,11 +89,6 @@ class Supplier extends Entity
      */
     private $contactsPhoneNumber = null;
 
-    public function name(string $name): self
-    {
-        return $this->companyName($name);
-    }
-
     public function companyName(string $companyName): self
     {
         $this->companyName = $companyName;
