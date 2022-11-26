@@ -86,7 +86,7 @@ class Address extends Entity
         $tag = AddressTag::make()
             ->setAddressLine($this->addressLine)
             ->setCity($this->city)
-            ->setPostalCode(strtoupper(substr($this->country, 0, 2)) === "IT" ? $this->zip : "00000")
+            ->setPostalCode($this->zip)
             ->setProvince($this->provinceOrState)
             ->setCountry($this->country);
 

@@ -57,7 +57,7 @@ class Build4Test extends TestCase
                         Address::make()
                             ->addressLine('Via Test')
                             ->streetNumber('1')
-                            ->postalCode('1')
+                            ->postalCode('47890')
                             ->city('San Marino')
                             ->province('SM')
                             ->country('SM')
