@@ -1,5 +1,6 @@
 {
     "name": "condividendo/laravel-fatturapa",
+    "license": "MIT",
     "require": {
         "php": "^7.2",
         "ext-dom": "*",
