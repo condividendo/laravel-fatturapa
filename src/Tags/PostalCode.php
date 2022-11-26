@@ -6,18 +6,18 @@ use Condividendo\FatturaPA\Traits\Makeable;
 use DOMDocument;
 use DOMElement;
 
-class Zip extends Tag
+class PostalCode extends Tag
 {
     use Makeable;
 
     /**
      * @var string
      */
-    private $zip;
+    private $postalCode;
 
-    public function setZip(string $zip): self
+    public function setPostalCode(string $postalCode): self
     {
-        $this->zip = $zip;
+        $this->postalCode = $postalCode;
 
         return $this;
     }
@@ -27,6 +27,6 @@ class Zip extends Tag
      */
     public function toDOMElement(DOMDocument $dom): DOMElement
     {
-        return $dom->createElement('CAP', $this->zip);
+        return $dom->createElement('CAP', $this->postalCode);
     }
 }

@@ -26,9 +26,9 @@ class Address extends Tag
     private $city;
 
     /**
-     * @var \Condividendo\FatturaPA\Tags\Zip
+     * @var \Condividendo\FatturaPA\Tags\PostalCode
      */
-    private $zip;
+    private $postalCode;
 
     /**
      * @var \Condividendo\FatturaPA\Tags\ProvinceOrState
@@ -61,9 +61,9 @@ class Address extends Tag
         return $this;
     }
 
-    public function setPostalCode(string $zip): self
+    public function setPostalCode(string $postalCode): self
     {
-        $this->zip = Zip::make()->setZip($zip);
+        $this->postalCode = PostalCode::make()->setPostalCode($postalCode);
 
         return $this;
     }
@@ -95,7 +95,7 @@ class Address extends Tag
             $e->appendChild($this->streetNumber->toDOMElement($dom));
         }
 
-        $e->appendChild($this->zip->toDOMElement($dom));
+        $e->appendChild($this->postalCode->toDOMElement($dom));
         $e->appendChild($this->city->toDOMElement($dom));
         $e->appendChild($this->provinceOrState->toDOMElement($dom));
         $e->appendChild($this->country->toDOMElement($dom));

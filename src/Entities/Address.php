@@ -27,7 +27,7 @@ class Address extends Entity
     /**
      * @var string
      */
-    private $zip;
+    private $postalCode;
 
     /**
      * @var string
@@ -60,9 +60,9 @@ class Address extends Entity
         return $this;
     }
 
-    public function postalCode(string $zip): self
+    public function postalCode(string $postalCode): self
     {
-        $this->zip = $zip;
+        $this->postalCode = $postalCode;
 
         return $this;
     }
@@ -91,7 +91,7 @@ class Address extends Entity
         $tag = AddressTag::make()
             ->setAddressLine($this->addressLine)
             ->setCity($this->city)
-            ->setPostalCode($this->zip)
+            ->setPostalCode($this->postalCode)
             ->setProvince($this->provinceOrState)
             ->setCountry($this->country);
 
