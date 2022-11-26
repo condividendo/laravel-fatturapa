@@ -54,11 +54,6 @@ class FatturaPABuilder
     /**
      * @var string
      */
-    private $recipientCountryId;
-
-    /**
-     * @var string
-     */
     private $recipientCode;
 
     /**
@@ -117,27 +112,9 @@ class FatturaPABuilder
         return $this;
     }
 
-    public function recipientCodeWhenForeignRecipient(): self
-    {
-        if ($this->recipientCountryId && in_array(strtoupper($this->recipientCountryId), ["SM", "VA"])) {
-            // recipient code for San Marino and Vatican suppliers
-            $this->recipientCode = "XXXXXXX";
-        }
-
-        return $this;
-    }
-
-    public function recipientCountryId(string $countryId): self
-    {
-        $this->recipientCountryId = $countryId;
-
-        return $this->recipientCodeWhenForeignRecipient();
-    }
-
     public function recipientCode(string $code): self
     {
         $this->recipientCode = $code;
-        $this->recipientCodeWhenForeignRecipient();
 
         return $this;
     }
@@ -168,6 +145,24 @@ class FatturaPABuilder
         $this->bodies[] = $body;
 
         return $this;
+    }
+
+    public function getRecipientCode(): string
+    {
+        $country = $this->customer->getAddress()->getCountry();
+
+        assert(
+            $this->recipientPec || $this->recipientCode || $country !== 'IT',
+            'Either Recipient PEC, Code or Country (different from "IT") must be set.'
+        );
+
+        if ($this->recipientPec) {
+            return '0000000';
+        }
+
+        return $country === 'IT'
+            ? $this->recipientCode
+            : 'XXXXXXX';
     }
 
     public function toDOM(): DOMDocument
@@ -263,10 +258,7 @@ class FatturaPABuilder
 
     private function makeRecipientCode(): RecipientCodeTag
     {
-        assert($this->recipientCode || $this->recipientPec, "Either Recipient Pec, Code or Country must be set");
-
-        return RecipientCodeTag::make()
-            ->setCode($this->recipientPec ? "0000000" : $this->recipientCode);
+        return RecipientCodeTag::make()->setCode($this->getRecipientCode());
     }
 
     private function makeRecipientPec(): ?RecipientPecTag

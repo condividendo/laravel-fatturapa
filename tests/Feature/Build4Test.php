@@ -48,7 +48,6 @@ class Build4Test extends TestCase
             ->transmissionSequence('1')
             ->transmissionFormat(TransmissionFormat::FPR12())
             ->recipientCode('ABC1234')
-            ->recipientCountryId("SM")
             ->supplier(
                 Supplier::make()
                     ->companyName('Condividendo Italia srl')

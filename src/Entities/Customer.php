@@ -114,6 +114,11 @@ class Customer extends Entity
         return $this;
     }
 
+    public function getAddress(): Address
+    {
+        return $this->address;
+    }
+
     public function getTag(): CustomerTag
     {
         $tag = CustomerTag::make()

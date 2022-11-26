@@ -81,6 +81,11 @@ class Address extends Entity
         return $this;
     }
 
+    public function getCountry(): string
+    {
+        return $this->country;
+    }
+
     public function getTag(): AddressTag
     {
         $tag = AddressTag::make()
