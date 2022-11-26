@@ -13,21 +13,21 @@
         <CedentePrestatore>
             <DatiAnagrafici>
                 <IdFiscaleIVA>
-                    <IdPaese>SM</IdPaese>
-                    <IdCodice>012345</IdCodice>
+                    <IdPaese>IT</IdPaese>
+                    <IdCodice>12345640962</IdCodice>
                 </IdFiscaleIVA>
                 <Anagrafica>
-                    <Denominazione>Esempio azienda S. Marino srl</Denominazione>
+                    <Denominazione>Condividendo Italia srl</Denominazione>
                 </Anagrafica>
                 <RegimeFiscale>RF01</RegimeFiscale>
             </DatiAnagrafici>
             <Sede>
-                <Indirizzo>Via Test</Indirizzo>
-                <NumeroCivico>1</NumeroCivico>
-                <CAP>47890</CAP>
-                <Comune>San Marino</Comune>
-                <Provincia>SM</Provincia>
-                <Nazione>SM</Nazione>
+                <Indirizzo>Via Italia</Indirizzo>
+                <NumeroCivico>123</NumeroCivico>
+                <CAP>12345</CAP>
+                <Comune>Milano</Comune>
+                <Provincia>MI</Provincia>
+                <Nazione>IT</Nazione>
             </Sede>
             <IscrizioneREA>
                 <Ufficio>MI</Ufficio>
@@ -37,7 +37,7 @@
                 <StatoLiquidazione>LN</StatoLiquidazione>
             </IscrizioneREA>
             <Contatti>
-                <Email>fiscale@esempio.eu</Email>
+                <Email>fiscale@condividendo.eu</Email>
             </Contatti>
         </CedentePrestatore>
         <CessionarioCommittente>
@@ -49,12 +49,12 @@
                 </Anagrafica>
             </DatiAnagrafici>
             <Sede>
-                <Indirizzo>Via Italia</Indirizzo>
-                <NumeroCivico>123</NumeroCivico>
-                <CAP>12345</CAP>
-                <Comune>Milano</Comune>
-                <Provincia>MI</Provincia>
-                <Nazione>IT</Nazione>
+                <Indirizzo>Via Test</Indirizzo>
+                <NumeroCivico>1</NumeroCivico>
+                <CAP>47890</CAP>
+                <Comune>San Marino</Comune>
+                <Provincia>SM</Provincia>
+                <Nazione>SM</Nazione>
             </Sede>
         </CessionarioCommittente>
     </FatturaElettronicaHeader>
