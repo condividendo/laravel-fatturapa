@@ -2,6 +2,7 @@
 
 namespace Condividendo\FatturaPA\Entities;
 
+use Brick\Math\BigDecimal;
 use Condividendo\FatturaPA\Tags\Item as ItemTag;
 use Condividendo\FatturaPA\Traits\Makeable;
 use Condividendo\FatturaPA\Traits\UsesDecimal;
@@ -32,9 +33,9 @@ class Item extends Entity
     private $unitPrice;
 
     /**
-     * @var \Brick\Math\BigDecimal
+     * @var ?\Brick\Math\BigDecimal
      */
-    private $totalPrice;
+    private $totalPrice = null;
 
     /**
      * @var \Brick\Math\BigDecimal
@@ -106,12 +107,19 @@ class Item extends Entity
             ->setDescription($this->description)
             ->setTaxRate($this->taxRate)
             ->setUnitPrice($this->unitPrice)
-            ->setTotalAmount($this->totalPrice);
+            ->setTotalAmount($this->totalPrice ?: $this->calculateTotalAmount());
 
         if ($this->quantity) {
             $tag->setQuantity($this->quantity);
         }
 
         return $tag;
+    }
+
+    private function calculateTotalAmount(): BigDecimal
+    {
+        return $this->quantity
+            ? $this->unitPrice->multipliedBy($this->quantity)
+            : $this->unitPrice;
     }
 }

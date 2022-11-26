@@ -2,6 +2,7 @@
 
 namespace Condividendo\FatturaPA\Entities;
 
+use Brick\Math\BigDecimal;
 use Condividendo\FatturaPA\Enums\Nature;
 use Condividendo\FatturaPA\Enums\RegulatoryReference;
 use Condividendo\FatturaPA\Enums\VatCollectionMode;
@@ -26,9 +27,9 @@ class SummaryItem extends Entity
     private $taxableAmount;
 
     /**
-     * @var \Brick\Math\BigDecimal
+     * @var ?\Brick\Math\BigDecimal
      */
-    private $taxAmount;
+    private $taxAmount = null;
 
     /**
      * @var ?\Condividendo\FatturaPA\Enums\VatCollectionMode
@@ -104,7 +105,7 @@ class SummaryItem extends Entity
         $tag = SummaryItemTag::make()
             ->setTaxRate($this->taxRate)
             ->setTaxableAmount($this->taxableAmount)
-            ->setTaxAmount($this->taxAmount);
+            ->setTaxAmount($this->taxAmount ?: $this->calculateTaxAmount());
 
         if ($this->vatCollectionMode) {
             $tag->setVatCollectionMode($this->vatCollectionMode);
@@ -120,5 +121,10 @@ class SummaryItem extends Entity
         }
 
         return $tag;
+    }
+
+    private function calculateTaxAmount(): BigDecimal
+    {
+        return $this->taxableAmount->multipliedBy($this->taxRate);
     }
 }

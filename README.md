@@ -60,14 +60,12 @@ $invoice = \Condividendo\FatturaPA\FatturaPA::build()
                     ->setNumber(1)
                     ->setDescription('Product description')
                     ->setPrice('10.00')
-                    ->setTotalAmount('10.00')
                     ->setTaxRate('0.22')
             ])
             ->setSummaryItems([
                 \Condividendo\FatturaPA\Entities\SummaryItem::make()
                     ->setTaxableAmount('10.00')
                     ->setTaxRate('0.22')
-                    ->setTaxAmount('2.20')
             ])
     );
     
