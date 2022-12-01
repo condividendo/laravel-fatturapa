@@ -61,7 +61,7 @@ class Body extends Entity
     private $paymentMethod = null;
 
     /**
-     * @var ?string
+     * @var ?\Illuminate\Support\Carbon
      */
     private $paymentExpirationDate = null;
 
@@ -157,9 +157,13 @@ class Body extends Entity
         return $this;
     }
 
-    public function paymentExpirationDate(string $date): self
+    /**
+     * @param string|\Illuminate\Support\Carbon $date
+     * @return $this
+     */
+    public function paymentExpirationDate($date): self
     {
-        $this->paymentExpirationDate = $date;
+        $this->paymentExpirationDate = static::makeDate($date);
 
         return $this;
     }

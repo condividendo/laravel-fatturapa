@@ -7,6 +7,7 @@ use Condividendo\FatturaPA\Enums\PaymentMethod as PaymentMethodEnum;
 use Condividendo\FatturaPA\Traits\Makeable;
 use DOMDocument;
 use DOMElement;
+use Illuminate\Support\Carbon;
 
 class PaymentDetail extends Tag
 {
@@ -18,9 +19,9 @@ class PaymentDetail extends Tag
     private $paymentMethod;
 
     /**
-     * @var \Condividendo\FatturaPA\Tags\PaymentExpirationDate
+     * @var ?\Condividendo\FatturaPA\Tags\PaymentExpirationDate
      */
-    private $paymentExpirationDate;
+    private $paymentExpirationDate = null;
 
     /**
      * @var \Condividendo\FatturaPA\Tags\PaymentAmount
@@ -34,7 +35,7 @@ class PaymentDetail extends Tag
         return $this;
     }
 
-    public function setPaymentExpirationDate(string $date): self
+    public function setPaymentExpirationDate(Carbon $date): self
     {
         $this->paymentExpirationDate = PaymentExpirationDate::make()->setPaymentExpirationDate($date);
 
@@ -56,7 +57,11 @@ class PaymentDetail extends Tag
         $e = $dom->createElement('DettaglioPagamento');
 
         $e->appendChild($this->paymentMethod->toDOMElement($dom));
-        $e->appendChild($this->paymentExpirationDate->toDOMElement($dom));
+
+        if ($this->paymentExpirationDate) {
+            $e->appendChild($this->paymentExpirationDate->toDOMElement($dom));
+        }
+
         $e->appendChild($this->amount->toDOMElement($dom));
 
         return $e;
