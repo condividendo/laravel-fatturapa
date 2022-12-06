@@ -18,6 +18,8 @@ class Duty extends Tag
 
     public function setDuty(BigDecimal $duty): self
     {
+        static::checkScale($duty);
+
         $this->duty = $duty;
 
         return $this;

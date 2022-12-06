@@ -18,6 +18,8 @@ class Capital extends Tag
 
     public function setCapital(BigNumber $capital): self
     {
+        static::checkScale($capital);
+
         $this->capital = $capital;
 
         return $this;

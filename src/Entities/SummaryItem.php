@@ -3,6 +3,7 @@
 namespace Condividendo\FatturaPA\Entities;
 
 use Brick\Math\BigDecimal;
+use Brick\Math\RoundingMode;
 use Condividendo\FatturaPA\Enums\Nature;
 use Condividendo\FatturaPA\Enums\RegulatoryReference;
 use Condividendo\FatturaPA\Enums\VatCollectionMode;
@@ -125,6 +126,6 @@ class SummaryItem extends Entity
 
     private function calculateTaxAmount(): BigDecimal
     {
-        return $this->taxableAmount->multipliedBy($this->taxRate);
+        return $this->taxableAmount->multipliedBy($this->taxRate)->toScale(2, RoundingMode::HALF_UP);
     }
 }

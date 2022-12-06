@@ -18,6 +18,8 @@ class UnitPrice extends Tag
 
     public function setUnitPrice(BigDecimal $unitPrice): self
     {
+        static::checkScale($unitPrice, 2, 8);
+
         $this->unitPrice = $unitPrice;
 
         return $this;

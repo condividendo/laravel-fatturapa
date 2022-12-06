@@ -18,6 +18,8 @@ class TotalPrice extends Tag
 
     public function setTotalPrice(BigDecimal $totalPrice): self
     {
+        static::checkScale($totalPrice, 2, 8);
+
         $this->totalPrice = $totalPrice;
 
         return $this;

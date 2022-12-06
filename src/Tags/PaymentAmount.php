@@ -18,6 +18,8 @@ class PaymentAmount extends Tag
 
     public function setAmount(BigDecimal $amount): self
     {
+        static::checkScale($amount);
+
         $this->amount = $amount;
 
         return $this;

@@ -18,6 +18,8 @@ class DocumentAmount extends Tag
 
     public function setDocumentAmount(BigDecimal $amount): self
     {
+        static::checkScale($amount);
+
         $this->amount = $amount;
 
         return $this;
