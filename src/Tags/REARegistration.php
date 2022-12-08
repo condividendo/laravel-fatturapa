@@ -2,7 +2,7 @@
 
 namespace Condividendo\FatturaPA\Tags;
 
-use Brick\Math\BigNumber;
+use Brick\Math\BigDecimal;
 use Condividendo\FatturaPA\Enums\LiquidationStatus as LiquidationStatusEnum;
 use Condividendo\FatturaPA\Enums\ShareHolder;
 use Condividendo\FatturaPA\Traits\Makeable;
@@ -52,7 +52,7 @@ class REARegistration extends Tag
         return $this;
     }
 
-    public function setCapital(BigNumber $capital): self
+    public function setCapital(BigDecimal $capital): self
     {
         $this->capital = Capital::make()->setCapital($capital);
 
